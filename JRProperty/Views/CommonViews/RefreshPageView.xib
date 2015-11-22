@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="hNk-yL-grM" customClass="RefreshPageView">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="640_tishi_pic_206x108.png" translatesAutoresizingMaskIntoConstraints="NO" id="g77-a4-cZr">
+                    <rect key="frame" x="149" y="55" width="103" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="103" id="E2H-TX-sz6"/>
+                        <constraint firstAttribute="height" constant="90" id="zSH-a5-Uhb"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击屏幕 重新加载" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUZ-kz-Flj">
+                    <rect key="frame" x="15" y="155" width="370" height="21"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="zHt-HI-NYi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8A-UQ-Ebw">
+                    <rect key="frame" x="15" y="0.0" width="370" height="155"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="refreshButtonClick:" destination="hNk-yL-grM" eventType="touchUpInside" id="SZx-UK-fNg"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="wUZ-kz-Flj" firstAttribute="top" secondItem="l8A-UQ-Ebw" secondAttribute="bottom" id="2gn-wJ-0dY"/>
+                <constraint firstAttribute="centerY" secondItem="g77-a4-cZr" secondAttribute="centerY" id="3P6-BW-9jF"/>
+                <constraint firstItem="wUZ-kz-Flj" firstAttribute="leading" secondItem="hNk-yL-grM" secondAttribute="leading" constant="15" id="EZj-Tp-FCn"/>
+                <constraint firstItem="wUZ-kz-Flj" firstAttribute="top" secondItem="g77-a4-cZr" secondAttribute="bottom" constant="10" id="Ewn-0R-ui7"/>
+                <constraint firstItem="l8A-UQ-Ebw" firstAttribute="top" secondItem="hNk-yL-grM" secondAttribute="top" id="KTA-VD-tsn"/>
+                <constraint firstAttribute="trailing" secondItem="wUZ-kz-Flj" secondAttribute="trailing" constant="15" id="YOs-7a-pge"/>
+                <constraint firstAttribute="centerX" secondItem="g77-a4-cZr" secondAttribute="centerX" id="mQE-fb-oJs"/>
+                <constraint firstAttribute="trailing" secondItem="l8A-UQ-Ebw" secondAttribute="trailing" constant="15" id="shI-4m-6eQ"/>
+                <constraint firstItem="l8A-UQ-Ebw" firstAttribute="leading" secondItem="hNk-yL-grM" secondAttribute="leading" constant="15" id="xYH-x5-NBa"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="refreshButton" destination="l8A-UQ-Ebw" id="aZg-Wn-AfZ"/>
+                <outlet property="tipLabel" destination="wUZ-kz-Flj" id="AVw-xY-Ghm"/>
+            </connections>
+            <point key="canvasLocation" x="401" y="160"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="640_tishi_pic_206x108.png" width="103" height="90"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="WBH-u3-ojg" customClass="ArticleVoteView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_grey_top_40x1.png" translatesAutoresizingMaskIntoConstraints="NO" id="hPB-oX-ELg">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="w4e-AF-Q38"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="w4e-AF-Q38"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="w4e-AF-Q38"/>
+                        </mask>
+                    </variation>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7w-8M-Vla">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" image="disagree_80x80.png">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="community_disagree_clicked.png"/>
+                    <state key="highlighted" image="disagree_80x80_press.png"/>
+                    <connections>
+                        <action selector="chooseNo:" destination="WBH-u3-ojg" eventType="touchUpInside" id="Cjf-tb-ufh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKs-Zv-O9g">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" image="agree_80x80.png">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="community_agree_clicked.png"/>
+                    <state key="highlighted" image="agree_80x80_press.png"/>
+                    <connections>
+                        <action selector="chooeYes:" destination="WBH-u3-ojg" eventType="touchUpInside" id="8AS-FR-7Yr"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="hPB-oX-ELg" secondAttribute="trailing" constant="8" id="KIZ-mv-jCB">
+                    <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                </constraint>
+                <constraint firstItem="hPB-oX-ELg" firstAttribute="leading" secondItem="WBH-u3-ojg" secondAttribute="leading" constant="8" id="TVV-4b-Ovb">
+                    <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                </constraint>
+                <constraint firstAttribute="bottom" secondItem="F7w-8M-Vla" secondAttribute="bottom" id="VGw-gv-eIP">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstItem="F7w-8M-Vla" firstAttribute="leading" secondItem="YKs-Zv-O9g" secondAttribute="trailing" id="e3a-pi-T7R"/>
+                <constraint firstItem="hPB-oX-ELg" firstAttribute="top" secondItem="WBH-u3-ojg" secondAttribute="top" id="iFy-mD-kTG"/>
+                <constraint firstItem="YKs-Zv-O9g" firstAttribute="top" secondItem="hPB-oX-ELg" secondAttribute="bottom" id="ls2-7b-Fkl"/>
+                <constraint firstAttribute="bottom" secondItem="YKs-Zv-O9g" secondAttribute="bottom" id="o5b-Hh-w2D">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstItem="F7w-8M-Vla" firstAttribute="top" secondItem="hPB-oX-ELg" secondAttribute="bottom" id="ocI-IF-b4g"/>
+                <constraint firstItem="YKs-Zv-O9g" firstAttribute="leading" secondItem="WBH-u3-ojg" secondAttribute="leading" id="qVt-77-WyY">
+                    <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                </constraint>
+                <constraint firstItem="YKs-Zv-O9g" firstAttribute="width" secondItem="F7w-8M-Vla" secondAttribute="width" id="tQj-83-gMI"/>
+                <constraint firstAttribute="trailing" secondItem="F7w-8M-Vla" secondAttribute="trailing" id="wbv-cK-S2Y">
+                    <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                </constraint>
+                <constraint firstItem="F7w-8M-Vla" firstAttribute="leading" secondItem="YKs-Zv-O9g" secondAttribute="trailing" id="wsf-lU-cR5"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="hPB-oX-ELg"/>
+                    <exclude reference="F7w-8M-Vla"/>
+                    <exclude reference="YKs-Zv-O9g"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="VGw-gv-eIP"/>
+                    <exclude reference="e3a-pi-T7R"/>
+                    <exclude reference="ocI-IF-b4g"/>
+                    <exclude reference="wbv-cK-S2Y"/>
+                    <exclude reference="wsf-lU-cR5"/>
+                    <exclude reference="ls2-7b-Fkl"/>
+                    <exclude reference="o5b-Hh-w2D"/>
+                    <exclude reference="qVt-77-WyY"/>
+                    <exclude reference="tQj-83-gMI"/>
+                    <exclude reference="KIZ-mv-jCB"/>
+                    <exclude reference="TVV-4b-Ovb"/>
+                    <exclude reference="iFy-mD-kTG"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="hPB-oX-ELg"/>
+                    <include reference="F7w-8M-Vla"/>
+                    <include reference="YKs-Zv-O9g"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="VGw-gv-eIP"/>
+                    <include reference="e3a-pi-T7R"/>
+                    <include reference="ocI-IF-b4g"/>
+                    <include reference="wbv-cK-S2Y"/>
+                    <include reference="wsf-lU-cR5"/>
+                    <include reference="ls2-7b-Fkl"/>
+                    <include reference="o5b-Hh-w2D"/>
+                    <include reference="qVt-77-WyY"/>
+                    <include reference="tQj-83-gMI"/>
+                    <include reference="KIZ-mv-jCB"/>
+                    <include reference="TVV-4b-Ovb"/>
+                    <include reference="iFy-mD-kTG"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="noButton" destination="F7w-8M-Vla" id="Z6X-NK-8YU"/>
+                <outlet property="yesButton" destination="YKs-Zv-O9g" id="MZy-Qp-WMB"/>
+            </connections>
+            <point key="canvasLocation" x="258" y="-112"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="agree_80x80.png" width="40" height="40"/>
+        <image name="agree_80x80_press.png" width="40" height="40"/>
+        <image name="community_agree_clicked.png" width="40" height="40"/>
+        <image name="community_disagree_clicked.png" width="40" height="40"/>
+        <image name="disagree_80x80.png" width="40" height="40"/>
+        <image name="disagree_80x80_press.png" width="40" height="40"/>
+        <image name="line_grey_top_40x1.png" width="40" height="1"/>
+    </resources>
+</document>

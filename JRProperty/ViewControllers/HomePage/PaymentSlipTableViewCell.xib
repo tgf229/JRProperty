@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PaymentSlipTableViewCellIdentifier" id="KGk-i7-Jjw" customClass="PaymentSlipTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="53.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mybill_jiaofei_icon_wuye.png" translatesAutoresizingMaskIntoConstraints="NO" id="6yd-SB-HXH">
+                        <rect key="frame" x="15" y="15" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="NSb-I0-enX"/>
+                            <constraint firstAttribute="width" constant="35" id="scu-3K-OAU"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="星雨华府 9-2-301" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GV2-Pu-BKs">
+                        <rect key="frame" x="59" y="10" width="103" height="16"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="-3680" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPM-Lj-L2U">
+                        <rect key="frame" x="270" y="12" width="35" height="16"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                        <color key="textColor" red="0.73333333333333328" green="0.27843137254901962" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="14年01月12日" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwS-4I-2kH">
+                        <rect key="frame" x="59" y="28" width="78" height="15"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="交易成功" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMI-3g-tNj">
+                        <rect key="frame" x="257" y="28.5" width="48" height="14.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_grey_foot_40x1.png" translatesAutoresizingMaskIntoConstraints="NO" id="9yO-hh-LQT">
+                        <rect key="frame" x="0.0" y="53" width="320" height="1"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_grey_foot_40x1.png" translatesAutoresizingMaskIntoConstraints="NO" id="bSl-GL-2qp">
+                        <rect key="frame" x="50" y="53" width="270" height="1"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="9yO-hh-LQT" secondAttribute="bottom" constant="-1" id="5q5-UZ-Fh5"/>
+                    <constraint firstAttribute="trailing" secondItem="uMI-3g-tNj" secondAttribute="trailing" constant="15" id="6EY-6t-Ivl"/>
+                    <constraint firstItem="9yO-hh-LQT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ImZ-c1-ocE"/>
+                    <constraint firstItem="bSl-GL-2qp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="50" id="QQ6-yB-aVf"/>
+                    <constraint firstItem="uMI-3g-tNj" firstAttribute="top" secondItem="gPM-Lj-L2U" secondAttribute="bottom" constant="9" id="SgQ-L9-J6y"/>
+                    <constraint firstAttribute="trailing" secondItem="9yO-hh-LQT" secondAttribute="trailing" id="U7G-da-8MD"/>
+                    <constraint firstItem="6yd-SB-HXH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="ZAX-V4-JMx"/>
+                    <constraint firstAttribute="trailing" secondItem="gPM-Lj-L2U" secondAttribute="trailing" constant="15" id="Zmx-eg-R3V"/>
+                    <constraint firstItem="GV2-Pu-BKs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="agO-rX-iUQ"/>
+                    <constraint firstItem="gPM-Lj-L2U" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="bZ6-YY-Alx"/>
+                    <constraint firstItem="mwS-4I-2kH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="59" id="dhA-qB-vL3"/>
+                    <constraint firstItem="6yd-SB-HXH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="gGN-ng-G0f"/>
+                    <constraint firstAttribute="bottom" secondItem="bSl-GL-2qp" secondAttribute="bottom" constant="-1" id="gOM-M3-30v"/>
+                    <constraint firstItem="mwS-4I-2kH" firstAttribute="top" secondItem="GV2-Pu-BKs" secondAttribute="bottom" constant="9" id="lvH-Fa-ksT"/>
+                    <constraint firstItem="GV2-Pu-BKs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="59" id="ouv-xF-8Rk"/>
+                    <constraint firstAttribute="trailing" secondItem="bSl-GL-2qp" secondAttribute="trailing" id="tn2-AO-gFc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="headImageView" destination="6yd-SB-HXH" id="kyc-Ag-bGu"/>
+                <outlet property="maxLine" destination="9yO-hh-LQT" id="fGs-7o-nMr"/>
+                <outlet property="minLine" destination="bSl-GL-2qp" id="NM0-F7-1CI"/>
+                <outlet property="nameLabel" destination="GV2-Pu-BKs" id="cXB-NT-dlZ"/>
+                <outlet property="priceLabel" destination="gPM-Lj-L2U" id="eRA-4g-x3R"/>
+                <outlet property="stausLabel" destination="uMI-3g-tNj" id="NxP-So-IaK"/>
+                <outlet property="timeLabel" destination="mwS-4I-2kH" id="604-ik-Xm1"/>
+            </connections>
+            <point key="canvasLocation" x="531" y="357"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="line_grey_foot_40x1.png" width="40" height="1"/>
+        <image name="mybill_jiaofei_icon_wuye.png" width="34" height="34"/>
+    </resources>
+</document>

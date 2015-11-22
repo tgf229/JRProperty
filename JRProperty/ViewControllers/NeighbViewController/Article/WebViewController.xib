@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WebViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="ZC4-fM-IPK" id="cVc-Z4-qVV"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZC4-fM-IPK">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </webView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ZC4-fM-IPK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3hT-Dt-yQ2"/>
+                <constraint firstItem="ZC4-fM-IPK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Ph8-x9-0pE"/>
+                <constraint firstAttribute="bottom" secondItem="ZC4-fM-IPK" secondAttribute="bottom" id="dWa-vd-k1e"/>
+                <constraint firstAttribute="trailing" secondItem="ZC4-fM-IPK" secondAttribute="trailing" id="ysj-mh-CA5"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="ZC4-fM-IPK"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="3hT-Dt-yQ2"/>
+                    <exclude reference="Ph8-x9-0pE"/>
+                    <exclude reference="dWa-vd-k1e"/>
+                    <exclude reference="ysj-mh-CA5"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="ZC4-fM-IPK"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="3hT-Dt-yQ2"/>
+                    <include reference="Ph8-x9-0pE"/>
+                    <include reference="dWa-vd-k1e"/>
+                    <include reference="ysj-mh-CA5"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AccountManageDetailViewController">
+            <connections>
+                <outlet property="accountManageDetailTableView" destination="KUY-f8-MJ3" id="bFR-e2-AAE"/>
+                <outlet property="checkButton" destination="hv9-Wx-eFb" id="Nlb-GP-wz2"/>
+                <outlet property="headTitleLabel" destination="KfN-U6-TKP" id="NF8-3P-Bvp"/>
+                <outlet property="tableViewHeadView" destination="nlJ-YL-YZm" id="v1n-S5-XZ1"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="KUY-f8-MJ3">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="523"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Lzc-ux-GL1"/>
+                        <outlet property="delegate" destination="-1" id="N85-Hg-V6F"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nlJ-YL-YZm">
+                    <rect key="frame" x="0.0" y="523" width="320" height="45"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_grey_top_40x1.png" translatesAutoresizingMaskIntoConstraints="NO" id="alT-re-fkd">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="DRd-n3-uzC"/>
+                            </constraints>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IRx-i8-2o9">
+                            <rect key="frame" x="9" y="1" width="28" height="43"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hv9-Wx-eFb">
+                                    <rect key="frame" x="5" y="10.5" width="18" height="22"/>
+                                    <state key="normal" image="mybill_check_kuang.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" image="mybill_check_kuang_select.png"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="centerY" secondItem="hv9-Wx-eFb" secondAttribute="centerY" id="Par-Sd-cIV"/>
+                                <constraint firstAttribute="width" constant="28" id="Prr-pA-ZyO"/>
+                                <constraint firstAttribute="centerX" secondItem="hv9-Wx-eFb" secondAttribute="centerX" id="QA5-JC-dzu"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="只显示未缴账单" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfN-U6-TKP">
+                            <rect key="frame" x="37" y="14" width="98" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_grey_foot_40x1.png" translatesAutoresizingMaskIntoConstraints="NO" id="bXR-oH-UlX">
+                            <rect key="frame" x="0.0" y="44" width="320" height="1"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="iT0-BQ-mvS"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1t-TE-ADp">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="checkButtonSelected:" destination="-1" eventType="touchUpInside" id="kPc-ZJ-Lh7"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="alT-re-fkd" secondAttribute="trailing" id="4JV-M3-vXz"/>
+                        <constraint firstItem="bXR-oH-UlX" firstAttribute="top" secondItem="H1t-TE-ADp" secondAttribute="bottom" id="5a5-Lq-hAD"/>
+                        <constraint firstAttribute="trailing" secondItem="bXR-oH-UlX" secondAttribute="trailing" id="61x-es-FpH"/>
+                        <constraint firstItem="KfN-U6-TKP" firstAttribute="leading" secondItem="IRx-i8-2o9" secondAttribute="trailing" id="6Rd-tX-vq7"/>
+                        <constraint firstItem="H1t-TE-ADp" firstAttribute="leading" secondItem="nlJ-YL-YZm" secondAttribute="leading" id="6pj-nv-cpo"/>
+                        <constraint firstAttribute="trailing" secondItem="H1t-TE-ADp" secondAttribute="trailing" id="7K7-Sf-52c"/>
+                        <constraint firstItem="H1t-TE-ADp" firstAttribute="top" secondItem="nlJ-YL-YZm" secondAttribute="top" id="PI7-Zk-eju"/>
+                        <constraint firstItem="IRx-i8-2o9" firstAttribute="centerY" secondItem="KfN-U6-TKP" secondAttribute="centerY" id="ZhZ-h5-Xq5"/>
+                        <constraint firstAttribute="bottom" secondItem="bXR-oH-UlX" secondAttribute="bottom" id="la4-Ff-22y"/>
+                        <constraint firstItem="alT-re-fkd" firstAttribute="top" secondItem="nlJ-YL-YZm" secondAttribute="top" id="ll7-xm-bel"/>
+                        <constraint firstItem="alT-re-fkd" firstAttribute="leading" secondItem="nlJ-YL-YZm" secondAttribute="leading" id="vMy-XY-Q2K"/>
+                        <constraint firstItem="IRx-i8-2o9" firstAttribute="top" secondItem="alT-re-fkd" secondAttribute="bottom" id="vZ5-EM-BTb"/>
+                        <constraint firstAttribute="centerY" secondItem="KfN-U6-TKP" secondAttribute="centerY" id="vzJ-ki-5pI"/>
+                        <constraint firstItem="IRx-i8-2o9" firstAttribute="leading" secondItem="nlJ-YL-YZm" secondAttribute="leading" constant="9" id="wRI-1n-hNq"/>
+                        <constraint firstAttribute="height" constant="45" id="xCU-a2-O2c"/>
+                        <constraint firstItem="bXR-oH-UlX" firstAttribute="leading" secondItem="nlJ-YL-YZm" secondAttribute="leading" id="z3p-nM-V9t"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="nlJ-YL-YZm" secondAttribute="trailing" id="6yH-Mb-oyn"/>
+                <constraint firstItem="KUY-f8-MJ3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="BiN-9q-WLp"/>
+                <constraint firstAttribute="bottom" secondItem="nlJ-YL-YZm" secondAttribute="bottom" id="Chv-70-Ahj"/>
+                <constraint firstItem="KUY-f8-MJ3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="T1L-4t-9i7"/>
+                <constraint firstItem="nlJ-YL-YZm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="c02-LE-oTZ"/>
+                <constraint firstAttribute="bottom" secondItem="KUY-f8-MJ3" secondAttribute="bottom" constant="45" id="mN5-qI-715"/>
+                <constraint firstAttribute="trailing" secondItem="KUY-f8-MJ3" secondAttribute="trailing" id="t73-7d-j84"/>
+            </constraints>
+            <point key="canvasLocation" x="388" y="280"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="line_grey_foot_40x1.png" width="40" height="1"/>
+        <image name="line_grey_top_40x1.png" width="40" height="1"/>
+        <image name="mybill_check_kuang.png" width="18" height="18"/>
+        <image name="mybill_check_kuang_select.png" width="18" height="18"/>
+    </resources>
+</document>

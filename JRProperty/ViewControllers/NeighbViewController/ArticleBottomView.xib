@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="w9B-3y-zE7" customClass="ArticleBottomView">
+            <rect key="frame" x="0.0" y="0.0" width="525" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQL-m6-W8M">
+                    <rect key="frame" x="0.0" y="0.0" width="525" height="45"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_grey_top_40x1.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZLW-12-mqk">
+                            <rect key="frame" x="0.0" y="0.0" width="525" height="1"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="lBl-cp-imd"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_vertical_1x20.png" translatesAutoresizingMaskIntoConstraints="NO" id="hoL-8f-liJ">
+                            <rect key="frame" x="396" y="12" width="1" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="lOK-s7-CeQ"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAm-Lc-jiP">
+                            <rect key="frame" x="415" y="1" width="40" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="03k-6y-9lj"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="-12" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="0" image="linli_detail_footbtn_zan_32x32.png">
+                                <color key="titleColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="selected" image="community_like_press.png"/>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPl-Ve-4Dm">
+                            <rect key="frame" x="455" y="1" width="40" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="bwE-Mj-Iyw"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="-12" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="0" image="linli_detail_footbtn_pinglun_32x32.png">
+                                <color key="titleColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="commentClick:" destination="w9B-3y-zE7" eventType="touchUpInside" id="UE9-Uc-Vap"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJf-UR-76c">
+                            <rect key="frame" x="495" y="1" width="30" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="OD5-WQ-nEX"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" image="linli_detail_footbtn_share_32x32.png">
+                                <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="shareClick:" destination="w9B-3y-zE7" eventType="touchUpInside" id="uS7-L4-QAc"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdR-Nr-5JA">
+                            <rect key="frame" x="20" y="0.0" width="120" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="lUq-tZ-ACH"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="添加你的评论" image="linli_detail_iconadd_18x18.png">
+                                <color key="titleColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="selected" image="community_like_press.png"/>
+                            <connections>
+                                <action selector="commentClick:" destination="w9B-3y-zE7" eventType="touchUpInside" id="JQV-Rc-b8R"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="ZLW-12-mqk" firstAttribute="top" secondItem="aQL-m6-W8M" secondAttribute="top" id="0n0-9W-4xX"/>
+                        <constraint firstItem="kAm-Lc-jiP" firstAttribute="leading" secondItem="hoL-8f-liJ" secondAttribute="trailing" constant="18" id="51V-0c-7Cg"/>
+                        <constraint firstItem="XJf-UR-76c" firstAttribute="top" secondItem="ZLW-12-mqk" secondAttribute="bottom" id="98O-P1-t4d"/>
+                        <constraint firstAttribute="bottom" secondItem="kAm-Lc-jiP" secondAttribute="bottom" id="AGN-6Q-7FQ"/>
+                        <constraint firstItem="cdR-Nr-5JA" firstAttribute="leading" secondItem="aQL-m6-W8M" secondAttribute="leading" constant="20" id="CEu-MZ-Crb"/>
+                        <constraint firstAttribute="trailing" secondItem="ZLW-12-mqk" secondAttribute="trailing" id="Sn1-vd-T9Z"/>
+                        <constraint firstAttribute="bottom" secondItem="XJf-UR-76c" secondAttribute="bottom" id="Vbc-MZ-n9J"/>
+                        <constraint firstItem="wPl-Ve-4Dm" firstAttribute="top" secondItem="ZLW-12-mqk" secondAttribute="bottom" id="ZK0-nH-DqZ"/>
+                        <constraint firstItem="ZLW-12-mqk" firstAttribute="leading" secondItem="aQL-m6-W8M" secondAttribute="leading" id="a7c-z4-nCy"/>
+                        <constraint firstItem="kAm-Lc-jiP" firstAttribute="top" secondItem="ZLW-12-mqk" secondAttribute="bottom" id="dED-QD-h0M"/>
+                        <constraint firstAttribute="trailing" secondItem="XJf-UR-76c" secondAttribute="trailing" id="eVH-ly-L1R"/>
+                        <constraint firstItem="XJf-UR-76c" firstAttribute="leading" secondItem="wPl-Ve-4Dm" secondAttribute="trailing" id="eVV-WZ-ROh"/>
+                        <constraint firstAttribute="bottom" secondItem="wPl-Ve-4Dm" secondAttribute="bottom" id="jKm-Ch-SN5"/>
+                        <constraint firstItem="cdR-Nr-5JA" firstAttribute="top" secondItem="aQL-m6-W8M" secondAttribute="top" id="lAn-Qw-kvZ"/>
+                        <constraint firstItem="hoL-8f-liJ" firstAttribute="centerY" secondItem="aQL-m6-W8M" secondAttribute="centerY" id="mmK-jv-6ym"/>
+                        <constraint firstItem="wPl-Ve-4Dm" firstAttribute="leading" secondItem="kAm-Lc-jiP" secondAttribute="trailing" id="tj1-3t-Yaw"/>
+                        <constraint firstAttribute="bottom" secondItem="cdR-Nr-5JA" secondAttribute="bottom" id="zTq-QN-dMG"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="aQL-m6-W8M" secondAttribute="trailing" id="0gd-VD-Agn"/>
+                <constraint firstAttribute="bottom" secondItem="aQL-m6-W8M" secondAttribute="bottom" id="2Rv-XQ-h71"/>
+                <constraint firstItem="aQL-m6-W8M" firstAttribute="leading" secondItem="w9B-3y-zE7" secondAttribute="leading" id="C1b-kK-utm"/>
+                <constraint firstItem="aQL-m6-W8M" firstAttribute="top" secondItem="w9B-3y-zE7" secondAttribute="top" id="aYC-gV-1Mk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="commentBtn" destination="cdR-Nr-5JA" id="211-Fr-KWb"/>
+                <outlet property="commentButton" destination="wPl-Ve-4Dm" id="Igv-YB-swd"/>
+                <outlet property="priaseButton" destination="kAm-Lc-jiP" id="pA0-pz-cTj"/>
+                <outlet property="shareButton" destination="XJf-UR-76c" id="8w3-hQ-o7h"/>
+            </connections>
+            <point key="canvasLocation" x="387.5" y="-546"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="community_like_press.png" width="14" height="14"/>
+        <image name="line_grey_top_40x1.png" width="40" height="1"/>
+        <image name="line_vertical_1x20.png" width="1" height="20"/>
+        <image name="linli_detail_footbtn_pinglun_32x32.png" width="16" height="16"/>
+        <image name="linli_detail_footbtn_share_32x32.png" width="16" height="16"/>
+        <image name="linli_detail_footbtn_zan_32x32.png" width="16" height="16"/>
+        <image name="linli_detail_iconadd_18x18.png" width="9" height="9"/>
+    </resources>
+</document>

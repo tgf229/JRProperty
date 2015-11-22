@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ArticleDetailViewController">
+            <connections>
+                <outlet property="CommenInputView" destination="9pz-Dj-oLL" id="1BE-g5-2qf"/>
+                <outlet property="bottomContraint" destination="h49-kk-8H4" id="kz0-sR-YDd"/>
+                <outlet property="commentTableView" destination="ZoX-qV-9bf" id="NuK-OI-Bd5"/>
+                <outlet property="keyboardHeightContraint" destination="suf-d1-riN" id="aCb-0Z-Oc9"/>
+                <outlet property="keyboardView" destination="Ui9-bw-NkC" id="Sly-Nx-N0N"/>
+                <outlet property="sendButton" destination="ZyW-m8-fgj" id="N41-Lk-L7T"/>
+                <outlet property="tableViewBottomContraint" destination="Yau-bE-DgU" id="ciB-jH-wiB"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ZoX-qV-9bf">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ui9-bw-NkC">
+                    <rect key="frame" x="0.0" y="520" width="320" height="48"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_grey_top_40x1.png" translatesAutoresizingMaskIntoConstraints="NO" id="t1h-eR-uZL">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="MQp-7e-hIG"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZyW-m8-fgj">
+                            <rect key="frame" x="265" y="10" width="46" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="FZq-Qm-qPk"/>
+                                <constraint firstAttribute="width" constant="46" id="bJn-qt-qev"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="发送" backgroundImage="linli_btn_send_92x64.png">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted" backgroundImage="linli_btn_send_92x64_press.png"/>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9pz-Dj-oLL" customClass="HPGrowingTextView">
+                            <rect key="frame" x="9" y="10" width="251" height="32"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="t1h-eR-uZL" firstAttribute="top" secondItem="Ui9-bw-NkC" secondAttribute="top" id="6vx-xx-XQA"/>
+                        <constraint firstItem="9pz-Dj-oLL" firstAttribute="top" secondItem="t1h-eR-uZL" secondAttribute="bottom" constant="9" id="H9c-gb-B4T"/>
+                        <constraint firstAttribute="trailing" secondItem="t1h-eR-uZL" secondAttribute="trailing" id="HZP-3V-qTu"/>
+                        <constraint firstItem="t1h-eR-uZL" firstAttribute="leading" secondItem="Ui9-bw-NkC" secondAttribute="leading" id="NAP-1i-JOY"/>
+                        <constraint firstAttribute="trailing" secondItem="ZyW-m8-fgj" secondAttribute="trailing" constant="9" id="Qs8-f5-nDj"/>
+                        <constraint firstItem="ZyW-m8-fgj" firstAttribute="top" secondItem="t1h-eR-uZL" secondAttribute="bottom" constant="9" id="fka-vE-ULC"/>
+                        <constraint firstItem="9pz-Dj-oLL" firstAttribute="leading" secondItem="Ui9-bw-NkC" secondAttribute="leading" constant="9" id="qaj-3Q-DTd"/>
+                        <constraint firstAttribute="height" constant="48" id="suf-d1-riN"/>
+                        <constraint firstAttribute="bottom" secondItem="9pz-Dj-oLL" secondAttribute="bottom" constant="6" id="z3f-uC-L9D"/>
+                        <constraint firstItem="ZyW-m8-fgj" firstAttribute="leading" secondItem="9pz-Dj-oLL" secondAttribute="trailing" constant="5" id="zub-r0-TTs"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Ui9-bw-NkC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y2s-UO-7FO"/>
+                <constraint firstAttribute="bottom" secondItem="ZoX-qV-9bf" secondAttribute="bottom" constant="48" id="Yau-bE-DgU"/>
+                <constraint firstAttribute="bottom" secondItem="Ui9-bw-NkC" secondAttribute="bottom" id="h49-kk-8H4"/>
+                <constraint firstAttribute="trailing" secondItem="ZoX-qV-9bf" secondAttribute="trailing" id="mrh-Dh-W5S"/>
+                <constraint firstItem="ZoX-qV-9bf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tea-Af-GbI"/>
+                <constraint firstAttribute="trailing" secondItem="Ui9-bw-NkC" secondAttribute="trailing" id="uSu-Sg-lSE"/>
+                <constraint firstItem="ZoX-qV-9bf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xqN-kW-NYR"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="154"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="line_grey_top_40x1.png" width="40" height="1"/>
+        <image name="linli_btn_send_92x64.png" width="46" height="32"/>
+        <image name="linli_btn_send_92x64_press.png" width="46" height="32"/>
+    </resources>
+</document>

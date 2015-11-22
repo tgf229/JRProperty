@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReplyMessageViewController">
+            <connections>
+                <outlet property="messageTableView" destination="CYo-pd-jxy" id="Jqw-OE-dC5"/>
+                <outlet property="topConstraint" destination="KvT-bL-Gps" id="lh8-H7-uQx"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CYo-pd-jxy">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="CYo-pd-jxy" secondAttribute="trailing" id="4Qr-1s-SB3"/>
+                <constraint firstAttribute="bottom" secondItem="CYo-pd-jxy" secondAttribute="bottom" id="FTF-RZ-lMA"/>
+                <constraint firstItem="CYo-pd-jxy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KvT-bL-Gps"/>
+                <constraint firstItem="CYo-pd-jxy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kCM-5i-I4b"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="CYo-pd-jxy"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="4Qr-1s-SB3"/>
+                    <exclude reference="FTF-RZ-lMA"/>
+                    <exclude reference="KvT-bL-Gps"/>
+                    <exclude reference="kCM-5i-I4b"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="CYo-pd-jxy"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="4Qr-1s-SB3"/>
+                    <include reference="FTF-RZ-lMA"/>
+                    <include reference="KvT-bL-Gps"/>
+                    <include reference="kCM-5i-I4b"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HelpInfoForHouseOwnerViewTableViewCellIndentifier" rowHeight="111" id="KRu-Ah-AXo" customClass="HelpInfoForHouseOwnerViewTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="111"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="KRu-Ah-AXo" id="9a8-S9-nek">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="110.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_grey_top_40x1.png" translatesAutoresizingMaskIntoConstraints="NO" id="X5P-Df-XTz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="星雨华府小区居委会" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="XLz-sQ-KZn" userLabel="plotNameLabel">
+                        <rect key="frame" x="15" y="19" width="230" height="15"/>
+                        <accessibility key="accessibilityConfiguration" label=""/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="cKP-os-yYa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <color key="textColor" red="0.73333333329999995" green="0.2784313725" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="025-8436521" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVR-9Y-WRh" userLabel="plotPhoneLabel">
+                        <rect key="frame" x="15" y="44" width="84.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" text="江东中路108号万达写字楼C座108-2" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="210" translatesAutoresizingMaskIntoConstraints="NO" id="Get-BD-fNw" userLabel="plotAddressLabel">
+                        <rect key="frame" x="15" y="68" width="230" height="36.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="line_vertical_1x20.png" translatesAutoresizingMaskIntoConstraints="NO" id="USu-nO-gaU">
+                        <rect key="frame" x="257" y="20" width="1" height="79.5"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="line_grey_foot_40x1.png" translatesAutoresizingMaskIntoConstraints="NO" id="fLt-1X-Z7t">
+                        <rect key="frame" x="10" y="119" width="310" height="1"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="7ny-fR-hM2"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rVQ-MF-dbF">
+                        <rect key="frame" x="246" y="0.0" width="74" height="119.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="74" id="rSz-PV-YSD"/>
+                        </constraints>
+                        <state key="normal" image="bianming_btn_call.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Get-BD-fNw" secondAttribute="trailing" constant="75" id="2nn-uy-UkR"/>
+                    <constraint firstItem="USu-nO-gaU" firstAttribute="top" secondItem="9a8-S9-nek" secondAttribute="top" constant="20" id="BT9-0f-r0P"/>
+                    <constraint firstItem="X5P-Df-XTz" firstAttribute="leading" secondItem="9a8-S9-nek" secondAttribute="leading" id="Bbm-3a-6pI"/>
+                    <constraint firstItem="QVR-9Y-WRh" firstAttribute="leading" secondItem="9a8-S9-nek" secondAttribute="leading" constant="15" id="EcL-gI-8Vo"/>
+                    <constraint firstAttribute="trailing" secondItem="X5P-Df-XTz" secondAttribute="trailing" id="IWl-XR-Sdc"/>
+                    <constraint firstItem="rVQ-MF-dbF" firstAttribute="top" secondItem="9a8-S9-nek" secondAttribute="top" id="L4K-ro-5Zk"/>
+                    <constraint firstAttribute="trailing" secondItem="USu-nO-gaU" secondAttribute="trailing" constant="62" id="MJA-w6-w23"/>
+                    <constraint firstItem="Get-BD-fNw" firstAttribute="leading" secondItem="9a8-S9-nek" secondAttribute="leading" constant="15" id="S4Y-aF-2sl"/>
+                    <constraint firstAttribute="bottom" secondItem="rVQ-MF-dbF" secondAttribute="bottom" id="ZeY-DK-VwH"/>
+                    <constraint firstAttribute="bottom" secondItem="USu-nO-gaU" secondAttribute="bottom" constant="20" id="aHT-kc-7On"/>
+                    <constraint firstAttribute="trailing" secondItem="rVQ-MF-dbF" secondAttribute="trailing" id="cfn-iv-aWf"/>
+                    <constraint firstAttribute="trailing" secondItem="fLt-1X-Z7t" secondAttribute="trailing" id="f4K-Sa-LDR"/>
+                    <constraint firstItem="Get-BD-fNw" firstAttribute="top" secondItem="QVR-9Y-WRh" secondAttribute="bottom" constant="8" id="f4h-Hx-gIt"/>
+                    <constraint firstItem="XLz-sQ-KZn" firstAttribute="top" secondItem="9a8-S9-nek" secondAttribute="top" constant="19" id="g8I-dD-9bn"/>
+                    <constraint firstItem="XLz-sQ-KZn" firstAttribute="leading" secondItem="9a8-S9-nek" secondAttribute="leading" constant="15" id="ht6-uw-BWg"/>
+                    <constraint firstItem="QVR-9Y-WRh" firstAttribute="top" secondItem="XLz-sQ-KZn" secondAttribute="bottom" constant="10" id="kgj-7D-BFd"/>
+                    <constraint firstAttribute="bottom" secondItem="Get-BD-fNw" secondAttribute="bottom" constant="15" id="rgy-Rl-46L"/>
+                    <constraint firstItem="X5P-Df-XTz" firstAttribute="top" secondItem="9a8-S9-nek" secondAttribute="top" id="wHC-KY-v9M"/>
+                    <constraint firstAttribute="bottom" secondItem="fLt-1X-Z7t" secondAttribute="bottom" id="wLz-Ak-PsX"/>
+                    <constraint firstAttribute="trailing" secondItem="XLz-sQ-KZn" secondAttribute="trailing" constant="75" id="wkb-NA-QRI"/>
+                    <constraint firstItem="fLt-1X-Z7t" firstAttribute="leading" secondItem="9a8-S9-nek" secondAttribute="leading" constant="10" id="xSl-Ee-Fp5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="bottomLineOne" destination="fLt-1X-Z7t" id="alW-ei-3Nq"/>
+                <outlet property="plotAddressLabel" destination="Get-BD-fNw" id="t7t-YV-xzL"/>
+                <outlet property="plotNameLabel" destination="XLz-sQ-KZn" id="GhE-t7-JoF"/>
+                <outlet property="plotPhoneButton" destination="rVQ-MF-dbF" id="HML-Nq-UeO"/>
+                <outlet property="plotPhoneLabel" destination="QVR-9Y-WRh" id="452-v4-cqL"/>
+                <outlet property="topLine" destination="X5P-Df-XTz" id="uwq-Du-uOG"/>
+            </connections>
+            <point key="canvasLocation" x="437" y="277.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="bianming_btn_call.png" width="24" height="24"/>
+        <image name="line_grey_foot_40x1.png" width="40" height="1"/>
+        <image name="line_grey_top_40x1.png" width="40" height="1"/>
+        <image name="line_vertical_1x20.png" width="1" height="20"/>
+    </resources>
+</document>
