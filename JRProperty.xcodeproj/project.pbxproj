@@ -187,6 +187,7 @@
 		0C8196C41BECAE73008C1DFF /* home_icon_service_press@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8196C01BECAE73008C1DFF /* home_icon_service_press@3x.png */; settings = {ASSET_TAGS = (); }; };
 		0C8196C51BECAE73008C1DFF /* home_icon_service@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8196C11BECAE73008C1DFF /* home_icon_service@2x.png */; settings = {ASSET_TAGS = (); }; };
 		0C8196C61BECAE73008C1DFF /* home_icon_service@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8196C21BECAE73008C1DFF /* home_icon_service@3x.png */; settings = {ASSET_TAGS = (); }; };
+		0C854E6F1C01E7040008E5A7 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0C854E6E1C01E7040008E5A7 /* readme.txt */; settings = {ASSET_TAGS = (); }; };
 		124A52751A412FEF005380E9 /* home_banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 124A52731A412FEF005380E9 /* home_banner@2x.png */; };
 		124C0ED21A3BC89A005C419F /* PaymentSlipTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 124C0ED01A3BC89A005C419F /* PaymentSlipTableViewCell.m */; };
 		124C0ED31A3BC89A005C419F /* PaymentSlipTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 124C0ED11A3BC89A005C419F /* PaymentSlipTableViewCell.xib */; };
@@ -1143,6 +1144,7 @@
 		0C8196C01BECAE73008C1DFF /* home_icon_service_press@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_icon_service_press@3x.png"; sourceTree = "<group>"; };
 		0C8196C11BECAE73008C1DFF /* home_icon_service@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_icon_service@2x.png"; sourceTree = "<group>"; };
 		0C8196C21BECAE73008C1DFF /* home_icon_service@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_icon_service@3x.png"; sourceTree = "<group>"; };
+		0C854E6E1C01E7040008E5A7 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		124A52731A412FEF005380E9 /* home_banner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_banner@2x.png"; sourceTree = "<group>"; };
 		124C0ECF1A3BC899005C419F /* PaymentSlipTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentSlipTableViewCell.h; sourceTree = "<group>"; };
 		124C0ED01A3BC89A005C419F /* PaymentSlipTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentSlipTableViewCell.m; sourceTree = "<group>"; };
@@ -3189,6 +3191,7 @@
 		D4BE40FB1A09C5C600AD1DFD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0C854E6E1C01E7040008E5A7 /* readme.txt */,
 				D151D68F1A36870F006EFDFC /* Default-568h@2x.png */,
 				D151D6901A36870F006EFDFC /* Default-667h@2x.png */,
 				D151D6911A36870F006EFDFC /* Default-736h@3x.png */,
@@ -4122,6 +4125,7 @@
 				D13C9C641A1ED0C000744B98 /* line_grey_foot_40x1@2x.png in Resources */,
 				124DD0061AC933FC004127A2 /* icon_xiaoqu@3x.png in Resources */,
 				D4D6B3161AC2ACAB00F23457 /* detail_icon_zan_press_36x34@2x.png in Resources */,
+				0C854E6F1C01E7040008E5A7 /* readme.txt in Resources */,
 				D10589351BE654F800B1BB20 /* shequ_detail_btn_grey_40x40_press@2x.png in Resources */,
 				D1D563021A248033002C6DCB /* red_line_light_40x1_mid@3x.png in Resources */,
 				0BCA85981A242E0A00B72A5B /* service_icon_angle_complaint@3x.png in Resources */,
