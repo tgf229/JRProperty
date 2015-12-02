@@ -6,8 +6,9 @@
 //  Copyright © 2015年 YRYZY. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
-@interface CommunityListController : UITableViewController
+#include "JRViewController.h"
+
+@interface CommunityListController : JRViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end
