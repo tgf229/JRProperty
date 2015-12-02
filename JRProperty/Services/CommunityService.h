@@ -10,4 +10,13 @@
 
 @interface CommunityService : BaseService
 
+-(void) Bus302301:  (NSString *)uId
+              cId:  (NSString *)cId
+             page:  (NSString *)page
+              num:  (NSString *)num
+        queryTime:  (NSString *)queryTime
+          success:  (void (^)(id responseObject))success
+          failure:  (void (^)(NSError *error))failure;
+
+
 @end
