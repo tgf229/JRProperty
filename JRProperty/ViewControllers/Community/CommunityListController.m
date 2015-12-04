@@ -9,8 +9,8 @@
 #import "CommunityListController.h"
 #import "CommunityListCell.h"
 #import "ArticleListModel.h"
+#import "ArticleDetailViewController.h"
 
-#import "UIImageView+WebCache.h" //图片请求缓存
 #import "SVProgressHUD.h"   //
 #import "MJRefresh.h"   //上啦下拉刷新
 #import "RefreshPageView.h" //错误页
@@ -142,7 +142,7 @@
             self.page = 1;
             [self initHeaderAndFooter];
         }
-        if (self.response.doc.count  < 3) {
+        if (self.response.doc.count  < [NUMBER_FOR_REQUEST intValue]) {
             self.hasMore = NO;
             [self.tableView removeFooter];
             self.tableView.tableFooterView = self.footerView;
@@ -209,34 +209,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CommunityListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommunityListCell" forIndexPath:indexPath];
     
-    //cell基本属性设置
-    //头像圆形
-    [cell.headImageView.layer setCornerRadius:15.0];
-    [cell.headImageView.layer setMasksToBounds:YES];
-    [cell.headImageView setClipsToBounds:YES];
-    //tableview 点击不变色
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     //cell赋值
     NSInteger row = [indexPath row];
     ArticleDetailModel *detail = [self.doc objectAtIndex:row];
-    cell.nameLabel.text = detail.nickName;
-    cell.timeLabel.text = detail.time;
-    cell.contentLabel.text = detail.content;
-    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:detail.imageUrl] placeholderImage:[UIImage imageNamed:@"default_portrait_140x140"]];
-    
-    for (int i = [detail.imageList count]; i<6; i++) {
-        UIImageView *imageview = cell.imagesImageView[i];
-        [imageview setImage:nil];
-    }
-    
-    for (int j=0; j<[detail.imageList count]; j++) {
-        ImageModel *model = detail.imageList[j];
-        UIImageView *imageView = cell.imagesImageView[j];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:model.imageUrlS] placeholderImage:[UIImage imageNamed:@"community_default"]];
-    }
+    [cell showCell:detail];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ArticleDetailModel *model = [self.doc objectAtIndex:indexPath.row];
+    ArticleDetailViewController *controller = [[ArticleDetailViewController alloc]init];
+    controller.articleId = model.aId;
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

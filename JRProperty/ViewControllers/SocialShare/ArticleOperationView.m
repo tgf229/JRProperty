@@ -11,23 +11,23 @@
 
 @implementation ArticleOperationView
 
-- (IBAction)moveClick:(id)sender {
-    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOperationButton:)]) {
-        [_delegate didSelectOperationButton:ArticleMove];
-    }
-}
-
-- (IBAction)reportClick:(id)sender {
-    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOperationButton:)]) {
-        [_delegate didSelectOperationButton:ArticleReport];
-    }
-}
-
-- (IBAction)deleteClick:(id)sender {
-    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOperationButton:)]) {
-        [_delegate didSelectOperationButton:ArticleDelete];
-    }
-}
+//- (IBAction)moveClick:(id)sender {
+//    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOperationButton:)]) {
+//        [_delegate didSelectOperationButton:ArticleMove];
+//    }
+//}
+//
+//- (IBAction)reportClick:(id)sender {
+//    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOperationButton:)]) {
+//        [_delegate didSelectOperationButton:ArticleReport];
+//    }
+//}
+//
+//- (IBAction)deleteClick:(id)sender {
+//    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOperationButton:)]) {
+//        [_delegate didSelectOperationButton:ArticleDelete];
+//    }
+//}
 
 - (void)initialIsAdmin:(BOOL)isAdmin isCreator:(BOOL)isCreator isTop:(BOOL)isTop{
     self.backgroundColor = [UIColor getColor:@"f8f8f8"];
@@ -86,20 +86,21 @@
         [self.yidongView setHidden:YES];
         [self.shanchuView setHidden:YES];
         [self.zhidingView setHidden:YES];
+        [self.jubaoView setHidden:NO];
         self.jubaoLeading.constant = 16;
     }
     
 }
 
-- (void)cancelTopClick {
-    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOperationButton:)]) {
-        [_delegate didSelectOperationButton:ArticleCancelTop];
-    }
-}
-
-- (void)topClick {
-    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOperationButton:)]) {
-        [_delegate didSelectOperationButton:ArticleTop];
-    }
-}
+//- (void)cancelTopClick {
+//    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOperationButton:)]) {
+//        [_delegate didSelectOperationButton:ArticleCancelTop];
+//    }
+//}
+//
+//- (void)topClick {
+//    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOperationButton:)]) {
+//        [_delegate didSelectOperationButton:ArticleTop];
+//    }
+//}
 @end

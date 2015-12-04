@@ -43,6 +43,12 @@
     }
 }
 
+- (IBAction)reportClick:(id)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(didSelectOperationButton:)]) {
+        [_delegate didSelectOperationButton:0];
+    }
+}
+
 - (void)initial {
     self.backgroundColor = [UIColor getColor:@"f8f8f8"];
     self.scrollView.scrollEnabled = YES;

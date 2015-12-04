@@ -5,13 +5,13 @@
 //  Created by tingting zuo on 15-4-2.
 //  Copyright (c) 2015年 YRYZY. All rights reserved.
 //
-typedef enum {
-    ArticleReport = 0,
-    ArticleDelete = 1,
-    ArticleTop = 2,
-    ArticleCancelTop = 3,
-    ArticleMove = 4,
-} ArticleOperationType;
+//typedef enum {
+//    ArticleReport = 0,
+//    ArticleDelete = 1,
+//    ArticleTop = 2,
+//    ArticleCancelTop = 3,
+//    ArticleMove = 4,
+//} ArticleOperationType;
 #import <UIKit/UIKit.h>
 @protocol ArticleOperationViewDelegate <NSObject>
 
@@ -20,7 +20,7 @@ typedef enum {
  *
  *  @param  ArticleOperationType 话题操作类型
  */
-- (void)didSelectOperationButton:(ArticleOperationType)operationType;
+//- (void)didSelectOperationButton:(ArticleOperationType)operationType;
 @end
 @interface ArticleOperationView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *yidongLabel;

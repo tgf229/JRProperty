@@ -62,8 +62,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *comeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *circleNameLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *comeLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *circleNameLabel;
 @property (strong, nonatomic)  UILabel *contentLabel;
 @property (strong,nonatomic) ArticlePictureView *pictureView;
 @property (strong,nonatomic) ArticleVoteView  *voteView;

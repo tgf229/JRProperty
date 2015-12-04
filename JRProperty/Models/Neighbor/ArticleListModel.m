@@ -12,6 +12,10 @@
 
 @end
 
+@implementation VoteModel
+
+@end
+
 @implementation ArticleDetailModel
 
 @end

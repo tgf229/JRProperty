@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="shareButtonView" id="I0U-90-21G" customClass="shareButtonView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享到" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vn4-dl-5BV">
@@ -22,11 +23,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ba-iB-v5b">
-                    <rect key="frame" x="0.0" y="242" width="320" height="84"/>
+                    <rect key="frame" x="0.0" y="42" width="320" height="84"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7qu-Yg-sgG">
-                    <rect key="frame" x="0.0" y="43" width="320" height="87"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qu-Yg-sgG">
+                    <rect key="frame" x="0.0" y="43" width="320" height="72"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sA-UB-qdi">
                             <rect key="frame" x="16" y="0.0" width="50" height="50"/>
@@ -166,17 +167,40 @@
                         <constraint firstItem="H0Y-QO-UcD" firstAttribute="top" secondItem="I0U-pO-u3p" secondAttribute="bottom" constant="8" id="nkv-dw-DVD"/>
                         <constraint firstItem="moO-4z-EjU" firstAttribute="leading" secondItem="2yL-JP-V3F" secondAttribute="trailing" constant="23" id="scG-RY-6Aq"/>
                         <constraint firstItem="F82-dg-q0L" firstAttribute="top" secondItem="7qu-Yg-sgG" secondAttribute="top" id="udT-px-Yq0"/>
+                        <constraint firstAttribute="height" constant="72" id="uog-3S-Dey"/>
                         <constraint firstItem="F82-dg-q0L" firstAttribute="leading" secondItem="2sA-UB-qdi" secondAttribute="trailing" constant="21" id="v2f-ue-XmZ"/>
                         <constraint firstItem="8ZL-BK-i0I" firstAttribute="top" secondItem="7qu-Yg-sgG" secondAttribute="top" id="w6F-GB-Por"/>
                         <constraint firstItem="URI-Ei-6f7" firstAttribute="leading" secondItem="SGP-2j-P22" secondAttribute="trailing" constant="27" id="wgb-DM-zz0"/>
                     </constraints>
                 </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="az0-NP-XwE">
+                    <rect key="frame" x="16" y="130" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="mmE-Sa-PwU"/>
+                        <constraint firstAttribute="width" constant="50" id="pyc-VL-5di"/>
+                    </constraints>
+                    <state key="normal" image="pop_icon_jubao.png"/>
+                    <connections>
+                        <action selector="reportClick:" destination="I0U-90-21G" eventType="touchUpInside" id="OpY-dI-Fdf"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="举报" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yI-IP-8Dq">
+                    <rect key="frame" x="20" y="188" width="42" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Vn4-dl-5BV" firstAttribute="top" secondItem="I0U-90-21G" secondAttribute="top" constant="16" id="7gl-4X-QUA"/>
-                <constraint firstAttribute="bottom" secondItem="7qu-Yg-sgG" secondAttribute="bottom" id="Qdd-7n-3pD"/>
+                <constraint firstItem="5yI-IP-8Dq" firstAttribute="bottom" secondItem="I0U-90-21G" secondAttribute="bottomMargin" id="7zC-rH-SD7"/>
+                <constraint firstItem="5yI-IP-8Dq" firstAttribute="centerX" secondItem="az0-NP-XwE" secondAttribute="centerX" id="9io-72-Etz"/>
+                <constraint firstItem="az0-NP-XwE" firstAttribute="top" secondItem="7qu-Yg-sgG" secondAttribute="bottom" constant="15" id="Cbf-lJ-vrf"/>
+                <constraint firstItem="5yI-IP-8Dq" firstAttribute="top" secondItem="az0-NP-XwE" secondAttribute="bottom" constant="8" id="UTW-yB-RiE"/>
                 <constraint firstItem="Vn4-dl-5BV" firstAttribute="leading" secondItem="I0U-90-21G" secondAttribute="leading" constant="16" id="XJZ-jV-yHO"/>
+                <constraint firstItem="az0-NP-XwE" firstAttribute="centerX" secondItem="Vn4-dl-5BV" secondAttribute="centerX" id="ZHd-YS-BnD"/>
+                <constraint firstItem="5yI-IP-8Dq" firstAttribute="leading" secondItem="I0U-90-21G" secondAttribute="leading" constant="20" id="nOk-nm-ZWz"/>
                 <constraint firstItem="7qu-Yg-sgG" firstAttribute="leading" secondItem="I0U-90-21G" secondAttribute="leading" id="oGz-xW-rEC"/>
                 <constraint firstAttribute="trailing" secondItem="7qu-Yg-sgG" secondAttribute="trailing" id="t0e-3J-g1G"/>
                 <constraint firstItem="7qu-Yg-sgG" firstAttribute="top" secondItem="Vn4-dl-5BV" secondAttribute="bottom" constant="12" id="waO-tb-TXH"/>
@@ -195,14 +219,10 @@
     </objects>
     <resources>
         <image name="pop_icon_friend.png" width="50" height="50"/>
+        <image name="pop_icon_jubao.png" width="50" height="50"/>
         <image name="pop_icon_kongjian.png" width="50" height="50"/>
         <image name="pop_icon_qq.png" width="50" height="50"/>
         <image name="pop_icon_weixin.png" width="50" height="50"/>
         <image name="pop_icon_xinlang.png" width="50" height="50"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

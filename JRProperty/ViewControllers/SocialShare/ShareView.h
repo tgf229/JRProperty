@@ -36,7 +36,6 @@
 @interface ShareView : UIView<ShareButtonViewDelegate,ArticleOperationViewDelegate>
 @property (nonatomic, strong) UIView      * shadeView;          // 阴影背景
 @property (nonatomic, strong) shareButtonView      * shareButtonView;
-@property (nonatomic, strong) ArticleOperationView      * operationView;          
 @property (weak, nonatomic) id<SocialShareViewDelegate> delegate; //代理
 
 @property (nonatomic, copy)   dispatch_block_t updateBlock;     // 确定按钮回调事件

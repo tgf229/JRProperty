@@ -16,6 +16,13 @@
 //    SocialSnsTypeSina = 18
 //} SocialSnsType;
 //#import <UIKit/UIKit.h>
+typedef enum {
+    ArticleReport = 0,
+    ArticleDelete = 1,
+    ArticleTop = 2,
+    ArticleCancelTop = 3,
+    ArticleMove = 4,
+} ArticleOperationType;
 @protocol ShareButtonViewDelegate <NSObject>
 
 /**
@@ -24,6 +31,7 @@
  *  @param  SocialSnsType 社交平台类型
  */
 - (void)didSelectSocialButton:(ZYSocialSnsType)platformType;
+- (void)didSelectOperationButton:(ArticleOperationType)operationType;
 @end
 
 
@@ -43,6 +51,7 @@
 - (IBAction)shareSinaClick:(id)sender;
 - (IBAction)shareQQClcik:(id)sender;
 - (IBAction)shareKongjianClick:(id)sender;
+-(IBAction)reportClick:(id)sender;
 
 - (void)initial ;
 @end

@@ -35,16 +35,22 @@
         upView.backgroundColor = [UIColor getColor:@"f8f8f8"];
         [self addSubview:upView];
         self.shareButtonView = [[[NSBundle mainBundle] loadNibNamed:@"shareButtonView" owner:self options:nil]objectAtIndex:0];
-        self.shareButtonView.frame = CGRectMake(0, 0, UIScreenWidth, 127);
+        self.shareButtonView.frame = CGRectMake(0, 0, UIScreenWidth, 225);
         [self.shareButtonView initial];
-       
         self.shareButtonView.delegate = self;
         [self addSubview:self.shareButtonView];
-        self.operationView = [[[NSBundle mainBundle] loadNibNamed:@"ArticleOperationView" owner:self options:nil]objectAtIndex:0];
-        self.operationView.frame = CGRectMake(0, 128, UIScreenWidth, 106);
-        [self.operationView initialIsAdmin:isAdmin isCreator:isCreator isTop:isTop];
-        self.operationView.delegate = self;
-        [self addSubview:self.operationView];
+        
+//        self.operationView = [[[NSBundle mainBundle] loadNibNamed:@"ArticleOperationView" owner:self options:nil]objectAtIndex:0];
+//        self.operationView.frame = CGRectMake(0, 128, UIScreenWidth, 106);
+//        [self.operationView initialIsAdmin:isAdmin isCreator:isCreator isTop:isTop];
+//        self.operationView.delegate = self;
+//        [self addSubview:self.operationView];
+        
+//        self.operationButtonView = [[[NSBundle mainBundle]loadNibNamed:@"operationButtonView" owner:self options:nil]objectAtIndex:0];
+//        self.operationButtonView.frame = CGRectMake(0, 128, UIScreenWidth, 106);
+//        self.operationButtonView.delegate = self;
+//        [self addSubview:self.operationButtonView];
+        
         self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.cancelButton.frame = CGRectMake(0,233,UIScreenWidth,49);
         [self.cancelButton setTitle:@"取消" forState:UIControlStateNormal];

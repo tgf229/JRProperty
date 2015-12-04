@@ -21,6 +21,7 @@
 #import "JRDefine.h"
 
 #import "ArticleService.h"
+#import "CommunityService.h"
 #import "ShareToSnsService.h"
 
 #import "CommentListModel.h"
@@ -47,6 +48,8 @@
 
 @property (nonatomic,strong) ShareToSnsService   *shareService;
 @property (strong,nonatomic) ArticleService      *articleService;
+@property (strong, nonatomic) CommunityService   *communityService;
+
 @property (strong ,nonatomic) ArticleBottomView   *bottomView;//评论列表model
 
 @property (nonatomic,assign)  BOOL               isReply;      // 回复标志
@@ -103,6 +106,7 @@
                                                object:nil];
     //初始化
     self.articleService = [[ArticleService alloc]init];
+    self.communityService = [[CommunityService alloc]init];
     self.commentListModel = [[CommentListModel alloc]init];
     self.commentList = [[NSMutableArray alloc]init];
     self.largeImageArray = [[NSMutableArray alloc]init];
@@ -201,7 +205,8 @@
     if (!self.isPulling && !self.isLoadMore) {
         [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeClear];
     }
-    [self.articleService Bus301201:self.articleDetailModel.articleId queryTime:queryTime page:pageStr num:NUMBER_FOR_REQUEST success:^(id responseObject) {
+    
+    [self.communityService Bus301202:self.articleDetailModel.aId page:pageStr num:NUMBER_FOR_REQUEST queryTime:queryTime success:^(id responseObject) {
         self.commentListModel = (CommentListModel *)responseObject;
         [SVProgressHUD dismiss];
         [self requestListSuccess];
@@ -216,7 +221,24 @@
             [self.commentTableView footerEndRefreshing];
             self.hasMore = YES;
         }
+
     }];
+//    [self.articleService Bus301201:self.articleDetailModel.articleId queryTime:queryTime page:pageStr num:NUMBER_FOR_REQUEST success:^(id responseObject) {
+//        self.commentListModel = (CommentListModel *)responseObject;
+//        [SVProgressHUD dismiss];
+//        [self requestListSuccess];
+//    } failure:^(NSError *error) {
+//        [SVProgressHUD showErrorWithStatus:OTHER_ERROR_MESSAGE];
+//        if (self.isPulling) {
+//            self.isPulling = NO;
+//            [self.commentTableView headerEndRefreshing];
+//        }
+//        else if (self.isLoadMore) {
+//            self.isLoadMore = NO;
+//            [self.commentTableView footerEndRefreshing];
+//            self.hasMore = YES;
+//        }
+//    }];
 }
 
 /**
@@ -240,7 +262,7 @@
             self.page = 1;
         }
         [self.commentList addObjectsFromArray:self.commentListModel.doc];
-        if(self.commentListModel.doc.count < 10){
+        if(self.commentListModel.doc.count < [NUMBER_FOR_REQUEST intValue]){
             self.hasMore = NO;
             [self.commentTableView removeFooter];;
             
@@ -371,7 +393,8 @@
     if (!self.isPulling) {
         [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeClear];
     }
-    [self.articleService Bus301901:self.articleId uId:[LoginManager shareInstance].loginAccountInfo.uId success:^(id responseObject) {
+    NSString *uId = [LoginManager shareInstance].loginAccountInfo.uId;
+    [self.communityService Bus301902: uId aId:self.articleId success:^(id responseObject) {
         self.articleDetailModel = (ArticleDetailModel *)responseObject;
         if ([self.articleDetailModel.retcode isEqualToString:RETURN_CODE_SUCCESS]) {
             //成功
@@ -512,9 +535,10 @@
         self.articleDetailModel.praiseNum =numberStr;
         [self.bottomView setData:self.articleDetailModel];
         //        [self.headView setData:self.articleDetailModel];
-        //请求服务 赞
+        
+        //调接口服务 赞
         NSString *uid = [LoginManager shareInstance].loginAccountInfo.uId;
-        [self.articleService Bus300801:uid aId:self.articleDetailModel.articleId type:@"1" success:^(id responseObject) {
+        [self.communityService Bus300802:CID_FOR_REQUEST aId:self.articleDetailModel.aId uId:uid     type:@"1" success:^(id responseObject) {
             
         } failure:^(NSError *error) {
             
@@ -528,9 +552,9 @@
     NSString *numberStr = [NSString stringWithFormat:@"%ld",(long)number];
     self.articleDetailModel.praiseNum =numberStr;
     [self.bottomView setData:self.articleDetailModel];
-    //请求服务 取消赞
+    //调用接口 取消赞
     NSString *uid = [LoginManager shareInstance].loginAccountInfo.uId;
-    [self.articleService Bus300801:uid aId:self.articleDetailModel.articleId type:@"0" success:^(id responseObject) {
+    [self.communityService Bus300802:CID_FOR_REQUEST aId:self.articleDetailModel.aId uId:uid type:@"0" success:^(id responseObject) {
         
     } failure:^(NSError *error) {
         

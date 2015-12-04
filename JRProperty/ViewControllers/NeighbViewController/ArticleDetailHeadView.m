@@ -18,8 +18,8 @@
     self.headImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headClick:)];
     [self.headImageView addGestureRecognizer:singleTap];
-//    self.nicknameLabel.textColor = [UIColor getColor:@"4a5f8b"];
-//    self.timeLabel.textColor = [UIColor getColor:@"888888"];
+    self.nicknameLabel.textColor = [UIColor getColor:@"4093c6"];
+    self.timeLabel.textColor = [UIColor getColor:@"999999"];
 //    self.comeLabel.textColor = [UIColor getColor:@"888888"];
 //    self.circleNameLabel.textColor = [UIColor getColor:@"4a5f8b"];
     self.contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 65, UIScreenWidth-30, 0)];
@@ -43,9 +43,9 @@
 - (void)setData:(ArticleDetailModel *)data {
     _data = data;
     self.nicknameLabel.text = data.nickName;
-    _commentBumLabel.text = [NSString stringWithFormat:@"评论 %@",self.data.comment];
+    _commentBumLabel.text = [NSString stringWithFormat:@"评论 %@",self.data.commentNum];
     self.timeLabel.text = data.time;
-    self.circleNameLabel.text = data.name;
+//    self.circleNameLabel.text = data.name;
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:data.imageUrl] placeholderImage:[UIImage imageNamed:@"default_portrait_140x140"]];
     NSString *content = data.content;
     NSError *error;

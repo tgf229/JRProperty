@@ -61,10 +61,10 @@
 /********************************* 接口地址  勿删 ********************************************/
 
 //涂高峰
-//#define  SERVER_URL      @"http://10.167.130.170/x8-mobile-gw-web/"
+#define  SERVER_URL      @"http://192.168.0.250:8080/community-mobile/"
 //测试服务器
 //#define  SERVER_URL      @"http://mobile.myx8.cn/"
-#define  SERVER_URL   @"http://mobile.crossroad.love/"
+//#define  SERVER_URL   @"http://mobile.crossroad.love/"
 // APP下载地址
 #define  HTTP_APP_DOWNLOAD_URL @"http://d.crossroad.love/app/download.html"
 // 隐私协议地址
@@ -156,7 +156,7 @@
 //圈子 话题置顶 取消置顶 删除
 #define  HTTP_Bus301801_URL [NSString stringWithFormat:@"%@Bus301801?encrypt=simple", SERVER_URL]
 //圈子 话题详情
-#define  HTTP_Bus301901_URL [NSString stringWithFormat:@"%@Bus301901?encrypt=none", SERVER_URL]
+#define  HTTP_Bus301901_URL [NSString stringWithFormat:@"%@Bus301902?encrypt=none", SERVER_URL]
 
 //举报话题
 #define  HTTP_Bus302201_URL [NSString stringWithFormat:@"%@Bus302201?encrypt=simple", SERVER_URL]
@@ -210,3 +210,10 @@
 // 3.5.3	崩溃日志上传
 #define  HTTP_Bus500301_URL [NSString stringWithFormat:@"%@Bus500301?encrypt=none", SERVER_URL]
 
+
+/****************************** V2.0接口 **********************************************/
+
+#define  HTTP_Bus301902_URL [NSString stringWithFormat:@"%@Bus301902?encrypt=none", SERVER_URL]
+#define  HTTP_Bus302301_URL [NSString stringWithFormat:@"%@Bus302301?encrypt=none", SERVER_URL]
+#define  HTTP_Bus301202_URL [NSString stringWithFormat:@"%@Bus301202?encrypt=none", SERVER_URL]
+#define  HTTP_Bus300802_URL [NSString stringWithFormat:@"%@Bus300802?encrypt=simple", SERVER_URL]
