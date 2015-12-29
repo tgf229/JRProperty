@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface PraiseListViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *headImage;
-@property (weak, nonatomic) IBOutlet UILabel *depName;
-@property (weak, nonatomic) IBOutlet UILabel *depUserName;
-@property (weak, nonatomic) IBOutlet UILabel *depNum;
+@property (weak, nonatomic) IBOutlet UIImageView *headImage; // 头像
+@property (weak, nonatomic) IBOutlet UILabel *depName; // 部门名称
+@property (weak, nonatomic) IBOutlet UILabel *depUserName; // 员工姓名
+@property (weak, nonatomic) IBOutlet UILabel *depNum; // 员工工号
 @property (weak, nonatomic) IBOutlet UIView *backGroung;
-@property (weak, nonatomic) IBOutlet UILabel *praiseNum;
+@property (weak, nonatomic) IBOutlet UILabel *praiseNum; // 表扬数量
+@property (weak, nonatomic) IBOutlet UIImageView *tipsImg;
 
 @end

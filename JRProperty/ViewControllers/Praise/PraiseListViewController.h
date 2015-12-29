@@ -8,6 +8,6 @@
 
 #import "JRViewController.h"
 
-@interface PraiseListViewController : JRViewControllerWithBackButton<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface PraiseListViewController : JRViewControllerWithBackButton<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIPickerViewDataSource,UIPickerViewDelegate>
 
 @end

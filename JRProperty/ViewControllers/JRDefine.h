@@ -243,3 +243,32 @@
 
 //小区物业服务配置项查询
 #define  HTTP_Bus200901_URL [NSString stringWithFormat:@"%@Bus200901?encrypt=none", SERVER_URL]
+
+
+/****************************** 表扬接口 **********************************************/
+// 3.2.5	表扬信息列表查询
+#define  HTTP_Bus200501_URL [NSString stringWithFormat:@"%@Bus200501?encrypt=simple", SERVER_URL]
+// 3.2.6	表扬信息列表查询
+#define  HTTP_Bus200601_URL [NSString stringWithFormat:@"%@Bus200601?encrypt=simple", SERVER_URL]
+// 3.2.7	表扬信息列表查询
+#define  HTTP_Bus200701_URL [NSString stringWithFormat:@"%@Bus200701?encrypt=none", SERVER_URL]
+// 3.2.8	表扬信息列表查询
+#define  HTTP_Bus200801_URL [NSString stringWithFormat:@"%@Bus200801?encrypt=none", SERVER_URL]
+
+/****************************** 跳蚤接口 **********************************************/
+// 3.6.1	列表查询
+#define  HTTP_Bus600101_URL [NSString stringWithFormat:@"%@Bus600101?encrypt=none", SERVER_URL]
+// 3.6.2	详情查询
+#define  HTTP_Bus600201_URL [NSString stringWithFormat:@"%@Bus600201?encrypt=none", SERVER_URL]
+// 3.6.3	评论列表查询
+#define  HTTP_Bus600301_URL [NSString stringWithFormat:@"%@Bus600301?encrypt=none", SERVER_URL]
+// 3.6.4	评论&回复
+#define  HTTP_Bus600401_URL [NSString stringWithFormat:@"%@Bus600401?encrypt=simple", SERVER_URL]
+// 3.6.5	发布宝贝信息
+#define  HTTP_Bus600501_URL [NSString stringWithFormat:@"%@Bus600501?encrypt=simple", SERVER_URL]
+// 3.6.6	宝贝操作接口
+#define  HTTP_Bus600601_URL [NSString stringWithFormat:@"%@Bus600601?encrypt=simple", SERVER_URL]
+// 3.6.7	宝贝操作接口
+#define  HTTP_Bus600701_URL [NSString stringWithFormat:@"%@Bus600701?encrypt=none", SERVER_URL]
+// 3.6.8	收藏宝贝列表查询
+#define  HTTP_Bus600801_URL [NSString stringWithFormat:@"%@Bus600801?encrypt=none", SERVER_URL]

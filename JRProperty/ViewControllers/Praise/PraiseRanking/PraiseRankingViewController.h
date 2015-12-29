@@ -8,6 +8,6 @@
 
 #import "JRViewController.h"
 
-@interface PraiseRankingViewController : JRViewControllerWithBackButton<UITableViewDataSource>
-
+@interface PraiseRankingViewController : JRViewControllerWithBackButton<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@property(copy,nonatomic) NSString * rankingTime; //  YYYYMM
 @end

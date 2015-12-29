@@ -108,6 +108,10 @@
     [_voteCustomView setHidden:YES];
     [_addVoteView setHidden:YES];
     
+    self.mainScrollView.backgroundColor = [UIColor orangeColor];
+    self.contentView.backgroundColor = [UIColor blueColor];
+    self.voteCustomView.backgroundColor = [UIColor redColor];
+    
 }
 
 -(void) viewDidLayoutSubviews{

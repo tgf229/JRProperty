@@ -11,3 +11,7 @@
 @implementation PraiseListModel
 
 @end
+
+@implementation PraiseModel
+
+@end

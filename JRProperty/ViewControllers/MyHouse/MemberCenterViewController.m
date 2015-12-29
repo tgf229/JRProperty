@@ -51,6 +51,8 @@
 @property (weak,nonatomic)   IBOutlet  NSLayoutConstraint *pwdSetViewTopCon;
 @property (weak,nonatomic)   IBOutlet  NSLayoutConstraint *tableviewHightCon;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHightCon;
+
 @property (strong,nonatomic) UserService                  *userService;
 @property (strong,nonatomic) HouseService                 *houseService;
 
@@ -112,6 +114,12 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
 //    [self updateViews];
 }
 
+-(void) viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    self.mainScrollView.contentSize = CGSizeMake(UIScreenWidth, 800);
+    [self.view layoutIfNeeded];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -127,7 +135,7 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
         [self.portraitImageview setImage:[UIImage imageNamed:@"default_portrait_140x140.png"]];
         self.nickLabel.text = @"请登录";
     }
-
+    
     
     if ([LoginManager shareInstance].loginAccountInfo.isLogin)
     {
@@ -200,7 +208,6 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
 - (void)updateTableviewConstraints
 {
     self.tableviewHightCon.constant = 44 * [_houseDataArray count];
-    
     [self.view layoutIfNeeded];
 }
 
@@ -285,7 +292,7 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.0f;
+    return 1.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section

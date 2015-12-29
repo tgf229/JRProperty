@@ -45,6 +45,8 @@
 #import "PlotListModel.h"
 #import "UIImageView+WebCache.h"
 #import "PropertyServiceCommonPostViewController.h"
+#import "FleaMarketListViewController.h"
+#import "PraiseListViewController.h"
 
 //static NSString *cellIndentifier = @"PlotSomethingNewTableViewCellIndentifierlalal";
 
@@ -130,7 +132,7 @@
      //===================================================
     
     _contentView.backgroundColor = [UIColor getColor:@"eeeeee"];
-    _contentView.frame = CGRectMake(0, 0, _mainRefreshTableView.frame.size.width, 30+570 + UIScreenWidth * 8 / 15);
+    _contentView.frame = CGRectMake(0, 0, _mainRefreshTableView.frame.size.width, 30+650 + UIScreenWidth * 8 / 15);
     _topHeightConstraint.constant = UIScreenWidth * 8 / 15+15;
     [_mainRefreshTableView beginUpdates];
     [_mainRefreshTableView setTableHeaderView:_contentView];
@@ -306,6 +308,14 @@
             break;
         case 4:
             //表扬
+            {
+            UIStoryboard *praiseStoryboard = [UIStoryboard storyboardWithName:@"PraiseStoryboard" bundle:nil];
+            
+            PraiseListViewController *praiseListViewController = [praiseStoryboard instantiateViewControllerWithIdentifier:@"praiseListViewController"];
+            
+            praiseListViewController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:praiseListViewController animated:YES];
+            }
             break;
         case 5:
             {
@@ -351,6 +361,14 @@
         default:
             break;
     }
+}
+
+-(IBAction)enterFleaMarketClick:(id)sender{
+    UIStoryboard *fleaMarketStoryboard = [UIStoryboard storyboardWithName:@"FleaMarketStoryboard" bundle:nil];
+    FleaMarketListViewController *fleaMarketListViewController = [fleaMarketStoryboard instantiateViewControllerWithIdentifier:@"fleaMarketListViewController"];
+     fleaMarketListViewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:fleaMarketListViewController animated:YES];
+    
 }
 
 - (void)enterPropertyServiceCommonPostViewController:(NSString *)titleName{
