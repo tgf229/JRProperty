@@ -18,7 +18,7 @@
 - (void)setData:(ArticleDetailModel *)  data {
     _data = data;
     NSString *praiseStr = [NSString stringWithFormat:@"  %@",data.praiseNum];
-    NSString *commentStr = [NSString stringWithFormat:@"  %@",data.comment];
+    NSString *commentStr = [NSString stringWithFormat:@"  %@",data.commentNum];
     //NSString *shareStr = [NSString stringWithFormat:@"  %@",data.shareNum];
 
     [self.priaseButton setTitle:praiseStr forState:UIControlStateNormal];

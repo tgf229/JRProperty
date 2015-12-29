@@ -61,7 +61,6 @@ static NSString *cellIndentifier = @"SelectedPlotsTableViewCellIdentifier";
     
 //    PlotModel * model1 = [[PlotModel alloc] init];
 //    model1.cId = @"1";
-//    model1.cName = @"星雨华府";
 //    model1.city = @"南京";
 //    
 //    PlotModel * model2 = [[PlotModel alloc] init];

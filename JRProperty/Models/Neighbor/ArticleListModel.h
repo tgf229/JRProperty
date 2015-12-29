@@ -44,6 +44,9 @@
 @property (copy, nonatomic) NSString<Optional> * praiseNum; // 赞数量
 @property (copy, nonatomic) NSString<Optional> * commentNum; //评论数量
 @property (copy, nonatomic) NSString<Optional> * type     ; // 话题类型 1普通话题  2投票(A/B)话题  3投票（自定义）话题  4官方（美食）话题  5官方（生活常识）话题
+@property (copy, nonatomic) NSString<Optional> * title; //官方话题标题
+@property (copy, nonatomic) NSString<Optional> * subTitle;  //官方话题副标题
+@property (copy, nonatomic) NSString<Optional> * vol;   //官方话题期刊号
 @property (strong, nonatomic) NSMutableArray<ImageModel, Optional> *imageList;
 @property (strong, nonatomic) NSMutableArray<VoteModel, Optional> *voteList;
 

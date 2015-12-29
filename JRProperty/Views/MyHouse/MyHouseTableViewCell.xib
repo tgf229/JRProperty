@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,21 +15,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="星雨华府1栋2单元3室" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTg-At-ujf" userLabel="房屋信息Label">
-                        <rect key="frame" x="15" y="11" width="244" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1栋2单元3室" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTg-At-ujf" userLabel="房屋信息Label">
+                        <rect key="frame" x="15" y="11" width="210" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="3xe-WE-plL"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Jc-SQ-y1b" userLabel="编辑Button">
-                        <rect key="frame" x="269" y="7" width="36" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="kAX-Bp-jAc"/>
-                            <constraint firstAttribute="width" constant="36" id="xva-7x-odK"/>
-                        </constraints>
+                        <rect key="frame" x="277" y="8" width="28" height="28"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <state key="normal" backgroundImage="myhome_housing_information_btn_delet.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,36 +35,48 @@
                             <action selector="editButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="84H-OJ-eKc"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_grey_foot_40x1.png" translatesAutoresizingMaskIntoConstraints="NO" id="4w9-gN-F5c" userLabel="下分割线">
-                        <rect key="frame" x="10" y="42" width="310" height="1"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="Uu1-QZ-dho"/>
-                        </constraints>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_white.png" translatesAutoresizingMaskIntoConstraints="NO" id="9uO-QO-FX3">
+                        <rect key="frame" x="288" y="14" width="9" height="15"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baH-bS-Kuu">
+                        <rect key="frame" x="244.5" y="14" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_ico_warn.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Gh-y9-rnm">
+                        <rect key="frame" x="225" y="15" width="14" height="14"/>
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="0Gh-y9-rnm" firstAttribute="centerY" secondItem="baH-bS-Kuu" secondAttribute="centerY" id="0CD-S0-gIU"/>
                     <constraint firstItem="eTg-At-ujf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="3YI-eq-VfN"/>
-                    <constraint firstAttribute="trailing" secondItem="4w9-gN-F5c" secondAttribute="trailing" id="6Vy-Xb-gVO"/>
-                    <constraint firstItem="4w9-gN-F5c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="CnO-jI-efA"/>
+                    <constraint firstItem="baH-bS-Kuu" firstAttribute="leading" secondItem="0Gh-y9-rnm" secondAttribute="trailing" constant="5" id="5Ac-zt-FJc"/>
+                    <constraint firstAttribute="trailing" secondItem="baH-bS-Kuu" secondAttribute="trailing" constant="40" id="5dP-Td-VS7"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="9uO-QO-FX3" secondAttribute="trailing" constant="15" id="BB9-Og-5Rs"/>
                     <constraint firstAttribute="centerY" secondItem="eTg-At-ujf" secondAttribute="centerY" id="KsZ-Dk-ma5"/>
-                    <constraint firstItem="7Jc-SQ-y1b" firstAttribute="leading" secondItem="eTg-At-ujf" secondAttribute="trailing" constant="10" id="QoO-f3-zPa"/>
+                    <constraint firstItem="9uO-QO-FX3" firstAttribute="centerY" secondItem="7Jc-SQ-y1b" secondAttribute="centerY" id="Vj2-gH-BVW"/>
+                    <constraint firstItem="baH-bS-Kuu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Z7M-Jl-wOR"/>
                     <constraint firstAttribute="trailing" secondItem="7Jc-SQ-y1b" secondAttribute="trailing" constant="15" id="a0D-Mf-xan"/>
-                    <constraint firstAttribute="bottom" secondItem="4w9-gN-F5c" secondAttribute="bottom" id="r1x-W4-Tqw"/>
+                    <constraint firstAttribute="trailing" secondItem="eTg-At-ujf" secondAttribute="trailing" constant="95" id="ynn-pF-dtr"/>
                     <constraint firstAttribute="centerY" secondItem="7Jc-SQ-y1b" secondAttribute="centerY" id="zks-GN-yAH"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="arrowImageView" destination="9uO-QO-FX3" id="J83-93-Bq3"/>
                 <outlet property="editButton" destination="7Jc-SQ-y1b" id="Umy-5X-TaZ"/>
                 <outlet property="houseLabel" destination="eTg-At-ujf" id="VJG-HF-UbK"/>
-                <outlet property="speratorLine" destination="4w9-gN-F5c" id="O4s-Q8-BzN"/>
+                <outlet property="statusImageView" destination="0Gh-y9-rnm" id="uQn-vw-SpO"/>
+                <outlet property="statusLabel" destination="baH-bS-Kuu" id="A9Z-Kj-Esz"/>
             </connections>
             <point key="canvasLocation" x="151" y="324"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="line_grey_foot_40x1.png" width="40" height="1"/>
-        <image name="myhome_housing_information_btn_delet.png" width="36" height="30"/>
-        <image name="myhome_housing_information_btn_delet_press.png" width="36" height="30"/>
+        <image name="arrow_white.png" width="9" height="15"/>
+        <image name="myhome_housing_information_btn_delet.png" width="28" height="28"/>
+        <image name="myhome_housing_information_btn_delet_press.png" width="28" height="28"/>
+        <image name="profile_ico_warn.png" width="14" height="14"/>
     </resources>
 </document>

@@ -78,5 +78,11 @@
            success:(void (^)(id responseObject))success
            failure:(void (^)(NSError *error))failure;
 
+/*
+ *物业服务—小区物业服务配置项查询
+ */
+-(void) Bus200901:(NSString *)cId
+          success:(void (^)(id responseObject))success
+          failure:(void (^)(NSError *error))failure;
 
 @end

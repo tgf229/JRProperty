@@ -19,7 +19,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="诚实的匹诺曹" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUs-PS-DIY">
-                    <rect key="frame" x="51" y="20" width="254" height="12"/>
+                    <rect key="frame" x="51" y="20" width="78" height="12"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="k3h-aC-JIK"/>
                     </constraints>
@@ -80,29 +80,47 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1小时前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ir1-MU-kNI">
-                    <rect key="frame" x="53" y="38" width="38.5" height="13"/>
+                    <rect key="frame" x="53" y="38" width="230" height="13"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="13" id="Cew-0K-Ano"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="community_list_ishot.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wv8-am-Egu">
+                    <rect key="frame" x="285" y="25" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="nE9-rj-KFg"/>
+                        <constraint firstAttribute="height" constant="20" id="wlu-6E-WIe"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="community_list_isvote.png" translatesAutoresizingMaskIntoConstraints="NO" id="Szo-Lf-mSI">
+                    <rect key="frame" x="255" y="25" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="Wn2-ZL-TVv"/>
+                        <constraint firstAttribute="height" constant="20" id="f7r-qe-QGd"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="bUs-PS-DIY" firstAttribute="top" secondItem="lzG-jT-wtK" secondAttribute="top" constant="20" id="0wf-Db-6Ee"/>
                 <constraint firstItem="Jtf-Wz-3I7" firstAttribute="leading" secondItem="lzG-jT-wtK" secondAttribute="leading" constant="15" id="5B4-Aq-s1H"/>
+                <constraint firstItem="Wv8-am-Egu" firstAttribute="centerY" secondItem="Jtf-Wz-3I7" secondAttribute="centerY" id="89U-Pa-ZL6"/>
                 <constraint firstAttribute="bottom" secondItem="fmn-Fi-mje" secondAttribute="bottom" id="DYJ-HS-Ek3"/>
-                <constraint firstAttribute="trailing" secondItem="bUs-PS-DIY" secondAttribute="trailing" constant="15" id="GvD-8j-6b7"/>
                 <constraint firstItem="bUs-PS-DIY" firstAttribute="leading" secondItem="Jtf-Wz-3I7" secondAttribute="trailing" constant="6" id="Ktw-Dh-JY2"/>
                 <constraint firstItem="fmn-Fi-mje" firstAttribute="leading" secondItem="lzG-jT-wtK" secondAttribute="leading" id="LWd-wY-0ql"/>
                 <constraint firstAttribute="bottom" secondItem="Fko-fp-lwf" secondAttribute="bottom" id="Pbk-D0-4yd"/>
+                <constraint firstItem="Wv8-am-Egu" firstAttribute="leading" secondItem="ir1-MU-kNI" secondAttribute="trailing" constant="2" id="RyV-LR-P1Q"/>
                 <constraint firstItem="ir1-MU-kNI" firstAttribute="top" secondItem="bUs-PS-DIY" secondAttribute="bottom" constant="6" id="XkF-Ik-74n"/>
                 <constraint firstItem="CxV-55-BOJ" firstAttribute="leading" secondItem="lzG-jT-wtK" secondAttribute="leading" constant="32" id="ZRM-pV-KL5"/>
+                <constraint firstItem="Szo-Lf-mSI" firstAttribute="centerY" secondItem="Wv8-am-Egu" secondAttribute="centerY" id="dGc-k6-zfI"/>
                 <constraint firstItem="CxV-55-BOJ" firstAttribute="top" secondItem="lzG-jT-wtK" secondAttribute="top" constant="17" id="fCf-ip-KK2"/>
                 <constraint firstItem="Fko-fp-lwf" firstAttribute="leading" secondItem="lzG-jT-wtK" secondAttribute="leading" id="hs1-Md-zp9"/>
                 <constraint firstItem="ir1-MU-kNI" firstAttribute="leading" secondItem="Jtf-Wz-3I7" secondAttribute="trailing" constant="8" symbolic="YES" id="k9o-D9-4uf"/>
+                <constraint firstAttribute="trailing" secondItem="Wv8-am-Egu" secondAttribute="trailing" constant="15" id="mQP-gu-PlB"/>
+                <constraint firstItem="Wv8-am-Egu" firstAttribute="leading" secondItem="Szo-Lf-mSI" secondAttribute="trailing" constant="10" id="mmf-v5-30O"/>
                 <constraint firstAttribute="trailing" secondItem="Fko-fp-lwf" secondAttribute="trailing" id="qfC-hk-num"/>
                 <constraint firstAttribute="trailing" secondItem="fmn-Fi-mje" secondAttribute="trailing" id="vKD-mP-Mls"/>
                 <constraint firstItem="Jtf-Wz-3I7" firstAttribute="top" secondItem="lzG-jT-wtK" secondAttribute="top" constant="20" id="wRc-Ga-VOp"/>
@@ -112,13 +130,17 @@
                 <outlet property="commentBumLabel" destination="Wir-bM-sxI" id="fuM-Nv-KsY"/>
                 <outlet property="daVip" destination="CxV-55-BOJ" id="foU-rt-2uf"/>
                 <outlet property="headImageView" destination="Jtf-Wz-3I7" id="tZd-AT-lfr"/>
+                <outlet property="hotImageView" destination="Wv8-am-Egu" id="83r-Kk-5Kz"/>
                 <outlet property="nicknameLabel" destination="bUs-PS-DIY" id="Rfw-gZ-QMG"/>
                 <outlet property="timeLabel" destination="ir1-MU-kNI" id="Jsh-if-rn3"/>
+                <outlet property="voteImageView" destination="Szo-Lf-mSI" id="jAP-7c-zL3"/>
             </connections>
             <point key="canvasLocation" x="429" y="333"/>
         </view>
     </objects>
     <resources>
+        <image name="community_list_ishot.png" width="20" height="20"/>
+        <image name="community_list_isvote.png" width="20" height="20"/>
         <image name="default_portrait_140x140.png" width="70" height="70"/>
         <image name="icon_vip_36x36.png" width="18" height="18"/>
         <image name="line_grey_foot_40x1.png" width="40" height="1"/>

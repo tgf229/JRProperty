@@ -29,12 +29,13 @@
 #import "LoginManager.h"
 #import "ShareView.h"
 #import "SuperArticleListViewController.h"
-@interface ArticleDetailViewController ()<ShareToSnsServiceDelegate,SocialShareViewDelegate>
+@interface ArticleDetailViewController ()<ShareToSnsServiceDelegate,SocialShareViewDelegate,UIWebViewDelegate>
 
 @property (strong,nonatomic) NSMutableArray        *commentList;//评论数组
 @property (nonatomic,strong) NSMutableArray          *largeImageArray;    //大图地址列表
 
 @property (strong,nonatomic) ArticleDetailHeadView   *headView;//话题详情部分view
+@property (strong,nonatomic) UIWebView  *headWebView;
 //@property (nonatomic,strong) PopSocialShareView      *shareView;//分享页面
  @property (nonatomic,strong) ShareView      *shareView;//分享页面
 
@@ -154,14 +155,39 @@
  *  设置表格
  */
 - (void)createTableView {
-    if (!self.onlyComment) {
-        self.headView = [[[NSBundle mainBundle] loadNibNamed:@"ArticleDetailHeadView" owner:self options:nil]objectAtIndex:0];
-        [self.headView initial];
-        self.headView.delegate = self;
-        CGFloat heigh = [ArticleDetailHeadView height:self.articleDetailModel];
-        self.headView.frame = CGRectMake(0, 0, UIScreenWidth, heigh);
-        [self.headView setData:self.articleDetailModel];
-        self.commentTableView.tableHeaderView = self.headView;
+    if (self.onlyOfficial) {
+        self.headWebView = [[UIWebView alloc]init];
+        NSString *content = self.articleDetailModel.content;
+        NSURL *url = [NSURL URLWithString:content];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [self.headWebView loadRequest:request];
+        self.headWebView.delegate = self;
+        self.headWebView.frame = CGRectMake(0, 0, UIScreenWidth, UIScreenHeight-170);
+        
+        UIView *commentBg = [[UIView alloc]init];
+        commentBg.frame = CGRectMake(0, UIScreenHeight-199, UIScreenHeight, 30);
+        commentBg.backgroundColor = [UIColor getColor:@"f8f8f8"];
+        
+        UILabel *commentLabel = [[UILabel alloc]init];
+        commentLabel.font = [UIFont systemFontOfSize:13];
+        commentLabel.textColor = [UIColor getColor:@"d96e5d"];
+        commentLabel.frame = CGRectMake(15, UIScreenHeight-199+9, 200, 13);
+        commentLabel.text = [NSString stringWithFormat:@"评论 %@",self.articleDetailModel.commentNum];
+        
+        [self.headWebView addSubview:commentBg];
+        [self.headWebView addSubview:commentLabel];
+        self.commentTableView.tableHeaderView = self.headWebView;
+    }
+    else{
+        if (!self.onlyComment) {
+            self.headView = [[[NSBundle mainBundle] loadNibNamed:@"ArticleDetailHeadView" owner:self options:nil]objectAtIndex:0];
+            [self.headView initial];
+            self.headView.delegate = self;
+            CGFloat heigh = [ArticleDetailHeadView height:self.articleDetailModel];
+            self.headView.frame = CGRectMake(0, 0, UIScreenWidth, heigh);
+            [self.headView setData:self.articleDetailModel];
+            self.commentTableView.tableHeaderView = self.headView;
+        }
     }
     
     [self.bottomView setData:self.articleDetailModel];
@@ -223,22 +249,6 @@
         }
 
     }];
-//    [self.articleService Bus301201:self.articleDetailModel.articleId queryTime:queryTime page:pageStr num:NUMBER_FOR_REQUEST success:^(id responseObject) {
-//        self.commentListModel = (CommentListModel *)responseObject;
-//        [SVProgressHUD dismiss];
-//        [self requestListSuccess];
-//    } failure:^(NSError *error) {
-//        [SVProgressHUD showErrorWithStatus:OTHER_ERROR_MESSAGE];
-//        if (self.isPulling) {
-//            self.isPulling = NO;
-//            [self.commentTableView headerEndRefreshing];
-//        }
-//        else if (self.isLoadMore) {
-//            self.isLoadMore = NO;
-//            [self.commentTableView footerEndRefreshing];
-//            self.hasMore = YES;
-//        }
-//    }];
 }
 
 /**
@@ -302,7 +312,6 @@
       UIAlertView  *alert= [[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登录，是否去登录？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alert show];
     }
-
     else {
         //去掉前后换行
         NSString * str = [self.CommenInputView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -321,39 +330,34 @@
             [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeClear];
             if (self.isReply) {
                 //发表回复
-                [self.articleService Bus301101:[LoginManager shareInstance].loginAccountInfo.uId aId:self.articleDetailModel.articleId replyUId:self.replyComment.uId commentId:self.replyComment.commentId content:str success:^(id responseObject) {
-                    ReplyResultModel *model = (ReplyResultModel *)responseObject;
-                    if ([model.retcode isEqualToString:RETURN_CODE_SUCCESS]) {
+                [self.communityService Bus301102:CID_FOR_REQUEST aId:self.articleDetailModel.aId uId:[LoginManager shareInstance].loginAccountInfo.uId replyUId:self.replyComment.uId commentId:self.replyComment.commentId content:str success:^(id responseObject) {
+                    ReplyResultModel *result = (ReplyResultModel *)responseObject;
+                    if ([result.retcode isEqualToString:RETURN_CODE_SUCCESS]) {
                         //成功
                         [SVProgressHUD showSuccessWithStatus:@"发表成功"];
-                        [self addMyCommentWithCommentId:model.commentId];
+                        [self addMyCommentWithCommentId:result.commentId];
+                    }else{
+                        [SVProgressHUD showErrorWithStatus:result.retinfo];
                     }
-                    else {
-                        [SVProgressHUD showErrorWithStatus:model.retinfo];
-                    }
-                    
                 } failure:^(NSError *error) {
                     [SVProgressHUD showErrorWithStatus:OTHER_ERROR_MESSAGE];
                 }];
             }
             else {
                 //发表评论
-                [self.articleService Bus301101:[LoginManager shareInstance].loginAccountInfo.uId aId:self.articleDetailModel.articleId replyUId:nil commentId:nil content:str success:^(id responseObject) {
-                    ReplyResultModel *model = (ReplyResultModel *)responseObject;
-                    if ([model.retcode isEqualToString:RETURN_CODE_SUCCESS]) {
+                [self.communityService Bus301102:CID_FOR_REQUEST aId:self.articleDetailModel.aId uId:[LoginManager shareInstance].loginAccountInfo.uId replyUId:nil commentId:nil content:str success:^(id responseObject) {
+                    ReplyResultModel *result = (ReplyResultModel *)responseObject;
+                    if ([result.retcode isEqualToString:RETURN_CODE_SUCCESS]) {
                         //成功
                         [SVProgressHUD showSuccessWithStatus:@"发表成功"];
-                        [self addMyCommentWithCommentId:model.commentId];
+                        [self addMyCommentWithCommentId:result.commentId];
+                    }else{
+                        [SVProgressHUD showErrorWithStatus:result.retinfo];
                     }
-                    else {
-                        [SVProgressHUD showErrorWithStatus:model.retinfo];
-                    }
-
                 } failure:^(NSError *error) {
-                     [SVProgressHUD showErrorWithStatus:OTHER_ERROR_MESSAGE];
+                    [SVProgressHUD showErrorWithStatus:OTHER_ERROR_MESSAGE];
                 }];
             }
-            
         }
     }
 }
@@ -380,7 +384,7 @@
     [self.commentTableView reloadData];
     self.CommenInputView.text = @"";
     self.keyboardView.frame =CGRectMake(0,UIScreenHeight-49, self.view.frame.size.width, 48);
-    self.articleDetailModel.comment = [NSString stringWithFormat:@"%d",[self.articleDetailModel.comment intValue]+1];
+    self.articleDetailModel.commentNum = [NSString stringWithFormat:@"%d",[self.articleDetailModel.commentNum intValue]+1];
     [self.bottomView setData:self.articleDetailModel];
     [self.headView setData:self.articleDetailModel];
     self.isReply = NO;
@@ -493,7 +497,7 @@
 #pragma mark - HeadView Delegate (for vote priase cancelPriase  )
 
 //投票
-- (void)voteClick:(ArticleVoteView *)voteView type:(NSString *)type {
+- (void)voteClick:(ArticleVoteView *)voteView type:(NSString *)type voteId:(NSString *)voteId{
     if (![LoginManager shareInstance].loginAccountInfo.isLogin) {
         UIAlertView  *loginAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您还未登录，是否去登录？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         loginAlert.tag = kNoLoginAlert;
@@ -501,21 +505,28 @@
     }
     else {
         //反对
-        if ([type integerValue]==0) {
-            self.articleDetailModel.voteFlag = @"2";
-            self.articleDetailModel.no = [NSString stringWithFormat:@"%d",[self.articleDetailModel.no intValue]+1];
-        }
+//        if ([type integerValue]==0) {
+//            self.articleDetailModel.voteFlag = @"0";
+//            self.articleDetailModel.no = [NSString stringWithFormat:@"%d",[self.articleDetailModel.no intValue]+1];
+//        }
         //支持
-        else  {
-            self.articleDetailModel.voteFlag = @"1";
-            self.articleDetailModel.yes = [NSString stringWithFormat:@"%d",[self.articleDetailModel.yes intValue]+1];
-        }
-        [self.headView setData:self.articleDetailModel];
-        [self.articleService Bus301001:[LoginManager shareInstance].loginAccountInfo.uId aId:self.articleDetailModel.articleId type:type success:^(id responseObject) {
+//        else  {
+//            self.articleDetailModel.voteFlag = @"1";
+//            self.articleDetailModel.yes = [NSString stringWithFormat:@"%d",[self.articleDetailModel.yes intValue]+1];
+//        }
+//        [self.headView setData:self.articleDetailModel];
+        
+        //调接口
+        [self.communityService Bus301002:CID_FOR_REQUEST aId:self.articleDetailModel.aId uId:[LoginManager shareInstance].loginAccountInfo.uId voteId:voteId success:^(id responseObject) {
             
         } failure:^(NSError *error) {
             
         }];
+//        [self.articleService Bus301001:[LoginManager shareInstance].loginAccountInfo.uId aId:self.articleDetailModel.articleId type:type success:^(id responseObject) {
+//        
+//        } failure:^(NSError *error) {
+//            
+//        }];
     }
 
 }
@@ -688,18 +699,18 @@
  */
 - (void)shareToSnsPlatformSuccessed
 {
-    [self.articleService Bus300901:self.articleDetailModel.articleId success:^(id responseObj){
-        BaseModel *resultModel = (BaseModel *)responseObj;
-        if ([resultModel.retcode isEqualToString:@"000000"]) {
-            // 分享次数+1
-            self.articleDetailModel.shareNum =[NSString stringWithFormat:@"%d",[self.articleDetailModel.shareNum intValue]+1] ;
-            [self.headView setData:self.articleDetailModel];
-            
-        }
-        
-    }failure:^(NSError *error){
-        
-    }];
+//    [self.articleService Bus300901:self.articleDetailModel.articleId success:^(id responseObj){
+//        BaseModel *resultModel = (BaseModel *)responseObj;
+//        if ([resultModel.retcode isEqualToString:@"000000"]) {
+//            // 分享次数+1
+//            self.articleDetailModel.shareNum =[NSString stringWithFormat:@"%d",[self.articleDetailModel.shareNum intValue]+1] ;
+//            [self.headView setData:self.articleDetailModel];
+//            
+//        }
+//        
+//    }failure:^(NSError *error){
+//        
+//    }];
 }
 
 #pragma mark - PhotosViewsDelgate's  and PhotosViewsDatasource's  methods
@@ -858,6 +869,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) webViewDidFinishLoad:(UIWebView *)webView{
+    CGFloat webViewHeight=[self.headWebView.scrollView contentSize].height;
+    CGRect newFrame = webView.frame;
+    newFrame.size.height = webViewHeight;
+    self.headWebView.frame = newFrame;
 }
 
 @end

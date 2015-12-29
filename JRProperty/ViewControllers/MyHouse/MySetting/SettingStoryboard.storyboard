@@ -40,17 +40,6 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请留下您的联系方式，手机号码/Email,谢谢" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yUi-VH-AJb" userLabel="联系方式Text Field">
-                                                <rect key="frame" x="30" y="20" width="540" height="36"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="36" id="Bmu-HO-V6w"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="ktc-pv-8WA" id="a5d-rf-PrP"/>
-                                                </connections>
-                                            </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_grey_foot_40x1.png" translatesAutoresizingMaskIntoConstraints="NO" id="LWl-rK-WhR" userLabel="下分割线View">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                 <constraints>
@@ -67,6 +56,17 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请留下您的联系方式，手机号码/Email,谢谢" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yUi-VH-AJb" userLabel="联系方式Text Field">
+                                                <rect key="frame" x="30" y="20" width="540" height="36"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="36" id="Bmu-HO-V6w"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="ktc-pv-8WA" id="a5d-rf-PrP"/>
+                                                </connections>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -84,8 +84,8 @@
                                         <variation key="default">
                                             <mask key="subviews">
                                                 <exclude reference="rGR-dU-RAM"/>
-                                                <exclude reference="yUi-VH-AJb"/>
                                                 <exclude reference="LWl-rK-WhR"/>
+                                                <exclude reference="yUi-VH-AJb"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="rb9-92-1kb"/>
@@ -103,8 +103,8 @@
                                         <variation key="widthClass=compact">
                                             <mask key="subviews">
                                                 <include reference="rGR-dU-RAM"/>
-                                                <include reference="yUi-VH-AJb"/>
                                                 <include reference="LWl-rK-WhR"/>
+                                                <include reference="yUi-VH-AJb"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <include reference="rb9-92-1kb"/>
@@ -586,7 +586,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="wgi-hK-dMw"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="如果要关闭或者开启“桃花源社区”接收消息通知，请在iphone的“设置”-“通知”中，找到“桃花源社区”进行修改" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="370" translatesAutoresizingMaskIntoConstraints="NO" id="R8S-JQ-jlQ" userLabel="更改消息提示">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="如果要关闭或者开启“桃花源云社区”接收消息通知，请在iphone的“设置”-“通知”中，找到“桃花源云社区”进行修改" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="370" translatesAutoresizingMaskIntoConstraints="NO" id="R8S-JQ-jlQ" userLabel="更改消息提示">
                                                 <rect key="frame" x="20" y="12" width="85" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>

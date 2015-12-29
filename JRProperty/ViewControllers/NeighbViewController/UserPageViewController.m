@@ -1259,20 +1259,20 @@ static NSString *cellIndentifier = @"PlotSomethingNewTableViewCellIndentifierlal
  */
 - (void)shareToSnsPlatformSuccessed
 {
-    ArticleDetailModel *articleModel = (ArticleDetailModel *)[_articleArray objectAtIndex:self.clickRow];
-
-    [self.articleService Bus300901:articleModel.articleId success:^(id responseObj){
-        BaseModel *resultModel = (BaseModel *)responseObj;
-        if ([resultModel.retcode isEqualToString:@"000000"]) {
-            // 分享次数+1 self.sharedindexPath
-            ArticleDetailModel *model = [self.articleArray objectAtIndex:self.clickRow];
-            model.shareNum =[NSString stringWithFormat:@"%d",[model.shareNum intValue]+1] ;
-            [self.myArticleTableView reloadData];
-        }
-        
-    }failure:^(NSError *error){
-        
-    }];
+//    ArticleDetailModel *articleModel = (ArticleDetailModel *)[_articleArray objectAtIndex:self.clickRow];
+//
+//    [self.articleService Bus300901:articleModel.articleId success:^(id responseObj){
+//        BaseModel *resultModel = (BaseModel *)responseObj;
+//        if ([resultModel.retcode isEqualToString:@"000000"]) {
+//            // 分享次数+1 self.sharedindexPath
+//            ArticleDetailModel *model = [self.articleArray objectAtIndex:self.clickRow];
+//            model.shareNum =[NSString stringWithFormat:@"%d",[model.shareNum intValue]+1] ;
+//            [self.myArticleTableView reloadData];
+//        }
+//        
+//    }failure:^(NSError *error){
+//        
+//    }];
 }
 
 #pragma mark - 头像点击事件

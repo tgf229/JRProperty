@@ -52,6 +52,12 @@
     
     myTitleLabel.text = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     self.navigationItem.titleView = myTitleLabel;
+    
+    CGSize actualSize = [webView sizeThatFits:CGSizeZero];
+    CGRect newFrame = webView.frame;
+    newFrame.size.height = actualSize.height;
+    webView.frame = newFrame;
+    
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self.noResultView setHidden:NO];

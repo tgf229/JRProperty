@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ArticleListModel.h"
+#import "ArticlePictureView.h"
+#import "CommunityService.h"
+#import "ShareView.h"
+#import "ShareToSnsService.h"
 
 @interface CommunityListCell : UITableViewCell
 
@@ -19,7 +23,18 @@
 @property (weak,nonatomic) IBOutlet UIButton *praiseButton;
 @property (weak,nonatomic) IBOutlet UIButton *commentButton;
 @property (weak,nonatomic) IBOutlet UIButton *moreButton;
+@property (weak,nonatomic) IBOutlet UIImageView *hotImageView;
+@property (weak,nonatomic) IBOutlet UIImageView *voteImageView;
+@property (strong,nonatomic) IBOutletCollection(UIButton) NSArray *imagesButton;
+
+@property (nonatomic,strong)  ShareView    *shareView;// 分享页面
+
+@property (strong,nonatomic) ArticleDetailModel *detailModel;
+@property (strong,nonatomic) CommunityService *communityService;
+@property (strong,nonatomic) ShareToSnsService *shareService;
 
 -(void)showCell:(ArticleDetailModel *)detailModel;
 +(CGFloat)height:(ArticleDetailModel *)data;
+
+-(void)setData:(ArticleDetailModel *)detailModel;
 @end

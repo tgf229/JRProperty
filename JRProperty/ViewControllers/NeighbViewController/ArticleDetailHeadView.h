@@ -11,6 +11,7 @@
 #import "ArticlePictureView.h"
 #import "ArticleVoteView.h"
 #import "ArticleBottom.h"
+#import "VoteListView.h"
 
 @class ArticleDetailHeadView;
 @protocol ArticleHeadViewDelegate <NSObject>
@@ -18,7 +19,7 @@
  *  投票
  *  @param   type   0 反对  1 支持
  */
--(void) voteClick:(ArticleVoteView *)voteView type:(NSString *)type;
+-(void) voteClick:(ArticleVoteView *)voteView type:(NSString *)type voteId:(NSString *)voteId;
 ///**
 // *  评论触发
 // */
@@ -62,11 +63,14 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *voteImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *hotImageView;
 //@property (weak, nonatomic) IBOutlet UILabel *comeLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *circleNameLabel;
 @property (strong, nonatomic)  UILabel *contentLabel;
 @property (strong,nonatomic) ArticlePictureView *pictureView;
 @property (strong,nonatomic) ArticleVoteView  *voteView;
+@property (strong,nonatomic) VoteListView *voteCustomView;
 @property (weak, nonatomic) id<ArticleHeadViewDelegate> delegate; //代理
 @property (strong,nonatomic) ArticleDetailModel *data;
 @property (weak, nonatomic) IBOutlet UIButton *daVip;

@@ -571,7 +571,6 @@ static NSString *cellIndentifier = @"PlotSomethingNewTableViewCellIndentifierlal
         if ([self.currentCircleModel.flag intValue]==1) {
             PublicTopicViewController *publicTopicController = [[PublicTopicViewController alloc] init];
             publicTopicController.title = @"发话题";
-            publicTopicController.sid = self.currentCircleModel.id;
             [self.navigationController pushViewController:publicTopicController animated:YES];
         }
         //未登录 提示
@@ -944,20 +943,20 @@ static NSString *cellIndentifier = @"PlotSomethingNewTableViewCellIndentifierlal
  */
 - (void)shareToSnsPlatformSuccessed
 {
-    ArticleDetailModel *articleModel = (ArticleDetailModel *)[_articleArray objectAtIndex:self.clickRow];
-
-    [self.articleService Bus300901:articleModel.articleId success:^(id responseObj){
-        BaseModel *resultModel = (BaseModel *)responseObj;
-        if ([resultModel.retcode isEqualToString:@"000000"]) {
-            // 分享次数+1
-            ArticleDetailModel *model = [self.articleArray objectAtIndex:self.clickRow];
-            model.shareNum =[NSString stringWithFormat:@"%d",[model.shareNum intValue]+1] ;
-            [self.circleDetailTableView reloadData];
-        }
-        
-    }failure:^(NSError *error){
-        
-    }];
+//    ArticleDetailModel *articleModel = (ArticleDetailModel *)[_articleArray objectAtIndex:self.clickRow];
+//
+//    [self.articleService Bus300901:articleModel.articleId success:^(id responseObj){
+//        BaseModel *resultModel = (BaseModel *)responseObj;
+//        if ([resultModel.retcode isEqualToString:@"000000"]) {
+//            // 分享次数+1
+//            ArticleDetailModel *model = [self.articleArray objectAtIndex:self.clickRow];
+//            model.shareNum =[NSString stringWithFormat:@"%d",[model.shareNum intValue]+1] ;
+//            [self.circleDetailTableView reloadData];
+//        }
+//        
+//    }failure:^(NSError *error){
+//        
+//    }];
 }
 
 

@@ -30,6 +30,8 @@
 }
 
 @property (weak,nonatomic) IBOutlet UIScrollView   *mainScrollView;
+@property (weak,nonatomic) IBOutlet UIView      *contentView;
+
 @property (weak,nonatomic) IBOutlet UIView         *userinfoView;
 @property (weak,nonatomic) IBOutlet UIImageView    *portraitImageview;
 @property (weak,nonatomic) IBOutlet UILabel        *nickLabel;
@@ -41,7 +43,6 @@
 
 @property (weak,nonatomic) IBOutlet UIView         *noHouseHeaderview;
 @property (weak,nonatomic) IBOutlet UIButton       *noHouseAddButton;
-@property (weak,nonatomic) IBOutlet UILabel        *noHouseLabel;
 
 
 @property (weak,nonatomic) IBOutlet UIView         *pwdSettingview;
@@ -63,8 +64,11 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title_wodejia"]];
+//    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title_wodejia"]];
+    
+    UIView *statusBar = [[UIView alloc]initWithFrame:CGRectMake(0, -20, UIScreenWidth, 20)];
+    [statusBar setBackgroundColor:[UIColor whiteColor]];
+    [self.contentView addSubview:statusBar];
     
     self.houseDataArray = [[NSMutableArray alloc] init];
     self.userService = [[UserService alloc] init];
@@ -82,21 +86,20 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
     UITapGestureRecognizer *settingTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(settingViewTapped:)];
     [self.settingview addGestureRecognizer:settingTap];
     
-    self.mainScrollView.backgroundColor = [UIColor getColor:@"eeeeee"];
+    self.contentView.backgroundColor = [UIColor getColor:@"eeeeee"];
+//    self.mainScrollView.backgroundColor = [UIColor getColor:@"eeeeee"];
     
-    [self.headerAddButton setTitleColor:[UIColor getColor:@"BB474D"] forState:UIControlStateNormal];
-    [self.headerAddButton setTitleColor:[UIColor getColor:@"BB474D"] forState:UIControlStateHighlighted];
-    [self.headerAddButton setTitleColor:[UIColor getColor:@"BB474D"] forState:UIControlStateSelected];
-
-    [self.headerEditButton setTitleColor:[UIColor getColor:@"BB474D"] forState:UIControlStateNormal];
-    [self.headerEditButton setTitleColor:[UIColor getColor:@"BB474D"] forState:UIControlStateHighlighted];
-    [self.headerEditButton setTitleColor:[UIColor getColor:@"BB474D"] forState:UIControlStateSelected];
+//    [self.headerAddButton setTitleColor:[UIColor getColor:@"BB474D"] forState:UIControlStateNormal];
+//    [self.headerAddButton setTitleColor:[UIColor getColor:@"BB474D"] forState:UIControlStateHighlighted];
+//    [self.headerAddButton setTitleColor:[UIColor getColor:@"BB474D"] forState:UIControlStateSelected];
+//
+//    [self.headerEditButton setTitleColor:[UIColor getColor:@"BB474D"] forState:UIControlStateNormal];
+//    [self.headerEditButton setTitleColor:[UIColor getColor:@"BB474D"] forState:UIControlStateHighlighted];
+//    [self.headerEditButton setTitleColor:[UIColor getColor:@"BB474D"] forState:UIControlStateSelected];
     
-    [self.noHouseAddButton setBackgroundImage:[UIImage imageNamed:@"myhome_nohouse_btn_addinformation"] forState:UIControlStateNormal];
-    [self.noHouseAddButton setBackgroundImage:[UIImage imageNamed:@"myhome_nohouse_btn_addinformation_press"] forState:UIControlStateHighlighted];
-    [self.noHouseAddButton setBackgroundImage:[UIImage imageNamed:@"myhome_nohouse_btn_addinformation_press"] forState:UIControlStateSelected];
-    
-    self.noHouseLabel.textColor = [UIColor getColor:@"666666"];
+//    [self.noHouseAddButton setBackgroundImage:[UIImage imageNamed:@"myhome_nohouse_btn_addinformation"] forState:UIControlStateNormal];
+//    [self.noHouseAddButton setBackgroundImage:[UIImage imageNamed:@"myhome_nohouse_btn_addinformation_press"] forState:UIControlStateHighlighted];
+//    [self.noHouseAddButton setBackgroundImage:[UIImage imageNamed:@"myhome_nohouse_btn_addinformation_press"] forState:UIControlStateSelected];
 
 
     
@@ -112,6 +115,7 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
     
     if([LoginManager shareInstance].loginAccountInfo.isLogin)
     {
@@ -219,6 +223,10 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
     MyHouseModel *house = (MyHouseModel *)[_houseDataArray objectAtIndex:[indexPath row]];
     
     MyHouseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyHouseTableViewCellIdentifier];
+    
+    UIColor *bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"profile_bg_red"]];
+    [cell setBackgroundColor:bgColor];
+    
     cell.houseLabel.text = [NSString stringWithFormat:@"%@%@%@%@",house.cName,house.bName,house.dName,house.hName];
     cell.selectionStyle = _isEditStatus ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleGray ;
     cell.editButton.hidden = !_isEditStatus;
@@ -226,17 +234,40 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
     [cell.editButton setBackgroundImage:[UIImage imageNamed:@"myhome_housing_information_btn_delet.png"] forState:UIControlStateNormal];
     [cell.editButton setBackgroundImage:[UIImage imageNamed:@"myhome_housing_information_btn_delet_press.png"] forState:UIControlStateHighlighted];
     [cell.editButton setBackgroundImage:[UIImage imageNamed:@"myhome_housing_information_btn_delet_press.png"] forState:UIControlStateSelected];
+    //tableview 点击不变色
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    if (!_isEditStatus && house.flag.boolValue) {
-        // 被冻结
-        cell.editButton.hidden = NO;
-        cell.editButton.enabled = NO;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell.editButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [cell.editButton setTitle:@"冻结" forState:UIControlStateNormal];
-        [cell.editButton setTitleColor:[UIColor getColor:@"333333"] forState:UIControlStateNormal];
+    if (!_isEditStatus) {
+        
+        cell.arrowImageView.hidden = NO;
+        cell.statusImageView.hidden = YES;
+        cell.statusLabel.hidden = NO;
+        cell.editButton.hidden = YES;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        [cell.editButton setTitleColor:[UIColor getColor:@"333333"] forState:UIControlStateNormal];
+//        [cell.editButton setBackgroundImage:nil forState:UIControlStateNormal];
+        if ([@"1" isEqualToString:house.flag]) {
+            // 被冻结
+            cell.statusLabel.text = @"冻结";
+        }else if([@"2" isEqualToString:house.flag]) {
+            //审核中
+           cell.statusLabel.text = @"审核中";
+        }
+        else if([@"3" isEqualToString:house.flag]) {
+            //审核失败
+            cell.statusImageView.hidden = NO;
+            cell.statusLabel.textColor = [UIColor getColor:@"b04734"];
+            cell.statusLabel.text = @"验证失败";
+        }
+        else{
+            cell.statusLabel.text = @"已绑定";
+        }
     }
     else{
+        cell.arrowImageView.hidden = YES;
+        cell.statusImageView.hidden = YES;
+        cell.statusLabel.hidden = YES;
+        cell.editButton.hidden = NO;
         cell.editButton.enabled = YES;
         [cell.editButton setTitle:nil forState:UIControlStateNormal];
     }
@@ -254,7 +285,7 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 1.0f;
+    return 0.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -272,7 +303,7 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
     }
     
     MyHouseModel *house = (MyHouseModel *)[_houseDataArray objectAtIndex:[indexPath row]];
-    if (house.flag.boolValue){
+    if ([@"1" isEqualToString:house.flag] || [@"2" isEqualToString:house.flag]){
         // 被冻结，不操作
         return;
     }
@@ -498,11 +529,11 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
 {
     NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
     
-    [self.houseDataArray addObject:@"星雨华府1栋2单元3室"];
-    [self.houseDataArray addObject:@"星雨华府1栋2单元3室星雨华府1栋2单元3室星雨华府1栋2单元3室"];
-    [self.houseDataArray addObject:@"星雨华府1栋2单元3室星雨华府1栋2单元3室"];
-    [self.houseDataArray addObject:@"星雨华府1栋2单元3室"];
-    [self.houseDataArray addObject:@"星雨华府1栋2单元3室"];
+    [self.houseDataArray addObject:@"1栋2单元3室"];
+    [self.houseDataArray addObject:@"1栋2单元3室1栋2单元3室1栋2单元3室"];
+    [self.houseDataArray addObject:@"1栋2单元3室1栋2单元3室"];
+    [self.houseDataArray addObject:@"1栋2单元3室"];
+    [self.houseDataArray addObject:@"1栋2单元3室"];
 
     
     if (user.length > 0 && [_houseDataArray count] < 5) {

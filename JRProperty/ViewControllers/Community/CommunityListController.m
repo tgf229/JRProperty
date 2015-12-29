@@ -8,6 +8,7 @@
 
 #import "CommunityListController.h"
 #import "CommunityListCell.h"
+#import "CommunityListOfficialCell.h"
 #import "ArticleListModel.h"
 #import "ArticleDetailViewController.h"
 
@@ -17,11 +18,15 @@
 
 #import "LoginManager.h"
 #import "CommunityService.h"
+#import "PublicTopicViewController.h"
 
 @interface CommunityListController ()
 
 @property (strong,nonatomic) ArticleListModel *response;
 @property (strong,nonatomic) NSMutableArray *doc;
+
+@property (strong,nonatomic) NSMutableDictionary *dict;
+@property (strong,nonatomic) NSArray *dictKeys;
 
 @property (weak,nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) CommunityService *communityService;
@@ -34,6 +39,7 @@
 
 @property (assign,nonatomic) int page; //页数
 
+@property (nonatomic,strong) NSMutableArray          *largeImageArray;    //大图地址列表
 
 @end
 
@@ -42,10 +48,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title_linli_big"]];
+    
     //初始化
     self.communityService = [[CommunityService alloc]init];
     self.response = [[ArticleListModel alloc]init];
     self.doc = [[NSMutableArray alloc]init];
+//    self.dict = [[NSMutableDictionary alloc]init];
     
     
     //错误页面初始化
@@ -70,6 +79,7 @@
     [self.footerView addSubview:endTip];
     
 
+    [self initRightBarButtonItem];
     //初始化列表view
     [self initView];
     [self reqList:@"1" time:nil];
@@ -101,6 +111,33 @@
 //    }];
 }
 
+/**
+ *  设置导航栏右键
+ */
+- (void)initRightBarButtonItem
+{
+    UIButton *editButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    if (CURRENT_VERSION < 7.0) {
+        [editButton setFrame:CGRectMake(0, 0, 50 + 22, 20)];
+    } else {
+        [editButton setFrame:CGRectMake(0, 0, 50, 20)];
+    }
+    [editButton setImage:[UIImage imageNamed:@"title_red_fahuati"] forState:UIControlStateNormal];
+    [editButton setImage:[UIImage imageNamed:@"title_red_fahuati"] forState:UIControlStateHighlighted];
+
+//    [editButton addTarget:self action:@selector(submitDataToService) forControlEvents:UIControlEventTouchUpInside];
+    editButton.tag = 10000;
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:editButton];
+    [editButton addTarget:self action:@selector(gotoPostArticle) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = rightItem;
+}
+
+-(void)gotoPostArticle{
+        PublicTopicViewController *publicTopicController = [[PublicTopicViewController alloc] init];
+        publicTopicController.title = @"发话题";
+        [self.navigationController pushViewController:publicTopicController animated:YES];
+}
+
 -(void)reqList:(NSString *)page time:(NSString *)queryTime{
     
     [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeClear];
@@ -130,6 +167,7 @@
 -(void)showList{
     [SVProgressHUD dismiss];
     if ([self.response.retcode isEqualToString: RETURN_CODE_SUCCESS]) {
+        [self.refreshPage setHidden:YES];
         if (self.isPulling) {
             //如果是下拉刷新，重置page，并清空doc
             self.page = 1;
@@ -159,6 +197,7 @@
             }];
         }
         [self.doc addObjectsFromArray:self.response.doc];
+        [self filterData];
         [self.tableView reloadData];
     }else {
         //如果retcode失败
@@ -182,46 +221,151 @@
     }
 }
 
+//将接口返回的列表 过滤数据
+-(void)filterData{
+    NSMutableArray *tempArray = [[NSMutableArray alloc]init];
+    NSArray *valueArray;
+    NSString *tempDate;
+    
+    self.dict = [[NSMutableDictionary alloc]init];
+    for (int i=0; i<[self.doc count]; i++) {
+        ArticleDetailModel *model =  (ArticleDetailModel *)[self.doc objectAtIndex:i];
+        if (tempDate != nil && ![tempDate isEqualToString:model.date]) {
+            valueArray = [[NSArray alloc]initWithArray:tempArray];
+            [self.dict setObject:valueArray forKey:tempDate];
+            tempDate = nil;
+            [tempArray removeAllObjects];
+        }
+        tempDate = model.date;
+        [tempArray addObject:model];
+    }
+    
+    [self.dict setObject:tempArray forKey:tempDate];
+    //倒叙排序
+    NSArray * tempList = [self.dict allKeys];
+    self.dictKeys = [tempList sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        if ([obj1 floatValue]< [obj2 floatValue]) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if ([obj1 floatValue] > [obj2 floatValue]) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+//大图预览
+- (void)imageClick:(NSUInteger)index withInfo:(NSArray *)info {
+    [self.largeImageArray removeAllObjects];
+    [self.largeImageArray addObjectsFromArray:info];
+    PhotosViewController      *photos = [[PhotosViewController alloc] init];
+    photos.delegate = self;
+    photos.datasource = self;
+    photos.currentPage = (int)index;
+    [self.navigationController pushViewController:photos animated:YES];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 1;
+    return [self.dictKeys count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return [self.doc count];
+    NSString *key = [self.dictKeys objectAtIndex:section];
+    NSArray *array = [self.dict objectForKey:key];
+    return [array count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
-    ArticleDetailModel *model = [self.doc objectAtIndex:row];
+    NSString *key = [self.dictKeys objectAtIndex:section];
+    NSArray *array = [self.dict objectForKey:key];
+    ArticleDetailModel *model = [array objectAtIndex:row];
+//    ArticleDetailModel *model = [self.doc objectAtIndex:row];
     CGFloat rowHight = [CommunityListCell height:model];
     return rowHight;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CommunityListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommunityListCell" forIndexPath:indexPath];
     
-    //cell赋值
+    NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
-    ArticleDetailModel *detail = [self.doc objectAtIndex:row];
-    [cell showCell:detail];
     
-    return cell;
+    NSString *key = [self.dictKeys objectAtIndex:section];
+    NSArray *array = [self.dict objectForKey:key];
+    ArticleDetailModel *detail = [array objectAtIndex:row];
+    
+    if ([@"4" isEqualToString:detail.type]) {
+        CommunityListOfficialCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"CommunityListOfficialCell" owner:self options:nil]objectAtIndex:0];
+
+        [cell showCell:detail];
+        return cell;
+        
+    }else{
+        CommunityListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommunityListCell" forIndexPath:indexPath];
+        
+        [cell showCell:detail];
+        return cell;
+    }
+}
+
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    NSString *key = [self.dictKeys objectAtIndex:section];
+//    return key;
+//}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *myView = [[UIView alloc] init];
+    myView.backgroundColor= [UIColor getColor:@"f2f2f2"];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(UIScreenWidth/2-35, 9, 70, 14)];
+    NSString *key = [self.dictKeys objectAtIndex:section];
+    NSString *year = [key substringToIndex:4];
+    NSString *month = [key substringWithRange:NSMakeRange(4, 2)];
+    NSString *day = [key substringFromIndex:6];
+    NSString *showKey = [[NSString alloc]initWithFormat:@"%@.%@.%@",year,month,day];
+    titleLabel.font = [UIFont systemFontOfSize:14];
+    titleLabel.textColor=[UIColor getColor:@"999999"];
+    titleLabel.text = showKey;
+    
+    UIImageView *titleImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"community_title_time_line"]];
+    titleImage.frame = CGRectMake(10, 14, UIScreenWidth-20, 2);
+    
+    [myView addSubview:titleImage];
+    [myView addSubview:titleLabel];
+    
+    return myView;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 32.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ArticleDetailModel *model = [self.doc objectAtIndex:indexPath.row];
+    
+    NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
+    
+    NSString *key = [self.dictKeys objectAtIndex:section];
+    NSArray *array = [self.dict objectForKey:key];
+    ArticleDetailModel *model = [array objectAtIndex:row];
+    
     ArticleDetailViewController *controller = [[ArticleDetailViewController alloc]init];
     controller.articleId = model.aId;
     controller.hidesBottomBarWhenPushed = YES;
+    
+    if ([@"4" isEqualToString:model.type]) {
+        controller.onlyOfficial = YES;
+    }
+
     [self.navigationController pushViewController:controller animated:YES];
 }
 

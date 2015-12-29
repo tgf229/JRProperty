@@ -11,6 +11,4 @@
 
 @interface PublicTopicViewController : JRViewControllerWithBackButton
 
-@property (nonatomic, copy)  NSString  *sid; // 社区id
-
 @end

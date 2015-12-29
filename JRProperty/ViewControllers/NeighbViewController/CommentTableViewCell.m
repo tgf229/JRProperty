@@ -15,7 +15,7 @@
 
 
 -(void)awakeFromNib{
-    self.timeLabel.textColor = [UIColor getColor:@"888888"];
+    self.timeLabel.textColor = [UIColor getColor:@"999999"];
     self.contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 65, UIScreenWidth-30, 0)];
     self.contentLabel.backgroundColor = [UIColor clearColor];
     self.contentLabel.font = [UIFont systemFontOfSize:15];

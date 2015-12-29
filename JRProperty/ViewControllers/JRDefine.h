@@ -58,8 +58,18 @@
 #define  VERSION_NUM_FOR_GUIDE        1  // 备注：如果需要显示新的引导页，该变量＋1
 #define  VERSION_NUM_FOR_DB           2
 
-/********************************* 接口地址  勿删 ********************************************/
 
+// ===========v2.0=========
+#define JOB_ADVISE          @"job:advise"
+#define JOB_COMPLAIN        @"job:complain"
+#define JOB_HELP            @"job:help"
+#define JOB_REPAIR          @"job:repair"
+#define STAFF_PRAISE        @"staff:praise"
+#define SERVICE_PARCEL      @"service:parcel"
+#define SERVICE_PAYMENT     @"service:payment"
+#define SERVICE_CONVENIENT  @"service:convenient"
+
+/********************************* 接口地址  勿删 ********************************************/
 //涂高峰
 #define  SERVER_URL      @"http://192.168.0.250:8080/community-mobile/"
 //测试服务器
@@ -212,8 +222,24 @@
 
 
 /****************************** V2.0接口 **********************************************/
-
-#define  HTTP_Bus301902_URL [NSString stringWithFormat:@"%@Bus301902?encrypt=none", SERVER_URL]
-#define  HTTP_Bus302301_URL [NSString stringWithFormat:@"%@Bus302301?encrypt=none", SERVER_URL]
-#define  HTTP_Bus301202_URL [NSString stringWithFormat:@"%@Bus301202?encrypt=none", SERVER_URL]
+// 发表话题
+#define  HTTP_Bus300702_URL [NSString stringWithFormat:@"%@Bus300702?encrypt=simple", SERVER_URL]
+// 点赞&取消赞 ok
 #define  HTTP_Bus300802_URL [NSString stringWithFormat:@"%@Bus300802?encrypt=simple", SERVER_URL]
+// 话题投票
+#define  HTTP_Bus301002_URL [NSString stringWithFormat:@"%@Bus301002?encrypt=simple", SERVER_URL]
+// 话题评论 & 回复
+#define  HTTP_Bus301102_URL [NSString stringWithFormat:@"%@Bus301102?encrypt=simple", SERVER_URL]
+// 评论列表查询   ok
+#define  HTTP_Bus301202_URL [NSString stringWithFormat:@"%@Bus301202?encrypt=none", SERVER_URL]
+//话题详情查询    ok
+#define  HTTP_Bus301902_URL [NSString stringWithFormat:@"%@Bus301902?encrypt=none", SERVER_URL]
+//新回复消息列表查询
+#define  HTTP_Bus302102_URL [NSString stringWithFormat:@"%@Bus302102?encrypt=simple", SERVER_URL]
+//话题举报
+#define  HTTP_Bus302202_URL [NSString stringWithFormat:@"%@Bus302202?encrypt=simple", SERVER_URL]
+//小区话题列表查询  ok
+#define  HTTP_Bus302301_URL [NSString stringWithFormat:@"%@Bus302301?encrypt=none", SERVER_URL]
+
+//小区物业服务配置项查询
+#define  HTTP_Bus200901_URL [NSString stringWithFormat:@"%@Bus200901?encrypt=none", SERVER_URL]

@@ -177,7 +177,7 @@ static NSString *cellIndentifier = @"PlotSomethingNewTableViewCellIndentifierlal
     
     CGSize size = CGSizeMake(320,2000);
     //计算实际frame大小，并将label的frame变成实际大小
-    CGSize labelsize = [@"星雨华府" sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize labelsize = [@"桃花源云社区" sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
     tView = [[UIView alloc] initWithFrame:CGRectMake((UIScreenWidth - labelsize.width - 17) / 2, 0, labelsize.width + 17, 40)];
     [tView setBackgroundColor:[UIColor clearColor]];
     
@@ -817,21 +817,17 @@ static NSString *cellIndentifier = @"PlotSomethingNewTableViewCellIndentifierlal
  */
 - (void)shareToSnsPlatformSuccessed
 {
-    ArticleDetailModel *articleModel = (ArticleDetailModel *)[self.plotSomeingArray objectAtIndex:self.shareSection];
-    
-    [self.articleService Bus300901:articleModel.articleId success:^(id responseObj){
-        BaseModel *resultModel = (BaseModel *)responseObj;
-        if ([resultModel.retcode isEqualToString:@"000000"]) {
-            // 分享次数+1 self.sharedindexPath
-//            ArticleDetailModel *model = [self.articleArray objectAtIndex:self.sharedIndexPath.row];
-//            model.shareNum =[NSString stringWithFormat:@"%d",[model.shareNum intValue]+1] ;
-//            [self.myArticleTableView reloadData];
-            [SVProgressHUD showSuccessWithStatus:resultModel.retinfo];
-        }
-        
-    }failure:^(NSError *error){
-        
-    }];
+//    ArticleDetailModel *articleModel = (ArticleDetailModel *)[self.plotSomeingArray objectAtIndex:self.shareSection];
+//    
+//    [self.articleService Bus300901:articleModel.articleId success:^(id responseObj){
+//        BaseModel *resultModel = (BaseModel *)responseObj;
+//        if ([resultModel.retcode isEqualToString:@"000000"]) {
+//            [SVProgressHUD showSuccessWithStatus:resultModel.retinfo];
+//        }
+//        
+//    }failure:^(NSError *error){
+//        
+//    }];
 }
 
 

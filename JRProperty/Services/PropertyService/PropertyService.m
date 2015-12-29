@@ -9,6 +9,7 @@
 #import "PropertyService.h"
 #import "WorkOrderListModel.h"
 #import "WorkOrderDetailModel.h"
+#import "ServiceListModel.h"
 
 @implementation PropertyService
 {
@@ -345,6 +346,23 @@
             }
         }];
     }
+}
+
+-(void) Bus200901:(NSString *)cId
+          success:(void (^)(id responseObject))success
+          failure:(void (^)(NSError *error))failure{
+    NSDictionary *param = [[NSDictionary alloc]initWithObjectsAndKeys:cId,cIdKey, nil];
+    [[AFHTTPRequestOperationManager manager]POST:HTTP_Bus200901_URL parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            ServiceListModel * res = [[ServiceListModel alloc]initWithDictionary:responseObject error:nil];
+        if (success) {
+            success(res);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+
 }
 
 @end

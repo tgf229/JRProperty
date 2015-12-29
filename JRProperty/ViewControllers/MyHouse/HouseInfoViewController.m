@@ -37,6 +37,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO];
+    
     UIImageView * iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title_fangwuxinxi"]];
     self.navigationItem.titleView = iv;
     // Do any additional setup after loading the view.
@@ -60,7 +62,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
+
     [SVProgressHUD dismiss];
 }
 

@@ -149,8 +149,8 @@
     UITapGestureRecognizer *tap = (UITapGestureRecognizer *)sender;
     [self.view removeGestureRecognizer:tap];
     
-    [self.nickTextField resignFirstResponder];
-    [self.nameTextField resignFirstResponder];
+//    [self.nickTextField resignFirstResponder];
+//    [self.nameTextField resignFirstResponder];
 }
 
 /**

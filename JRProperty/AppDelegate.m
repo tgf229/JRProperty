@@ -37,11 +37,13 @@
 #import "JRPropertyUntils.h"
 #import "PackageService.h"
 #import "NewPackageNumModel.h"
+#import "CommunityListController.h"
 //百度统计
 #import "BaiduMobStat.h"
 
 #import "VersionModel.h"
 #import "VersionUpdateView.h"
+#import "YLTabBarController.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate,WelcomeControllerDelegate>
 {
@@ -77,7 +79,7 @@
     [self.window makeKeyAndVisible];
    
     // 初始化数据
-//    [self initDataFromService];
+    [self initDataFromService];
     
     //控制欢迎页
     if ([[[NSUserDefaults standardUserDefaults] valueForKey:VERSION_GUIDE_KEY] integerValue] < VERSION_NUM_FOR_GUIDE)
@@ -259,21 +261,36 @@
                     // 退出应用
                     exit(0);
                 }else{
+                     [[NSUserDefaults standardUserDefaults] setObject:initModel.name forKey:@"JRName"];
                     [[NSUserDefaults standardUserDefaults] setObject:initModel.address forKey:@"JRAddress"];
                     [[NSUserDefaults standardUserDefaults] setObject:initModel.tel forKey:@"JRTel"];
+                    [[NSUserDefaults standardUserDefaults] setObject:initModel.content forKey:@"JRContent"];
+                    [[NSUserDefaults standardUserDefaults] setObject:initModel.title forKey:@"JRTitle"];
+                    [[NSUserDefaults standardUserDefaults] setObject:initModel.titleUrl forKey:@"JRTitleUrl"];
+                    [[NSUserDefaults standardUserDefaults] setObject:initModel.logo forKey:@"JRLogo"];
                     [[NSUserDefaults standardUserDefaults] synchronize];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGEPROPERTYINFO" object:nil];
                 }
             }else{
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRName"];
                 [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRAddress"];
                 [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRTel"];
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRContent"];
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRTitle"];
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRTitleUrl"];
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRLogo"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGEPROPERTYINFO" object:nil];
             }
         }
     } failure:^(NSError *error) {
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRName"];
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRAddress"];
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRTel"];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRContent"];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRTitle"];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRTitleUrl"];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"JRLogo"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGEPROPERTYINFO" object:nil];
     }];
@@ -377,91 +394,104 @@
     [self checkVersions];
     
     // 首页
-    HomPageViewController *homeController = [[HomPageViewController alloc]init];
-//    homeController.title = @"星雨华府";
-    JRUINavigationController *navHome = [[JRUINavigationController alloc]initWithRootViewController:homeController];
-    if ([[UIDevice currentDevice] systemVersion].floatValue < 7.0) {
-        UITabBarItem * barItem1 = [[UITabBarItem alloc] initWithTitle:@"小区" image:[UIImage imageNamed:@"home_icon_home"] tag:1];
-        [barItem1 setFinishedSelectedImage:[UIImage imageNamed:@"home_icon_home_press"] withFinishedUnselectedImage:[UIImage imageNamed:@"home_icon_home"]];
-        [navHome setTabBarItem:barItem1];
-    } else {
-        UITabBarItem * barItem1 = [[UITabBarItem alloc] initWithTitle:@"小区" image:[[UIImage imageNamed:@"home_icon_home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"home_icon_home_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [navHome setTabBarItem:barItem1];
-    }
-    
-    // 物业服务
-    PropertyServiceViewController *propertyServiceController = [[PropertyServiceViewController alloc]init];
-    propertyServiceController.title = @"物业";
-    JRUINavigationController *navHome2 = [[JRUINavigationController alloc]initWithRootViewController:propertyServiceController];
-    if ([[UIDevice currentDevice] systemVersion].floatValue < 7.0) {
-        UITabBarItem * barItem2 = [[UITabBarItem alloc] initWithTitle:@"物业" image:[UIImage imageNamed:@"home_icon_service"] tag:2];
-        [barItem2 setFinishedSelectedImage:[UIImage imageNamed:@"home_icon_service_press"] withFinishedUnselectedImage:[UIImage imageNamed:@"home_icon_service"]];
-        [navHome2 setTabBarItem:barItem2];
-    } else {
-        UITabBarItem * barItem2 = [[UITabBarItem alloc] initWithTitle:@"物业" image:[[UIImage imageNamed:@"home_icon_service"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"home_icon_service_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [navHome2 setTabBarItem:barItem2];
-    }
+//    HomPageViewController *homeController = [[HomPageViewController alloc]init];
+//    JRUINavigationController *navHome = [[JRUINavigationController alloc]initWithRootViewController:homeController];
+//    if ([[UIDevice currentDevice] systemVersion].floatValue < 7.0) {
+//        UITabBarItem * barItem1 = [[UITabBarItem alloc] initWithTitle:@"小区" image:[UIImage imageNamed:@"home_icon_home"] tag:1];
+//        [barItem1 setFinishedSelectedImage:[UIImage imageNamed:@"home_icon_home_press"] withFinishedUnselectedImage:[UIImage imageNamed:@"home_icon_home"]];
+//        [navHome setTabBarItem:barItem1];
+//    } else {
+//        UITabBarItem * barItem1 = [[UITabBarItem alloc] initWithTitle:@"小区" image:[[UIImage imageNamed:@"home_icon_home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"home_icon_home_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+//        [navHome setTabBarItem:barItem1];
+//    }
+//    
+//    // 物业服务
+//    PropertyServiceViewController *propertyServiceController = [[PropertyServiceViewController alloc]init];
+//    propertyServiceController.title = @"物业";
+//    JRUINavigationController *navHome2 = [[JRUINavigationController alloc]initWithRootViewController:propertyServiceController];
+//    if ([[UIDevice currentDevice] systemVersion].floatValue < 7.0) {
+//        UITabBarItem * barItem2 = [[UITabBarItem alloc] initWithTitle:@"物业" image:[UIImage imageNamed:@"home_icon_service"] tag:2];
+//        [barItem2 setFinishedSelectedImage:[UIImage imageNamed:@"home_icon_service_press"] withFinishedUnselectedImage:[UIImage imageNamed:@"home_icon_service"]];
+//        [navHome2 setTabBarItem:barItem2];
+//    } else {
+//        UITabBarItem * barItem2 = [[UITabBarItem alloc] initWithTitle:@"物业" image:[[UIImage imageNamed:@"home_icon_service"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"home_icon_service_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+//        [navHome2 setTabBarItem:barItem2];
+//    }
     
     // 邻里
-    NeighborViewController *shoppingcartController = [[NeighborViewController alloc]init];
-    JRUINavigationController *navHome3 = [[JRUINavigationController alloc]initWithRootViewController:shoppingcartController];
+//    NeighborViewController *shoppingcartController = [[NeighborViewController alloc]init];
+//    JRUINavigationController *navHome3 = [[JRUINavigationController alloc]initWithRootViewController:shoppingcartController];
     
-    if ([[UIDevice currentDevice] systemVersion].floatValue < 7.0) {
-        self.barItem3= [[UITabBarItem alloc] initWithTitle:@"邻里" image:[UIImage imageNamed:@"home_icon_neighbor"] tag:3];
-        [self.barItem3 setFinishedSelectedImage:[UIImage imageNamed:@"home_icon_neighbor_press"] withFinishedUnselectedImage:[UIImage imageNamed:@"home_icon_neighbor"]];
-        [navHome3 setTabBarItem:self.barItem3];
-    } else {
-        self.barItem3 = [[UITabBarItem alloc] initWithTitle:@"邻里" image:[[UIImage imageNamed:@"home_icon_neighbor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"home_icon_neighbor_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [navHome3 setTabBarItem:self.barItem3];
-    }
-    
-    // 我的家
-    MemberCenterViewController *myController = [[MemberCenterViewController alloc]init];
-    myController.title = @"我的";
-    JRUINavigationController *navHome4 = [[JRUINavigationController alloc]initWithRootViewController:myController];
-    if ([[UIDevice currentDevice] systemVersion].floatValue < 7.0) {
-        UITabBarItem * barItem4 = [[UITabBarItem alloc] initWithTitle:@"我的" image:[UIImage imageNamed:@"home_icon_myhome"] tag:4];
-        [barItem4 setFinishedSelectedImage:[UIImage imageNamed:@"home_icon_myhome_press"] withFinishedUnselectedImage:[UIImage imageNamed:@"home_icon_myhome"]];
-        [navHome4 setTabBarItem:barItem4];
-    } else {
-        UITabBarItem * barItem4 = [[UITabBarItem alloc] initWithTitle:@"我的" image:[[UIImage imageNamed:@"home_icon_myhome"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"home_icon_myhome_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [navHome4 setTabBarItem:barItem4];
-    }
-
-    NSArray *array = [NSArray arrayWithObjects:navHome, navHome2, navHome3, navHome4, nil];
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeFont : [UIFont systemFontOfSize:12],UITextAttributeTextColor : [UIColor getColor:@"333333"]} forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeFont : [UIFont systemFontOfSize:12],UITextAttributeTextColor : [UIColor getColor:@"333333"]} forState:UIControlStateSelected];
-    
-    self.tabBarController = [[UITabBarController alloc] init];
-    [self.tabBarController setViewControllers:array];
-    self.tabBarController.delegate = self;
-    // IOS6将tabbar背景设置成白色
-    if ([[UIDevice currentDevice] systemVersion].floatValue < 7.0) {
-        CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-        UIGraphicsBeginImageContext(rect.size);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
-        CGContextFillRect(context, rect);
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        self.tabBarController.tabBar.backgroundImage = image;
-    }
-    
-    // IOS6取消tabbar高亮效果
-    if ([[UIDevice currentDevice] systemVersion].floatValue < 7.0) {
-        CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-        UIGraphicsBeginImageContext(rect.size);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
-        CGContextFillRect(context, rect);
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        [self.tabBarController.tabBar setSelectionIndicatorImage:image];
-    }
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"CommunityStoryboard" bundle:nil];
+//    CommunityListController *communityListController = [storyboard instantiateViewControllerWithIdentifier:@"CommunityListController"];
+//    JRUINavigationController *navHome3 = [[JRUINavigationController alloc] initWithRootViewController:communityListController];
+//    
+//    if ([[UIDevice currentDevice] systemVersion].floatValue < 7.0) {
+//        self.barItem3= [[UITabBarItem alloc] initWithTitle:@"邻里" image:[UIImage imageNamed:@"home_icon_neighbor"] tag:3];
+//        [self.barItem3 setFinishedSelectedImage:[UIImage imageNamed:@"home_icon_neighbor_press"] withFinishedUnselectedImage:[UIImage imageNamed:@"home_icon_neighbor"]];
+//        [navHome3 setTabBarItem:self.barItem3];
+//    } else {
+//        self.barItem3 = [[UITabBarItem alloc] initWithTitle:@"邻里" image:[[UIImage imageNamed:@"home_icon_neighbor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"home_icon_neighbor_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+//        [navHome3 setTabBarItem:self.barItem3];
+//    }
+//    
+//    // 我的家
+//    MemberCenterViewController *myController = [[MemberCenterViewController alloc]init];
+//    myController.title = @"我的";
+//    JRUINavigationController *navHome4 = [[JRUINavigationController alloc]initWithRootViewController:myController];
+//    if ([[UIDevice currentDevice] systemVersion].floatValue < 7.0) {
+//        UITabBarItem * barItem4 = [[UITabBarItem alloc] initWithTitle:@"我的" image:[UIImage imageNamed:@"home_icon_myhome"] tag:4];
+//        [barItem4 setFinishedSelectedImage:[UIImage imageNamed:@"home_icon_myhome_press"] withFinishedUnselectedImage:[UIImage imageNamed:@"home_icon_myhome"]];
+//        [navHome4 setTabBarItem:barItem4];
+//    } else {
+//        UITabBarItem * barItem4 = [[UITabBarItem alloc] initWithTitle:@"我的" image:[[UIImage imageNamed:@"home_icon_myhome"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"home_icon_myhome_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+//        [navHome4 setTabBarItem:barItem4];
+//    }
+//
+//    NSArray *array = [NSArray arrayWithObjects:navHome, navHome2, navHome3, navHome4, nil];
+//    
+//    [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeFont : [UIFont systemFontOfSize:12],UITextAttributeTextColor : [UIColor getColor:@"333333"]} forState:UIControlStateNormal];
+//    [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeFont : [UIFont systemFontOfSize:12],UITextAttributeTextColor : [UIColor getColor:@"333333"]} forState:UIControlStateSelected];
+//    
+//    self.tabBarController = [[UITabBarController alloc] init];
+//    [self.tabBarController setViewControllers:array];
+//    self.tabBarController.delegate = self;
+//    // IOS6将tabbar背景设置成白色
+//    if ([[UIDevice currentDevice] systemVersion].floatValue < 7.0) {
+//        CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+//        UIGraphicsBeginImageContext(rect.size);
+//        CGContextRef context = UIGraphicsGetCurrentContext();
+//        CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+//        CGContextFillRect(context, rect);
+//        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
+//        self.tabBarController.tabBar.backgroundImage = image;
+//    }
+//    
+//    // IOS6取消tabbar高亮效果
+//    if ([[UIDevice currentDevice] systemVersion].floatValue < 7.0) {
+//        CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+//        UIGraphicsBeginImageContext(rect.size);
+//        CGContextRef context = UIGraphicsGetCurrentContext();
+//        CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+//        CGContextFillRect(context, rect);
+//        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
+//        [self.tabBarController.tabBar setSelectionIndicatorImage:image];
+//    }
  
-    self.window.rootViewController = self.tabBarController;
+//    self.window.rootViewController = self.tabBarController;
+//    [self.window makeKeyAndVisible];
+    //初始化窗口
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
+    //设置根控制器
+    self.tabBarController = [[YLTabBarController alloc] init];
+    self.window.rootViewController = self.tabBarController;
+    CGRect col = CGRectMake(0, 0, UIScreenWidth, 49);
+    UIView *v = [[UIView alloc]initWithFrame:col];
+    [v setBackgroundColor:[UIColor whiteColor]];
+    [self.tabBarController.tabBar insertSubview:v atIndex:0];
     
     if (self.launchOptionsURL && [self.launchOptionsURL.scheme isEqualToString:@"jiarun"])
     {

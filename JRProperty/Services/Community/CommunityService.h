@@ -41,4 +41,48 @@
           success:  (void (^)(id responseObject))success
           failure:  (void (^)(NSError *error))failure;
 
+//发表话题
+-(void) Bus300702:  (NSString *)cId
+              uId:  (NSString *)uId
+          content:  (NSString *)content
+             flag:  (NSString *)flag
+             file:  (NSArray *)file
+        phoneType:  (NSString *)phoneType
+            model:  (NSString *)model
+             type:  (NSString *)type
+         voteList:  (NSArray *)voteList
+          success:  (void (^)(id responseObject))success
+          failure:  (void (^)(NSError *error))failure;
+
+//话题投票
+-(void) Bus301002:  (NSString *)cId
+              aId:  (NSString *)aId
+              uId:  (NSString *)uId
+           voteId:  (NSString *)voteId
+          success:  (void (^)(id responseObject))success
+          failure:  (void (^)(NSError *error))failure;
+
+//话题评论&回复
+-(void) Bus301102:  (NSString *)cId
+              aId:  (NSString *)aId
+              uId:  (NSString *)uId
+         replyUId:  (NSString *)replyUId
+        commentId:  (NSString *)commentId
+          content:  (NSString *)content
+          success:  (void (^)(id responseObject))success
+          failure:  (void (^)(NSError *error))failure;
+
+//新回复消息列表
+-(void) Bus302102:  (NSString *)cId
+              uId:  (NSString *)uId
+          success:  (void (^)(id responseObject))success
+          failure:  (void (^)(NSError *error))failure;
+
+//举报
+-(void) Bus302202:  (NSString *)aId
+              uId:  (NSString *)uId
+             type:  (NSString *)type
+          success:  (void (^)(id responseObject))success
+          failure:  (void (^)(NSError *error))failure;
+
 @end

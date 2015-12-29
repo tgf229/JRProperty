@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "JRHeader.h"
+#import "YLTabBarController.h"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarDelegate,UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, strong) UITabBarController *tabBarController;
+@property (nonatomic, strong) YLTabBarController *tabBarController;
 
 + (AppDelegate *) appDelegete;
 - (void)initDataFromService;

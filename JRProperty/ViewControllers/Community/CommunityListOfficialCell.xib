@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="229" id="KGk-i7-Jjw" customClass="CommunityListOfficialCell">
+            <rect key="frame" x="0.0" y="0.0" width="565" height="229"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="565" height="228.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="community_list_official_meishi.png" translatesAutoresizingMaskIntoConstraints="NO" id="cjV-gb-UBC">
+                        <rect key="frame" x="0.0" y="0.0" width="565" height="229"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="美食" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsW-DR-SLg">
+                        <rect key="frame" x="258" y="70" width="48" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="IMB-k8-Bw3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="美食" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxU-HG-IqR">
+                        <rect key="frame" x="267" y="105" width="30" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LX8-Fs-PBb">
+                        <rect key="frame" x="20" y="200" width="60" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="GkG-55-xI7"/>
+                            <constraint firstAttribute="width" constant="60" id="oU6-5h-fvT"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="0" image="community_list_official_like.png">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQc-Ru-LCm">
+                        <rect key="frame" x="100" y="200" width="60" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="lim-A7-hXx"/>
+                            <constraint firstAttribute="height" constant="20" id="ueg-gT-FLL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="0" image="community_list_official_comment.png">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgF-yg-SwZ">
+                        <rect key="frame" x="485" y="200" width="60" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="AoF-Wr-rnn"/>
+                            <constraint firstAttribute="height" constant="20" id="chV-dg-PRN"/>
+                        </constraints>
+                        <state key="normal" image="community_list_official_more.png">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="moreClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1QL-yT-Qwi"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VOL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRU-dL-VZA">
+                        <rect key="frame" x="521" y="10" width="24" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="cjV-gb-UBC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0Kw-k8-FD4"/>
+                    <constraint firstItem="SQc-Ru-LCm" firstAttribute="centerY" secondItem="LX8-Fs-PBb" secondAttribute="centerY" id="19J-zy-lX1"/>
+                    <constraint firstItem="LX8-Fs-PBb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="2Ny-VK-ad4"/>
+                    <constraint firstItem="cjV-gb-UBC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5eZ-Dq-ick"/>
+                    <constraint firstAttribute="bottom" secondItem="LX8-Fs-PBb" secondAttribute="bottom" constant="8.5" id="5rG-XS-7b9"/>
+                    <constraint firstItem="RgF-yg-SwZ" firstAttribute="centerY" secondItem="SQc-Ru-LCm" secondAttribute="centerY" id="Lzm-si-0vh"/>
+                    <constraint firstItem="dsW-DR-SLg" firstAttribute="centerX" secondItem="cjV-gb-UBC" secondAttribute="centerX" id="Ofu-fa-sDx"/>
+                    <constraint firstAttribute="trailing" secondItem="cjV-gb-UBC" secondAttribute="trailing" id="OkH-XZ-gJV"/>
+                    <constraint firstAttribute="trailing" secondItem="RgF-yg-SwZ" secondAttribute="trailing" constant="20" id="PJB-dh-KFC"/>
+                    <constraint firstItem="gxU-HG-IqR" firstAttribute="centerX" secondItem="dsW-DR-SLg" secondAttribute="centerX" id="W4S-bB-gsA"/>
+                    <constraint firstItem="SQc-Ru-LCm" firstAttribute="leading" secondItem="LX8-Fs-PBb" secondAttribute="trailing" constant="20" id="WJ4-at-Eoz"/>
+                    <constraint firstAttribute="trailing" secondItem="XRU-dL-VZA" secondAttribute="trailing" constant="20" id="YDP-cF-snp"/>
+                    <constraint firstItem="dsW-DR-SLg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="62" id="YqB-zD-hqM"/>
+                    <constraint firstItem="cjV-gb-UBC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cBf-Rr-KRp"/>
+                    <constraint firstItem="XRU-dL-VZA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="hRe-nT-hiD"/>
+                    <constraint firstItem="gxU-HG-IqR" firstAttribute="top" secondItem="dsW-DR-SLg" secondAttribute="bottom" constant="11" id="ukw-Jk-W26"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bgImageView" destination="cjV-gb-UBC" id="8XU-2c-J22"/>
+                <outlet property="commentButton" destination="SQc-Ru-LCm" id="BNv-JD-ANp"/>
+                <outlet property="moreButton" destination="RgF-yg-SwZ" id="ywq-O5-Th4"/>
+                <outlet property="praiseButton" destination="LX8-Fs-PBb" id="UXT-Ws-BPk"/>
+                <outlet property="subTitleLabel" destination="gxU-HG-IqR" id="sSh-GC-kii"/>
+                <outlet property="titleLabel" destination="dsW-DR-SLg" id="7Sk-kG-uZh"/>
+                <outlet property="volLabel" destination="XRU-dL-VZA" id="bkD-uz-ejP"/>
+            </connections>
+            <point key="canvasLocation" x="348.5" y="355.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="community_list_official_comment.png" width="14" height="14"/>
+        <image name="community_list_official_like.png" width="14" height="14"/>
+        <image name="community_list_official_meishi.png" width="375" height="180"/>
+        <image name="community_list_official_more.png" width="14" height="14"/>
+    </resources>
+</document>

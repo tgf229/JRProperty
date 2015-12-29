@@ -8,7 +8,9 @@
 
 
 #include "JRViewController.h"
+#import "CommunityListCell.h"
+#import "PhotosViewController.h"
 
-@interface CommunityListController : JRViewController<UITableViewDataSource,UITableViewDelegate>
+@interface CommunityListController : JRViewController<UITableViewDataSource,UITableViewDelegate,PhotosViewDatasource,PhotosViewDelegate>
 
 @end

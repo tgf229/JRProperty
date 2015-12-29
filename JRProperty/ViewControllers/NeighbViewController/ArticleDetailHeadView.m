@@ -37,7 +37,9 @@
     [self.voteView initial];
     self.voteView.delegate = self;
     [self addSubview:self.voteView];
-
+    
+    self.voteCustomView = [[VoteListView alloc]initWithFrame:CGRectMake(0, 0, UIScreenWidth, 0)];
+    [self addSubview:self.voteCustomView];
 }
 
 - (void)setData:(ArticleDetailModel *)data {
@@ -45,6 +47,18 @@
     self.nicknameLabel.text = data.nickName;
     _commentBumLabel.text = [NSString stringWithFormat:@"评论 %@",self.data.commentNum];
     self.timeLabel.text = data.time;
+    if ([@"1" isEqualToString: data.isHot]) {
+        [self.hotImageView setHidden:NO];
+    }else {
+        [self.hotImageView setHidden:YES];
+    }
+    
+    if ([@"2" isEqualToString:data.type] || [@"3" isEqualToString:data.type]) {
+        [self.voteImageView setHidden: NO];
+    }else{
+        [self.voteImageView setHidden:YES];
+    }
+    
 //    self.circleNameLabel.text = data.name;
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:data.imageUrl] placeholderImage:[UIImage imageNamed:@"default_portrait_140x140"]];
     NSString *content = data.content;
@@ -117,18 +131,38 @@
     [self.pictureView setData:data.imageList];
     CGFloat voteHight= 0.0;
     if ([data.type integerValue]== 2) {
-        voteHight = 61.0;
+        voteHight = 90;
         [self.voteView setHidden:NO];
         if (pictureHight ==0) {
-            self.voteView.frame = CGRectMake(0, 65+contentHeight+10, UIScreenWidth, 61);
+            self.voteView.frame = CGRectMake(0, 65+contentHeight+10, UIScreenWidth, 90);
         }
         else {
-            self.voteView.frame = CGRectMake(0, 65+contentHeight+10+pictureHight+10, UIScreenWidth, 61);
+            self.voteView.frame = CGRectMake(0, 65+contentHeight+10+pictureHight+10, UIScreenWidth, 90);
         }
         [self.voteView setData:data];
     }
     else {
         [self.voteView setHidden:YES];
+    }
+    if ([data.type integerValue]== 3) {
+        if ([data.voteList count] == 0) {
+            [self.voteCustomView setHidden:YES];
+        }else{
+            voteHight = 72 * data.voteList.count;
+//            CGFloat voteWidth = UIScreenWidth -130;
+            
+            [self.voteCustomView setHidden:NO];
+            if (pictureHight ==0) {
+                self.voteCustomView.frame = CGRectMake(0, 65+contentHeight+10, UIScreenWidth, voteHight);
+            }
+            else {
+                self.voteCustomView.frame = CGRectMake(0, 65+contentHeight+10+pictureHight+10, UIScreenWidth, voteHight);
+            }
+//            self.voteCustomView initWithFrame:<#(CGRect)#>
+            [self.voteCustomView initial:data];
+        }
+    }else{
+        [self.voteCustomView setHidden:NO];
     }
 }
 
@@ -145,7 +179,10 @@
     CGFloat pictureHight = [ArticlePictureView height:data.imageList.count];
     CGFloat voteHight= 0.0;
     if ([data.type integerValue]==2) {
-        voteHight = 61.0;
+        voteHight = 90;
+    }
+    else if([data.type integerValue] == 3){
+        voteHight = 72*data.voteList.count+20;
     }
     if (pictureHight ==0) {
         if (voteHight>0) {
@@ -183,10 +220,10 @@
         [_delegate selectUrl:self.url];
     }
 }
-- (void)voteClick:(ArticleVoteView *)voteView withArticleId:(NSString *)articleId type:(NSString *)type {
+- (void)voteClick:(ArticleVoteView *)voteView withArticleId:(NSString *)articleId type:(NSString *)type voteId:(NSString *)voteId {
     //调用代理
-    if(_delegate && [_delegate respondsToSelector:@selector(voteClick:type:)]){
-        [_delegate voteClick:voteView type:type];
+    if(_delegate && [_delegate respondsToSelector:@selector(voteClick:type:voteId:)]){
+        [_delegate voteClick:voteView type:type voteId:voteId];
     }
 }
 

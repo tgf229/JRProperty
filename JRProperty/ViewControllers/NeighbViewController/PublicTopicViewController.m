@@ -17,17 +17,20 @@
 #import "LoginManager.h"
 #import "UIView+Additions.h"
 #import "JRPropertyUntils.h"
+#import "CommunityService.h"
 
 #define IMAGE_BASE_TAG  200
 
-@interface PublicTopicViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, CTAssetsPickerControllerDelegate,UITextViewDelegate,ImageButtonViewDelegate,PhotosViewDatasource>
+@interface PublicTopicViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, CTAssetsPickerControllerDelegate,UITextViewDelegate,UITextFieldDelegate,ImageButtonViewDelegate,PhotosViewDatasource>
 {
     BOOL _isVoteSwitchOn;          // 是否允许投票
+    BOOL _isVoteCustomSwitchOn;     //是否开启自定义投票
     BOOL _isScaleImagesFinished;   // 发帖选择的图片是否压缩存储完成
     NSInteger _pWidth;             // 图片宽度
 }
 
 @property (weak,nonatomic) IBOutlet UIScrollView       *mainScrollView;
+@property (weak,nonatomic) IBOutlet UIView  *contentView;
 
 @property (weak,nonatomic) IBOutlet UILabel            *contentTipLabel;    // 输入提示
 @property (weak,nonatomic) IBOutlet UITextView         *contentTextView;    // 输入框
@@ -40,12 +43,25 @@
 @property (weak,nonatomic) IBOutlet UIView             *voteView;           // 投票view
 @property (weak,nonatomic) IBOutlet UIButton           *switchButton;       // 投票开关
 
+@property (weak,nonatomic) IBOutlet UIView *voteCustomView;  //自定义投票view
+@property (weak,nonatomic) IBOutlet NSLayoutConstraint *voteCustomViewHeight;
+@property (weak,nonatomic) IBOutlet UIButton *switchCustomButton;   //自定义投票开关
+@property (weak,nonatomic) IBOutlet NSLayoutConstraint *addVoteTopConstrait;
+@property (weak,nonatomic) IBOutlet UIView *addVoteView;    //添加选项的view
+@property (weak,nonatomic) IBOutlet UIButton *addVoteButton;    //添加选项的button
+
 @property (nonatomic, strong) NSMutableArray *photoViewArray;               // 选择的图片按钮数组,包括一个添加按钮
 @property (nonatomic, strong) NSMutableArray *photoFilePathArray;           // 选择的图片完整路径
 @property (nonatomic, strong) UIButton       *addPicButton;                 // 添加照片的按钮
 @property (nonatomic, strong) ArticleService *articleService;               //
+@property (nonatomic, strong) CommunityService *communityService;
+
+@property (nonatomic, strong) UITextField *textFieldShow;
+@property (nonatomic ,strong) NSMutableArray *textFields;
+@property (nonatomic, strong) NSMutableArray *textFieldsText;
 
 @property (nonatomic,assign) int index;
+@property (assign,nonatomic) int height;
 @end
 
 @implementation PublicTopicViewController
@@ -59,7 +75,10 @@
     self.photoViewArray = [[NSMutableArray alloc] init];
     self.photoFilePathArray = [[NSMutableArray alloc] init];
     self.articleService = [[ArticleService alloc] init];
+    self.communityService = [[CommunityService alloc]init];
+    self.textFields = [[NSMutableArray alloc]init];
     self.index = 0;
+    
     // 进来后删除之前缓存的图片
     [self removeAllImageInCircleCache];
     
@@ -77,6 +96,24 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewTextDidChange:) name:UITextViewTextDidChangeNotification object:_contentTextView];
+    
+    //页面初始化
+    [_addVoteButton setImageEdgeInsets:UIEdgeInsetsMake(0.0, -5, 0.0, 0.0)];
+    [_addVoteButton setTitleColor:[UIColor getColor:@"e7a297"] forState:UIControlStateNormal];
+    self.view.backgroundColor = [UIColor getColor:@"eeeeee"];
+    
+    //初始化第一个自定义投票选项
+    self.height = 0;
+    [self addCustomItem];
+    [_voteCustomView setHidden:YES];
+    [_addVoteView setHidden:YES];
+    
+}
+
+-(void) viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    self.mainScrollView.contentSize = CGSizeMake(UIScreenWidth, 800);
+    [self.view layoutIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -137,8 +174,8 @@
     else{
         [postButton setFrame:CGRectMake(0, 0,32, 20)];
     }
-    [postButton setTitle:@"发表"  forState:UIControlStateNormal];
-    [postButton setTitle:@"发表"  forState:UIControlStateHighlighted];
+    [postButton setTitle:@"完成"  forState:UIControlStateNormal];
+    [postButton setTitle:@"完成"  forState:UIControlStateHighlighted];
     [postButton setTitleColor:[UIColor getColor:@"bb474d"] forState:UIControlStateNormal];
     [postButton setTitleColor:[UIColor getColor:@"bb474d"] forState:UIControlStateHighlighted];
     [postButton addTarget:self action:@selector(publicNewTopic) forControlEvents:UIControlEventTouchUpInside];
@@ -163,6 +200,7 @@
 - (void)hiddenKeyboardTaped:(id)sender
 {
     [self.contentTextView resignFirstResponder];
+    [self.textFieldShow resignFirstResponder];
     
     UITapGestureRecognizer *tap = (UITapGestureRecognizer *)sender;
     [self.view removeGestureRecognizer:tap];
@@ -176,26 +214,27 @@
  */
 - (void)keyboardWillShow:(NSNotification *)aNotification {
     //获取键盘的高度
-    NSDictionary *userInfo = [aNotification userInfo];
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardRect = [aValue CGRectValue];
-    int keyboardHeight = keyboardRect.size.height;
-    
-    // scrollview偏移
-    CGRect oldFrame = self.contentTextView.frame;
-    int keyboardTopHeight = UIScreenHeight - keyboardHeight;
-    if ( keyboardTopHeight < oldFrame.origin.y + oldFrame.size.height)
-    {
-        self.mainScrollView.contentOffset = CGPointMake(0, oldFrame.origin.y + oldFrame.size.height - keyboardTopHeight);
-    }
-    
-    // scrollview扩充高度
-    NSLayoutConstraint *bottomConstraint = [self.voteView findConstraintForAttribute:NSLayoutAttributeBottom];
-    bottomConstraint.constant = keyboardHeight;
-    [self.view layoutIfNeeded];
-    
-    
+//    NSDictionary *userInfo = [aNotification userInfo];
+//    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+//    CGRect keyboardRect = [aValue CGRectValue];
+//    int keyboardHeight = keyboardRect.size.height;
+//    
+//    // scrollview偏移
+//    CGRect oldFrame = self.contentTextView.frame;
+//    int keyboardTopHeight = UIScreenHeight - keyboardHeight;
+//    if ( keyboardTopHeight < oldFrame.origin.y + oldFrame.size.height)
+//    {
+//        self.mainScrollView.contentOffset = CGPointMake(0, oldFrame.origin.y + oldFrame.size.height - keyboardTopHeight);
+//    }
+//    
+//    // scrollview扩充高度
+//    NSLayoutConstraint *bottomConstraint = [self.voteView findConstraintForAttribute:NSLayoutAttributeBottom];
+//    bottomConstraint.constant = keyboardHeight;
+//    [self.view layoutIfNeeded];
+//    
+//    
     UITapGestureRecognizer *keyboardTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeyboardTaped:)];
+    keyboardTap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:keyboardTap];
     
 }
@@ -207,11 +246,11 @@
  */
 - (void)keyboardWillHide:(NSNotification *)aNotification {
     // 还原scrollview
-    self.mainScrollView.contentOffset = CGPointMake(0,0);
-    
-    NSLayoutConstraint *bottomConstraint = [self.voteView findConstraintForAttribute:NSLayoutAttributeBottom];
-    bottomConstraint.constant = 20;
-    [self.view layoutIfNeeded];
+//    self.mainScrollView.contentOffset = CGPointMake(0,0);
+//    
+//    NSLayoutConstraint *bottomConstraint = [self.voteView findConstraintForAttribute:NSLayoutAttributeBottom];
+//    bottomConstraint.constant = 0;
+//    [self.view layoutIfNeeded];
 }
 
 /**
@@ -256,7 +295,7 @@
 {
     // 添加默认的添加按钮
     UIButton *addImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    addImageBtn.frame = CGRectMake(15, 10, 90, 90);
+    addImageBtn.frame = CGRectMake(15, 0, 90, 90);
     addImageBtn.tag = IMAGE_BASE_TAG;
     addImageBtn.contentMode = UIViewContentModeScaleAspectFill;
     addImageBtn.userInteractionEnabled = YES;
@@ -274,6 +313,26 @@
  */
 - (void)publicNewTopic
 {
+    [self.contentTextView resignFirstResponder];
+    [self.textFieldShow resignFirstResponder];
+    
+    if (_isVoteCustomSwitchOn){
+        BOOL hasData = NO;
+        self.textFieldsText = [[NSMutableArray alloc]init];
+        for (UITextField *text in self.textFields) {
+            NSLog(@"%@",text.text);
+            NSString *str = [text.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            if (![@"" isEqualToString:str]) {
+                hasData = YES;
+                [self.textFieldsText addObject:str];
+            }
+        }
+        if (!hasData) {
+            [SVProgressHUD showErrorWithStatus:@"请填写自定义投票选项的内容！"];
+            return;
+        }
+    }
+
     NSString *contentStr = [self.contentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ([@"" isEqualToString:contentStr]||contentStr==nil) {
         // 请输入内容
@@ -282,16 +341,6 @@
         [SVProgressHUD showErrorWithStatus:@"请输入话题内容！"];
         return;
     }
-        
-    if(self.sid.length == 0)
-    {
-        // 未选择图片
-        [SVProgressHUD showErrorWithStatus:@"您加入的社区不存在"];
-        
-        return;
-    }
-    
-    [self.contentTextView resignFirstResponder];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
@@ -320,37 +369,37 @@
                 
                 //发送请求
                 NSString *contentStr = [self.contentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                [self.articleService Bus300701:[LoginManager shareInstance].loginAccountInfo.uId
-                                           sId:self.sid
-                                       content:contentStr
-                                          flag:[_photoFilePathArray count] > 0 ? @"1" : @"0"
-                                          file:_photoFilePathArray
-                                     phoneType:@"2"
-                                         model:[JRPropertyUntils deviceModelString]
-                                          type:_isVoteSwitchOn ? @"2" : @"1"
-                                       success:^(id responseObj)
-                 {
-                     [self setRightPublicButtonEnable:YES];
+                
+                NSString *type;
+                if (_isVoteSwitchOn) {
+                    type = @"2";
+                }else if (_isVoteCustomSwitchOn){
+                    type = @"3";
+                }else{
+                    type = @"1";
+                }
+                NSArray *voteList = [[NSArray alloc]initWithArray:self.textFieldsText];
+                [self.communityService Bus300702:CID_FOR_REQUEST uId:[LoginManager shareInstance].loginAccountInfo.uId content:contentStr flag:[_photoFilePathArray count]>0?@"1":@"0" file:_photoFilePathArray phoneType:@"2" model:[JRPropertyUntils deviceModelString] type:type voteList:voteList success:^(id responseObject)
+                {
+                    [self setRightPublicButtonEnable:YES];
+                    BaseModel *resultModel = (BaseModel *)responseObject;
+                    if ([resultModel.retcode isEqualToString:@"000000"])
+                    {
+                        // 成功
+                        [SVProgressHUD showSuccessWithStatus:resultModel.retinfo];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:PUBLICE_ARTICLE_SUCCESS  object:self];
+                        //延迟返回上一级页面
+                        [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(popViewController) userInfo:nil repeats:NO];
+                    }
+                    else{
+                        // 失败
+                        [SVProgressHUD showErrorWithStatus:resultModel.retinfo];
+                    }
 
-                     BaseModel *resultModel = (BaseModel *)responseObj;
-                     if ([resultModel.retcode isEqualToString:@"000000"])
-                     {
-                         // 成功
-                         [SVProgressHUD showSuccessWithStatus:resultModel.retinfo];
-                         [[NSNotificationCenter defaultCenter] postNotificationName:PUBLICE_ARTICLE_SUCCESS  object:self];
-                         //延迟返回上一级页面
-                         [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(popViewController) userInfo:nil repeats:NO];
-                     }
-                     else{
-                         // 失败
-                         [SVProgressHUD showErrorWithStatus:resultModel.retinfo];
-                     }
-                     
-                 }failure:^(NSError *error){
-                     [SVProgressHUD showErrorWithStatus:@"发表话题失败，请稍后重试"];
-                     [self setRightPublicButtonEnable:YES];
-                 }];
-
+                } failure:^(NSError *error) {
+                    [SVProgressHUD showErrorWithStatus:@"发表话题失败，请稍后重试"];
+                    [self setRightPublicButtonEnable:YES];
+                }];
             });
         }
         else{
@@ -401,6 +450,12 @@
     _isVoteSwitchOn = !_isVoteSwitchOn;
     
     if (_isVoteSwitchOn) {
+        if (_isVoteCustomSwitchOn) {
+            _isVoteCustomSwitchOn = NO;
+            [_voteCustomView setHidden:YES];
+            [_addVoteView setHidden:YES];
+            [self.switchCustomButton setBackgroundImage:[UIImage imageNamed:@"myhome_set_btn_switch_off.png"] forState:UIControlStateNormal];
+        }
         // 打开投票
         [self.switchButton setBackgroundImage:[UIImage imageNamed:@"myhome_set_btn_switch_on.png"] forState:UIControlStateNormal];
     }
@@ -411,6 +466,75 @@
 
 }
 
+- (IBAction)swithButtonPressedCustom:(id)sender
+{
+    _isVoteCustomSwitchOn = !_isVoteCustomSwitchOn;
+    
+    if (_isVoteCustomSwitchOn) {
+        //和AB投票互斥
+        if (_isVoteSwitchOn) {
+            _isVoteSwitchOn = NO;
+            // 关闭投票
+            [self.switchButton setBackgroundImage:[UIImage imageNamed:@"myhome_set_btn_switch_off.png"] forState:UIControlStateNormal];
+        }
+        // 打开自定义投票
+        _addVoteTopConstrait.constant = self.height + 54;
+        [_voteCustomView setHidden:NO];
+        [_addVoteView setHidden:NO];
+        [self.switchCustomButton setBackgroundImage:[UIImage imageNamed:@"myhome_set_btn_switch_on.png"] forState:UIControlStateNormal];
+        
+    }
+    else{
+        // 关闭自定义投票
+        [_voteCustomView setHidden:YES];
+        [_addVoteView setHidden:YES];
+        [self.switchCustomButton setBackgroundImage:[UIImage imageNamed:@"myhome_set_btn_switch_off.png"] forState:UIControlStateNormal];
+    }
+}
+
+-(void)addCustomItem{
+    UIView *itemView = [[UIView alloc]init];
+    itemView.backgroundColor = [UIColor whiteColor];
+    itemView.frame = CGRectMake(0, 0+self.height, UIScreenWidth, 55);
+    UIImageView *topImg = [[UIImageView alloc]initWithFrame:CGRectMake(15, 5, UIScreenWidth-30, 1)];
+    UIImageView *leftImg = [[UIImageView alloc]initWithFrame:CGRectMake(15, 5, 1, 44)];
+    UIImageView *footImg = [[UIImageView alloc]initWithFrame:CGRectMake(15, 49, UIScreenWidth-30, 1)];
+    UIImageView *rightImg = [[UIImageView alloc]initWithFrame:CGRectMake(UIScreenWidth-15, 5, 1, 44)];
+    topImg.image = [UIImage imageNamed:@"line_grey_top_40x1"];
+    leftImg.image = [UIImage imageNamed:@"line_vertical_1x20"];
+    footImg.image = [UIImage imageNamed:@"line_grey_top_40x1"];
+    rightImg.image = [UIImage imageNamed:@"line_vertical_1x20"];
+    
+    UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(30, 10, UIScreenWidth-60, 34)];
+    textField.placeholder =@"请输入选项内容（限10字）";
+    textField.clearButtonMode = UITextFieldViewModeUnlessEditing;//右边显示的'X'清楚按钮
+    [textField setValue:[UIColor getColor:@"999999"] forKeyPath:@"_placeholderLabel.textColor"];
+    [textField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
+    textField.borderStyle=UITextBorderStyleNone;
+    textField.returnKeyType=UIReturnKeyDone;
+    textField.delegate=self;
+    
+    [itemView addSubview:topImg];
+    [itemView addSubview:leftImg];
+    [itemView addSubview:footImg];
+    [itemView addSubview:rightImg];
+    [itemView addSubview:textField];
+    //给textfield列表赋值
+    [self.textFields addObject:textField];
+    [_voteCustomView addSubview:itemView];
+     _voteCustomViewHeight.constant = 54+self.height;
+    
+    if ([self.textFields count] > 4) {
+        [_addVoteView setHidden:YES];
+    }
+}
+
+-(IBAction)addVoteCustomItem:(id)sender{
+    self.height = self.height + 54;
+    [self addCustomItem];
+    _addVoteTopConstrait.constant = 54+self.height;
+}
+
 #pragma mark - UIActionSheet Delegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -419,7 +543,7 @@
         if (author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied)
         {
             //无权限
-            [self addAlertViewWithInfo:@"请在iPhone的“设置-隐私-照片”选项中，允许中央商场访问你的手机相册"];
+            [self addAlertViewWithInfo:@"请在iPhone的“设置-隐私-照片”选项中，允许桃花源云社区访问你的手机相册"];
             return;
         }
     }
@@ -1036,5 +1160,59 @@ static void releaseAssetCallback(void *info) {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//按下Done按钮时调用这个方法，可让按钮消失
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    //返回一个BOOL值，指定是否循序文本字段开始编辑
+    return YES;
+}
+
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    //返回BOOL值，指定是否允许文本字段结束编辑，当编辑结束，文本字段会让出first responder
+    //要想在用户结束编辑时阻止文本字段消失，可以返回NO
+    //这对一些文本字段必须始终保持活跃状态的程序很有用，比如即时消息
+    return YES;
+}
+- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    //当用户使用自动更正功能，把输入的文字修改为推荐的文字时，就会调用这个方法。
+    //这对于想要加入撤销选项的应用程序特别有用
+    //可以跟踪字段内所做的最后一次修改，也可以对所有编辑做日志记录,用作审计用途。
+    //要防止文字被改变可以返回NO
+    //这个方法的参数中有一个NSRange对象，指明了被改变文字的位置，建议修改的文本也在其中
+    //同时在这里是可以做文本长度限制的判断处理的
+    if (range.location>= 20)
+    {
+        return NO;
+    }
+    return YES;
+}
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    //返回一个BOOL值指明是否允许根据用户请求清除内容
+    //可以设置在特定条件下才允许清除内容
+    return YES;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    //返回一个BOOL值，指明是否允许在按下回车键时结束编辑
+    //如果允许要调用resignFirstResponder 方法，这回导致结束编辑，而键盘会被收起
+    [textField resignFirstResponder];//查一下resign这个单词的意思就明白这个方法了
+    return YES;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.textFieldShow = textField;
+    //    键盘高度216
+//    if (textField.frame.origin.y>216) {
+//        
+//        CGRect frame =  self.view.frame;
+//        frame.origin.y -=216;
+//        frame.size.height +=216;
+//        self.view.frame=frame;
+//    }
+}
+
+
 
 @end

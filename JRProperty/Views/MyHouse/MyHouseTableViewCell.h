@@ -14,6 +14,9 @@
 @property (weak ,nonatomic) IBOutlet UILabel       *houseLabel;                // 地址
 @property (weak, nonatomic) IBOutlet UIButton      *editButton;                // 操作按钮
 @property (weak, nonatomic) IBOutlet UIImageView   *speratorLine;              // 分割线
+@property (weak, nonatomic) IBOutlet UIImageView   *arrowImageView;         //右侧箭头
+@property (weak, nonatomic) IBOutlet UILabel       *statusLabel;    //状态说明
+@property (weak, nonatomic) IBOutlet UIImageView   *statusImageView;    //状态图标
 
 @property (copy, nonatomic) dispatch_block_t    editButtonPressedBlock;      // 编辑状态下
 

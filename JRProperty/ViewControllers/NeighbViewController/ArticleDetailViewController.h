@@ -26,4 +26,5 @@
 @property (strong,nonatomic) ArticleDetailModel *articleDetailModel;//话题model
 @property (strong,nonatomic) NSString  *articleId;//话题id
 @property (assign,nonatomic) BOOL       onlyComment;
+@property (assign,nonatomic) BOOL       onlyOfficial;
 @end
