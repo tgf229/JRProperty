@@ -115,6 +115,11 @@
     [self switchRequest:self.type];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
 -(void) switchRequest:(NSInteger )type{
     switch (type) {
         case 1:
@@ -288,6 +293,8 @@
     // 设置其他数据
     if ([@"1" isEqualToString:fmm.flag]) { // 该宝贝已收藏
         [fleaMarketListTableViewCell.favNum setImage:[UIImage imageNamed:@"uesd_btn_collect_press"] forState:UIControlStateNormal];
+    }else{
+        [fleaMarketListTableViewCell.favNum setImage:[UIImage imageNamed:@"uesd_btn_collect"] forState:UIControlStateNormal];
     }
     [fleaMarketListTableViewCell.favNum setTitle:fmm.praiseNum forState:UIControlStateNormal];// titleLabel.text = fmm.praiseNum;
     [fleaMarketListTableViewCell.msgNum setTitle:fmm.commentNum forState:UIControlStateNormal];//.titleLabel.text = fmm.commentNum;
@@ -388,10 +395,27 @@
     [self creatMoreActionView];
 }
 -(void)creatMoreActionView{
-    UIActionSheet * actionSheet = [[UIActionSheet alloc] initWithTitle:@"\n" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:nil, nil];
-    self.moreActionView.frame = CGRectMake(0.0, 0.0, UIScreenWidth, 218.0);
-    
-    [actionSheet addSubview:self.moreActionView];
-    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    if (CURRENT_VERSION >= 8.0) {
+        UIAlertController * alertVc = [[UIAlertController alloc] init];
+        alertVc.title = @"";
+        
+        
+        
+        UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+            NSLog(@"取消");
+        }];
+        self.moreActionView.frame = CGRectMake(alertVc.view.frame.origin.x, alertVc.view.frame.origin.y, alertVc.view.frame.size.width, alertVc.view.frame.size.height);
+        [alertVc.view addSubview:self.moreActionView];
+        NSLog(@"%f",alertVc.view.frame.origin.x) ;
+        [alertVc addAction:cancelAction];
+        [self presentViewController:alertVc animated:true completion:nil];
+
+    }else{
+        UIActionSheet * actionSheet = [[UIActionSheet alloc] initWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+        self.moreActionView.frame = CGRectMake(0.0, 0.0, UIScreenWidth, 218.0);
+        
+        [actionSheet addSubview:self.moreActionView];
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
 }
 @end
