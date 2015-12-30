@@ -24,7 +24,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssR-vx-9TM" userLabel="button view">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="more" translatesAutoresizingMaskIntoConstraints="NO" id="aYt-6t-Vo0">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_vertical_1x20" translatesAutoresizingMaskIntoConstraints="NO" id="aYt-6t-Vo0">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="1" id="2mx-Dh-5Rr"/>
@@ -388,9 +388,6 @@
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sy-JF-9Y0">
                                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                                     <state key="normal" backgroundImage="more"/>
-                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                        <rect key="frame" x="178" y="293" width="42" height="20"/>
-                                                                    </variation>
                                                                     <connections>
                                                                         <action selector="moreAction:" destination="4S6-LX-xxz" eventType="touchUpInside" id="Lxe-Rc-Q5c"/>
                                                                     </connections>
@@ -691,14 +688,13 @@
                     </view>
                     <connections>
                         <outlet property="fleaMarketListTableView" destination="I2Y-4Y-L1G" id="B7Q-7K-ARO"/>
-                        <outlet property="moreActionView" destination="nTK-No-2oi" id="qKU-x2-J70"/>
                         <outlet property="sellingBtn" destination="mAo-qg-ojC" id="1P5-0w-Sk5"/>
                         <outlet property="sliderImgView" destination="Hd2-Dv-vmt" id="mZ0-KM-rdb"/>
                         <outlet property="unSellBtn" destination="raO-NQ-n7g" id="DOr-db-Ppy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQW-ad-HcC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="nTK-No-2oi" userLabel="moreActionView">
+                <view contentMode="scaleToFill" id="nTK-No-2oi">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -708,14 +704,13 @@
                                 <constraint firstAttribute="width" secondItem="U9W-Ft-qya" secondAttribute="height" multiplier="1:1" id="I0H-4r-APu"/>
                             </constraints>
                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
-                            <state key="normal" title="上架"/>
+                            <state key="normal" title="Button"/>
                             <variation key="default">
                                 <mask key="constraints">
                                     <exclude reference="I0H-4r-APu"/>
                                 </mask>
                             </variation>
-                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                <rect key="frame" x="16" y="15" width="46" height="46"/>
+                            <variation key="heightClass=regular-widthClass=compact">
                                 <mask key="constraints">
                                     <include reference="I0H-4r-APu"/>
                                 </mask>
@@ -724,26 +719,17 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lfO-rb-qPn">
                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
-                            <state key="normal" title="下架"/>
-                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                <rect key="frame" x="83" y="15" width="46" height="46"/>
-                            </variation>
+                            <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCf-HH-2RW">
                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
-                            <state key="normal" title="取藏"/>
-                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                <rect key="frame" x="150" y="15" width="46" height="46"/>
-                            </variation>
+                            <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhf-57-f89">
                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
-                            <state key="normal" title="删除"/>
-                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                <rect key="frame" x="217" y="15" width="46" height="46"/>
-                            </variation>
+                            <state key="normal" title="Button"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上架" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFV-9Y-q5O">
                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -759,8 +745,7 @@
                                     <exclude reference="bHA-C7-3OI"/>
                                 </mask>
                             </variation>
-                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                <rect key="frame" x="28" y="68" width="22" height="11"/>
+                            <variation key="heightClass=regular-widthClass=compact">
                                 <mask key="constraints">
                                     <include reference="bHA-C7-3OI"/>
                                 </mask>
@@ -772,9 +757,6 @@
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
-                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                <rect key="frame" x="95" y="68" width="22" height="11"/>
-                            </variation>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="取消收藏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="213-bC-Gab">
                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -782,9 +764,6 @@
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
-                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                <rect key="frame" x="151" y="68" width="44" height="11"/>
-                            </variation>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="删除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XmT-ar-2a6">
                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -792,8 +771,8 @@
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
-                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                <rect key="frame" x="229" y="68" width="22" height="11"/>
+                            <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                <rect key="frame" x="219" y="70" width="42" height="21"/>
                             </variation>
                         </label>
                     </subviews>
@@ -803,7 +782,6 @@
                         <constraint firstItem="lfO-rb-qPn" firstAttribute="centerY" secondItem="U9W-Ft-qya" secondAttribute="centerY" id="6s2-Qd-fIm"/>
                         <constraint firstItem="HFV-9Y-q5O" firstAttribute="centerX" secondItem="U9W-Ft-qya" secondAttribute="centerX" id="7ob-nn-BGv"/>
                         <constraint firstItem="U9W-Ft-qya" firstAttribute="leading" secondItem="nTK-No-2oi" secondAttribute="leading" constant="16" id="9Sh-72-p9e"/>
-                        <constraint firstItem="XmT-ar-2a6" firstAttribute="centerX" secondItem="xhf-57-f89" secondAttribute="centerX" id="IdP-5Z-HW8"/>
                         <constraint firstItem="213-bC-Gab" firstAttribute="height" secondItem="HFV-9Y-q5O" secondAttribute="height" id="Iia-XN-zji"/>
                         <constraint firstItem="xhf-57-f89" firstAttribute="leading" secondItem="RCf-HH-2RW" secondAttribute="trailing" constant="21" id="Izu-6j-zbo"/>
                         <constraint firstItem="lfO-rb-qPn" firstAttribute="height" secondItem="U9W-Ft-qya" secondAttribute="height" id="K4x-jF-DXo"/>
@@ -820,7 +798,6 @@
                         <constraint firstItem="xhf-57-f89" firstAttribute="width" secondItem="U9W-Ft-qya" secondAttribute="width" id="ipd-TB-oBn"/>
                         <constraint firstItem="lfO-rb-qPn" firstAttribute="width" secondItem="U9W-Ft-qya" secondAttribute="width" id="omf-Tw-NyJ"/>
                         <constraint firstItem="3zV-6J-mpK" firstAttribute="height" secondItem="HFV-9Y-q5O" secondAttribute="height" id="p6J-qI-tyM"/>
-                        <constraint firstItem="XmT-ar-2a6" firstAttribute="top" secondItem="xhf-57-f89" secondAttribute="bottom" constant="7" id="ptz-Bt-lqr"/>
                         <constraint firstItem="3zV-6J-mpK" firstAttribute="centerX" secondItem="lfO-rb-qPn" secondAttribute="centerX" id="qQ4-ws-1bg"/>
                         <constraint firstItem="HFV-9Y-q5O" firstAttribute="top" secondItem="U9W-Ft-qya" secondAttribute="bottom" constant="7" id="sWm-is-Rhm"/>
                         <constraint firstItem="RCf-HH-2RW" firstAttribute="height" secondItem="U9W-Ft-qya" secondAttribute="height" id="tQX-Rm-0X1"/>
@@ -860,9 +837,7 @@
                             <exclude reference="Zv1-S9-u6g"/>
                             <exclude reference="feE-w7-Uhu"/>
                             <exclude reference="ipd-TB-oBn"/>
-                            <exclude reference="IdP-5Z-HW8"/>
                             <exclude reference="Y6e-M1-Qba"/>
-                            <exclude reference="ptz-Bt-lqr"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
@@ -899,9 +874,7 @@
                             <include reference="Zv1-S9-u6g"/>
                             <include reference="feE-w7-Uhu"/>
                             <include reference="ipd-TB-oBn"/>
-                            <include reference="IdP-5Z-HW8"/>
                             <include reference="Y6e-M1-Qba"/>
-                            <include reference="ptz-Bt-lqr"/>
                         </mask>
                     </variation>
                 </view>
@@ -913,6 +886,7 @@
         <image name="chat_36x36.png" width="14" height="14"/>
         <image name="community_default" width="1" height="20"/>
         <image name="line_grey_foot_40x1" width="1" height="20"/>
+        <image name="line_vertical_1x20" width="1" height="20"/>
         <image name="more" width="1" height="20"/>
         <image name="red_line_160x4" width="1" height="20"/>
         <image name="uesd_btn_collect.png" width="13" height="13"/>
