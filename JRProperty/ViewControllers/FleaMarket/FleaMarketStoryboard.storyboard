@@ -1956,8 +1956,7 @@
                                     <exclude reference="xQb-50-uF3"/>
                                 </mask>
                             </variation>
-                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                <rect key="frame" x="15" y="20" width="100" height="0.0"/>
+                            <variation key="heightClass=regular-widthClass=compact">
                                 <mask key="constraints">
                                     <include reference="QMb-NN-zzI"/>
                                     <include reference="xQb-50-uF3"/>
@@ -2050,16 +2049,10 @@
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
-                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                <rect key="frame" x="15" y="35" width="210" height="0.0"/>
-                            </variation>
                         </label>
                         <view tag="-1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dTf-id-vks">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
-                            <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                <rect key="frame" x="15" y="50" width="210" height="0.0"/>
-                            </variation>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n18-MB-fvv">
                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -2069,7 +2062,7 @@
                             </constraints>
                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" title="46" backgroundImage="line_vertical_1x20">
+                            <state key="normal" title="46" backgroundImage="use_detail_btn_collect">
                                 <color key="titleColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <variation key="default">
@@ -2078,8 +2071,7 @@
                                     <exclude reference="rXp-tF-7ve"/>
                                 </mask>
                             </variation>
-                            <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                <rect key="frame" x="110" y="60" width="20" height="20"/>
+                            <variation key="heightClass=regular-widthClass=compact">
                                 <mask key="constraints">
                                     <include reference="Vj1-nf-5qI"/>
                                     <include reference="rXp-tF-7ve"/>
@@ -2100,8 +2092,7 @@
                                     <exclude reference="scp-ID-Yz4"/>
                                 </mask>
                             </variation>
-                            <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                <rect key="frame" x="10" y="91" width="220" height="1"/>
+                            <variation key="heightClass=regular-widthClass=compact">
                                 <mask key="constraints">
                                     <include reference="scp-ID-Yz4"/>
                                 </mask>
@@ -2118,8 +2109,7 @@
                                     <exclude reference="ueI-Ug-7Vd"/>
                                 </mask>
                             </variation>
-                            <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                <rect key="frame" x="0.0" y="97" width="240" height="1"/>
+                            <variation key="heightClass=regular-widthClass=compact">
                                 <mask key="constraints">
                                     <include reference="ueI-Ug-7Vd"/>
                                 </mask>
@@ -2137,8 +2127,7 @@
                                     <exclude reference="TEP-0E-XbU"/>
                                 </mask>
                             </variation>
-                            <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                <rect key="frame" x="0.0" y="92" width="240" height="5"/>
+                            <variation key="heightClass=regular-widthClass=compact">
                                 <mask key="constraints">
                                     <include reference="TEP-0E-XbU"/>
                                 </mask>
@@ -2160,8 +2149,7 @@
                                             <exclude reference="o2x-HA-RhT"/>
                                         </mask>
                                     </variation>
-                                    <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
-                                        <rect key="frame" x="15" y="8" width="26" height="13"/>
+                                    <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="constraints">
                                             <include reference="o2x-HA-RhT"/>
                                         </mask>
@@ -2180,8 +2168,7 @@
                                             <exclude reference="IUh-ch-d7Z"/>
                                         </mask>
                                     </variation>
-                                    <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
-                                        <rect key="frame" x="51" y="8" width="9" height="13"/>
+                                    <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="constraints">
                                             <include reference="IUh-ch-d7Z"/>
                                         </mask>
@@ -2212,8 +2199,7 @@
                                     <exclude reference="tpg-Rf-4NG"/>
                                 </mask>
                             </variation>
-                            <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                <rect key="frame" x="0.0" y="98" width="240" height="30"/>
+                            <variation key="heightClass=regular-widthClass=compact">
                                 <mask key="subviews">
                                     <include reference="ipx-N4-uzW"/>
                                     <include reference="cEc-YG-FnT"/>
@@ -2404,5 +2390,6 @@
         <image name="line_vertical_1x20" width="1" height="20"/>
         <image name="red_line_160x4" width="1" height="20"/>
         <image name="uesd_btn_collect.png" width="13" height="13"/>
+        <image name="use_detail_btn_collect" width="1" height="20"/>
     </resources>
 </document>
