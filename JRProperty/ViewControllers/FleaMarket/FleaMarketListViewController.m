@@ -35,7 +35,9 @@
 @property(strong,nonatomic) NSMutableArray * dataSourceArray2;// 数据源2
 @property(strong,nonatomic) FleaMarketListModel * fleaMarketListModel;// 跳蚤列表模型
 @property(copy,nonatomic) NSString * queryTime; // 查询时间点 只要第一次就为空 之后为第一次返回的时间
+@property(copy,nonatomic) NSString * queryTime2; // 查询时间点 只要第一次就为空 之后为第一次返回的时间
 @property (assign, nonatomic) NSInteger     cPage; // 当前页码
+@property (assign, nonatomic) NSInteger     cPage2; // 当前页码
 @property(strong,nonatomic)FleaMarketModel * fleaMarketModel; // 跳蚤信息模型
 
 @property(nonatomic,assign) BOOL isFirstSellingReq;
@@ -57,6 +59,7 @@
     self.type = 0; // 0售卖 1求购
     
     self.queryTime = @""; // 页码首次加载初始化为空
+    self.queryTime2 = @""; // 页码首次加载初始化为空
 }
 
 - (void)viewDidLoad {
@@ -77,10 +80,23 @@
     __weak UITableView * weaktb = self.fleaMarketListTableView;
     
     [weaktb addHeaderWithCallback:^{
+        switch (self.type) {
+            case 0:{
+                self.cPage = 1;
+                break;
+            }
+            case 1:{
+                self.cPage2 = 1;
+                break;
+            }
+            default:
+                break;
+        }
+
         // 调用网络请求
-        self.cPage = 1;
+//        self.cPage = 1;
 //        self.hasMore = YES;
-        [self requestFleaMarketList:self.cPage type:[NSString stringWithFormat:@"%ld",(long)self.type]];
+        [self requestFleaMarketList:self.type == 0?self.cPage:self.cPage2 type:[NSString stringWithFormat:@"%ld",(long)self.type]];
         [self.fleaMarketListTableView footerBeginRefreshing];
     }];
     
@@ -88,7 +104,7 @@
     [weaktb addFooterWithCallback:^{
         // 调用网络请求
 //        if (self.hasMore) {
-            [self requestFleaMarketList:++self.cPage type:[NSString stringWithFormat:@"%ld",(long)self.type]];
+            [self requestFleaMarketList:self.type == 1?++self.cPage:++self.cPage2 type:[NSString stringWithFormat:@"%ld",(long)self.type]];
 //        }
     }];
 
@@ -126,7 +142,19 @@
 
 -(void)requestFleaMarketList:(NSInteger)page type:(NSString*)t{
     if (page == 1) {
-        self.queryTime = @"";
+        switch (self.type) {
+            case 0:{
+                self.queryTime = @"";
+                break;
+            }
+            case 1:{
+                self.queryTime2 = @"";
+                break;
+            }
+            default:
+                break;
+        }
+
     }
     NSString *uid = [LoginManager shareInstance].loginAccountInfo.uId;
     [self.fleaMarketService Bus600101:uid cId:nil page:[NSString stringWithFormat:@"%ld",(long)page] num:NUMBER_FOR_REQUEST type:t queryTime:self.queryTime success:^(id responseObject) {
@@ -148,7 +176,19 @@
 //                    [self.dataSourceArray removeAllObjects];
 //                    [self.dataSourceArray2 removeAllObjects];
                     [self.fleaMarketListTableView headerEndRefreshing];
-                    self.queryTime = self.fleaMarketListModel.queryTime;
+                    switch (self.type) {
+                        case 0:{
+                            self.queryTime = self.fleaMarketListModel.queryTime;
+                            break;
+                        }
+                        case 1:{
+                            self.queryTime2 = self.fleaMarketListModel.queryTime;
+                            break;
+                        }
+                        default:
+                            break;
+                    }
+
                 }
                 
                 [self.fleaMarketListTableView footerEndRefreshing]; // 停止底部刷新
