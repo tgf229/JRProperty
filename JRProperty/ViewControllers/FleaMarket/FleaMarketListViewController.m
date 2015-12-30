@@ -291,6 +291,8 @@
     // 设置其他数据
     if ([@"1" isEqualToString:fmm.flag]) { // 该宝贝已收藏
         [fleaMarketListTableViewCell.favNum setImage:[UIImage imageNamed:@"uesd_btn_collect_press"] forState:UIControlStateNormal];
+    }else{
+        [fleaMarketListTableViewCell.favNum setImage:[UIImage imageNamed:@"uesd_btn_collect"] forState:UIControlStateNormal];
     }
     [fleaMarketListTableViewCell.favNum setTitle:fmm.praiseNum forState:UIControlStateNormal];// titleLabel.text = fmm.praiseNum;
     [fleaMarketListTableViewCell.msgNum setTitle:fmm.commentNum forState:UIControlStateNormal];//.titleLabel.text = fmm.commentNum;
