@@ -31,6 +31,8 @@
 @property (copy, nonatomic) NSString<Optional> * flag   ; // 是否已收藏
 @property (copy, nonatomic) NSString<Optional> * praiseNum ; // 收藏数量
 @property (copy, nonatomic) NSString<Optional> * commentNum ; // 评论数量
+@property (copy, nonatomic) NSString<Optional> * oPrice ; // 原价
+@property (copy, nonatomic) NSString<Optional> * cPrice ; // 现价
 @property (strong, nonatomic) NSArray<FleaMarketImageModel, Optional> * imageList; // 信息包含图片列表地址
 @property (strong, nonatomic) NSArray<FleaMarketLikeModel, Optional> * likeList; // 收藏此信息的用户列表
 @end

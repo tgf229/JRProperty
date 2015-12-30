@@ -115,8 +115,8 @@
                 self.timeView.text = self.fleaMarketDetailModel.time;
         
                 //缺少价格字段
-                //                    self.cPriceView.text = self.fleaMarketDetailModel.
-                //                    self.oPriceView.text = self.fleaMarketDetailModel.
+                self.cPriceView.text = self.fleaMarketDetailModel.cPrice;
+                self.oPriceView.text = self.fleaMarketDetailModel.oPrice;
         
                 self.prodInfoLabel.text = self.fleaMarketDetailModel.content;
         
