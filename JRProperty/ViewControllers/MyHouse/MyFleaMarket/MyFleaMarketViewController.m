@@ -24,12 +24,14 @@
 
 - (IBAction)sellingItemAction:(id)sender;
 - (IBAction)unSellAction:(id)sender;
+- (IBAction)moreAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *unSellBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *sliderImgView;
 
 @property (weak, nonatomic) IBOutlet UIButton *sellingBtn;
 
 @property (weak, nonatomic) IBOutlet UITableView *fleaMarketListTableView;
+@property (strong, nonatomic) IBOutlet UIView *moreActionView;
 
 @property(strong,nonatomic) FleaMarketService * fleaMarketService;// 跳蚤服务类
 @property(strong,nonatomic) NSMutableArray * dataSourceArray;// 数据源
@@ -382,4 +384,14 @@
 }
 
 
+- (IBAction)moreAction:(id)sender {
+    [self creatMoreActionView];
+}
+-(void)creatMoreActionView{
+    UIActionSheet * actionSheet = [[UIActionSheet alloc] initWithTitle:@"\n" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+    self.moreActionView.frame = CGRectMake(0.0, 0.0, UIScreenWidth, 218.0);
+    
+    [actionSheet addSubview:self.moreActionView];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+}
 @end

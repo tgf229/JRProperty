@@ -8,6 +8,6 @@
 
 #import "JRViewController.h"
 
-@interface MyFleaMarketViewController : JRViewControllerWithBackButton<UITableViewDataSource,UITableViewDelegate>
+@interface MyFleaMarketViewController : JRViewControllerWithBackButton<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 @property(copy,nonatomic) NSString * titleName;
 @end
