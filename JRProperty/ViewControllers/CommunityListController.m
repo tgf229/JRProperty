@@ -54,7 +54,7 @@
     self.communityService = [[CommunityService alloc]init];
     self.response = [[ArticleListModel alloc]init];
     self.doc = [[NSMutableArray alloc]init];
-//    self.dict = [[NSMutableDictionary alloc]init];
+    //    self.dict = [[NSMutableDictionary alloc]init];
     
     
     //错误页面初始化
@@ -78,7 +78,7 @@
     endTip.image = [UIImage imageNamed:@"end_tips_60x42"];
     [self.footerView addSubview:endTip];
     
-
+    
     [self initRightBarButtonItem];
     //初始化列表view
     [self initView];
@@ -95,9 +95,9 @@
     self.tableView.dataSource = self;
     
     //表格
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.tableView.backgroundColor = [UIColor clearColor];
-//    self.tableView.showsVerticalScrollIndicator = YES;
+    //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //    self.tableView.backgroundColor = [UIColor clearColor];
+    //    self.tableView.showsVerticalScrollIndicator = YES;
 }
 
 -(void)initHeaderAndFooter{
@@ -106,9 +106,9 @@
         self.isPulling = YES;
         [self reqList:@"1" time:nil];
     }];
-//    [self.tableView addFooterWithCallback:^{
-//        NSLog(@"上拉分页");
-//    }];
+    //    [self.tableView addFooterWithCallback:^{
+    //        NSLog(@"上拉分页");
+    //    }];
 }
 
 /**
@@ -124,8 +124,8 @@
     }
     [editButton setImage:[UIImage imageNamed:@"title_red_fahuati"] forState:UIControlStateNormal];
     [editButton setImage:[UIImage imageNamed:@"title_red_fahuati"] forState:UIControlStateHighlighted];
-
-//    [editButton addTarget:self action:@selector(submitDataToService) forControlEvents:UIControlEventTouchUpInside];
+    
+    //    [editButton addTarget:self action:@selector(submitDataToService) forControlEvents:UIControlEventTouchUpInside];
     editButton.tag = 10000;
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:editButton];
     [editButton addTarget:self action:@selector(gotoPostArticle) forControlEvents:UIControlEventTouchUpInside];
@@ -133,9 +133,10 @@
 }
 
 -(void)gotoPostArticle{
-        PublicTopicViewController *publicTopicController = [[PublicTopicViewController alloc] init];
-        publicTopicController.title = @"发话题";
-        [self.navigationController pushViewController:publicTopicController animated:YES];
+    PublicTopicViewController *publicTopicController = [[PublicTopicViewController alloc] init];
+    publicTopicController.title = @"发话题";
+    publicTopicController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:publicTopicController animated:YES];
 }
 
 -(void)reqList:(NSString *)page time:(NSString *)queryTime{
@@ -287,7 +288,7 @@
     NSString *key = [self.dictKeys objectAtIndex:section];
     NSArray *array = [self.dict objectForKey:key];
     ArticleDetailModel *model = [array objectAtIndex:row];
-//    ArticleDetailModel *model = [self.doc objectAtIndex:row];
+    //    ArticleDetailModel *model = [self.doc objectAtIndex:row];
     CGFloat rowHight = [CommunityListCell height:model];
     return rowHight;
 }
@@ -304,7 +305,7 @@
     
     if ([@"4" isEqualToString:detail.type]) {
         CommunityListOfficialCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"CommunityListOfficialCell" owner:self options:nil]objectAtIndex:0];
-
+        
         [cell showCell:detail];
         return cell;
         
@@ -365,7 +366,7 @@
     if ([@"4" isEqualToString:model.type]) {
         controller.onlyOfficial = YES;
     }
-
+    
     [self.navigationController pushViewController:controller animated:YES];
 }
 

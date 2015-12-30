@@ -256,29 +256,35 @@
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, width)];
         if ([JOB_ADVISE isEqualToString:itemModel.sId]) {
             [button setTag:0];
+            [button addTarget:self action:@selector(serviceItemClick:) forControlEvents:UIControlEventTouchUpInside];
         }else if ([JOB_COMPLAIN isEqualToString:itemModel.sId]) {
             [button setTag:1];
+            [button addTarget:self action:@selector(serviceItemClick:) forControlEvents:UIControlEventTouchUpInside];
         }
         else if ([JOB_HELP isEqualToString:itemModel.sId]) {
             [button setTag:2];
+            [button addTarget:self action:@selector(serviceItemClick:) forControlEvents:UIControlEventTouchUpInside];
         }
         else if ([JOB_REPAIR isEqualToString:itemModel.sId]) {
             [button setTag:3];
+            [button addTarget:self action:@selector(serviceItemClick:) forControlEvents:UIControlEventTouchUpInside];
         }
         else if ([STAFF_PRAISE isEqualToString:itemModel.sId]) {
             [button setTag:4];
+            [button addTarget:self action:@selector(serviceItemClick:) forControlEvents:UIControlEventTouchUpInside];
         }
         else if ([SERVICE_PARCEL isEqualToString:itemModel.sId]) {
             [button setTag:5];
+            [button addTarget:self action:@selector(serviceItemClick:) forControlEvents:UIControlEventTouchUpInside];
         }
         else if ([SERVICE_PAYMENT isEqualToString:itemModel.sId]) {
             [button setTag:6];
+            [button addTarget:self action:@selector(serviceItemClick:) forControlEvents:UIControlEventTouchUpInside];
         }
         else if ([SERVICE_CONVENIENT isEqualToString:itemModel.sId]) {
             [button setTag:7];
+            [button addTarget:self action:@selector(serviceItemClick:) forControlEvents:UIControlEventTouchUpInside];
         }
-        [button addTarget:self action:@selector(serviceItemClick:) forControlEvents:UIControlEventTouchUpInside];
-
         
         [self.serviceListView addSubview:imageView];
         [self.serviceListView addSubview:label];
