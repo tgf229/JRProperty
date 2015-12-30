@@ -240,12 +240,14 @@
 #define  HTTP_Bus302202_URL [NSString stringWithFormat:@"%@Bus302202?encrypt=simple", SERVER_URL]
 //小区话题列表查询  ok
 #define  HTTP_Bus302301_URL [NSString stringWithFormat:@"%@Bus302301?encrypt=none", SERVER_URL]
+//用户话题列表查询
+#define  HTTP_Bus301402_URL [NSString stringWithFormat:@"%@Bus301402?encrypt=none",SERVER_URL]
 
 //小区物业服务配置项查询
 #define  HTTP_Bus200901_URL [NSString stringWithFormat:@"%@Bus200901?encrypt=none", SERVER_URL]
 
 
-/****************************** 表扬接口 **********************************************/
+/****************************** 表扬接口 **********/
 // 3.2.5	表扬信息列表查询
 #define  HTTP_Bus200501_URL [NSString stringWithFormat:@"%@Bus200501?encrypt=simple", SERVER_URL]
 // 3.2.6	表扬信息列表查询
@@ -255,7 +257,7 @@
 // 3.2.8	表扬信息列表查询
 #define  HTTP_Bus200801_URL [NSString stringWithFormat:@"%@Bus200801?encrypt=none", SERVER_URL]
 
-/****************************** 跳蚤接口 **********************************************/
+/****************************** 跳蚤接口 ***********/
 // 3.6.1	列表查询
 #define  HTTP_Bus600101_URL [NSString stringWithFormat:@"%@Bus600101?encrypt=none", SERVER_URL]
 // 3.6.2	详情查询

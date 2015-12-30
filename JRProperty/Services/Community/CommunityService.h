@@ -85,4 +85,14 @@
           success:  (void (^)(id responseObject))success
           failure:  (void (^)(NSError *error))failure;
 
+//用户话题列表查询
+-(void) Bus301402:  (NSString *)cId
+              uId:  (NSString *)uId
+         queryUId:  (NSString *)queryUId
+             page:  (NSString *)page
+              num:  (NSString *)num
+        queryTime:  (NSString *)queryTime
+          success:  (void (^)(id responseObject))success
+          failure:  (void (^)(NSError *error))failure;
+
 @end

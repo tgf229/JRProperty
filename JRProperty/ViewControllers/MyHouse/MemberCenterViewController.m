@@ -23,6 +23,7 @@
 #import "SVProgressHUD.h"
 #import "UIImageView+WebCache.h"
 #import "JRPropertyUntils.h"
+#import "UserCommunityListController.h"
 
 @interface MemberCenterViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
@@ -45,13 +46,12 @@
 @property (weak,nonatomic) IBOutlet UIButton       *noHouseAddButton;
 
 
+@property (weak,nonatomic) IBOutlet UIView         *myArticleView;
 @property (weak,nonatomic) IBOutlet UIView         *pwdSettingview;
 @property (weak,nonatomic) IBOutlet UIView         *settingview;
 
 @property (weak,nonatomic)   IBOutlet  NSLayoutConstraint *pwdSetViewTopCon;
 @property (weak,nonatomic)   IBOutlet  NSLayoutConstraint *tableviewHightCon;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHightCon;
 
 @property (strong,nonatomic) UserService                  *userService;
 @property (strong,nonatomic) HouseService                 *houseService;
@@ -87,6 +87,10 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
     
     UITapGestureRecognizer *settingTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(settingViewTapped:)];
     [self.settingview addGestureRecognizer:settingTap];
+    
+    UITapGestureRecognizer *myArticleViewTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMyArticle:)];
+    [self.myArticleView addGestureRecognizer:myArticleViewTap];
+    
     
     self.contentView.backgroundColor = [UIColor getColor:@"eeeeee"];
 //    self.mainScrollView.backgroundColor = [UIColor getColor:@"eeeeee"];
@@ -506,6 +510,7 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
 {
     if ([self.houseDataArray count] > 0) {
         self.houseHeaderview.hidden = NO;
+         self.houseTableview.hidden = NO;
         self.noHouseHeaderview.hidden = YES;
         self.pwdSetViewTopCon.constant = 12;
     }
@@ -513,8 +518,9 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
         //没有房屋纪录，提示添加记录
         self.houseHeaderview.hidden = YES;
         self.noHouseHeaderview.hidden = NO;
-        self.pwdSetViewTopCon.constant = 117;
+        self.pwdSetViewTopCon.constant = 12;
         
+        self.houseTableview.hidden = YES;
         self.headerAddButton.hidden = NO;
         self.headerLineview.hidden = NO;
         self.headerEditButton.titleLabel.text = @"编辑";
@@ -527,6 +533,14 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
 
     [self updateTableviewConstraints];
     [self.view layoutIfNeeded];
+}
+
+//点击我发布的话题
+-(void)clickMyArticle:(id)sender{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"CommunityStoryboard" bundle:nil];
+    UserCommunityListController *userCommunityListController = [storyboard instantiateViewControllerWithIdentifier:@"UserCommunityListController"];
+    userCommunityListController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:userCommunityListController animated:YES];
 }
 
 

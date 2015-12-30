@@ -30,6 +30,7 @@
     NSString *voteIdKey;
     NSString *replyUIdKey;
     NSString *commentIdKey;
+    NSString *queryUIdKey;
 }
 
 -(id)init
@@ -50,11 +51,12 @@
         voteIdKey = @"voteId";
         replyUIdKey = @"replyUId";
         commentIdKey = @"commentId";
+        queryUIdKey = @"queryUId";
     }
     return self;
 }
 
-//话题列表查询
+//小区话题列表查询
 -(void) Bus302301:  (NSString *)uId
               cId:  (NSString *)cId
              page:  (NSString *)page
@@ -71,6 +73,33 @@
     }
 
     [[AFHTTPRequestOperationManager manager]POST:HTTP_Bus302301_URL parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        ArticleListModel * res = [[ArticleListModel alloc]initWithDictionary:responseObject error:nil];
+        if (success) {
+            success(res);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+//用户话题列表查询
+-(void) Bus301402:  (NSString *)cId
+              uId:  (NSString *)uId
+         queryUId:  (NSString *)queryUId
+             page:  (NSString *)page
+              num:  (NSString *)num
+        queryTime:  (NSString *)queryTime
+          success:  (void (^)(id responseObject))success
+          failure:  (void (^)(NSError *error))failure{
+    NSDictionary *param;
+    if (queryTime && ![@"" isEqualToString:queryTime]) {
+        param = [[NSDictionary alloc]initWithObjectsAndKeys:cId,cIdKey,uId,uIdKey,queryUId,queryUIdKey,page,pageKey,num,numKey,queryTime,queryTimeKey, nil];
+    }else{
+        param = [[NSDictionary alloc]initWithObjectsAndKeys:cId,cIdKey,uId,uIdKey,queryUId,queryUIdKey,page,pageKey,num,numKey, nil];
+    }
+    [[AFHTTPRequestOperationManager manager]POST:HTTP_Bus301402_URL parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         ArticleListModel * res = [[ArticleListModel alloc]initWithDictionary:responseObject error:nil];
         if (success) {
             success(res);

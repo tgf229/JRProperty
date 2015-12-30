@@ -11,6 +11,6 @@
 #import "CommunityListCell.h"
 #import "PhotosViewController.h"
 
-@interface CommunityListController : JRViewController<UITableViewDataSource,UITableViewDelegate,PhotosViewDatasource,PhotosViewDelegate>
+@interface UserCommunityListController : JRViewControllerWithBackButton<UITableViewDataSource,UITableViewDelegate,PhotosViewDatasource,PhotosViewDelegate>
 
 @end
