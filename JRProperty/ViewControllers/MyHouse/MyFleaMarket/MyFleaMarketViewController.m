@@ -421,7 +421,7 @@
             [self.shadowLayoutView removeGestureRecognizer:g];
         }
     }];
-    
+     
 }
 
 
