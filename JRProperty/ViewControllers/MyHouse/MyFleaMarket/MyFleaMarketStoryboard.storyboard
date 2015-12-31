@@ -519,6 +519,7 @@
                                                             <outlet property="favNum" destination="Cob-ff-r1k" id="BPI-NL-F2T"/>
                                                             <outlet property="headImage" destination="FYd-1U-hDp" id="yky-pD-sTV"/>
                                                             <outlet property="imagesView" destination="aN7-Mr-WYE" id="jRV-1a-T7V"/>
+                                                            <outlet property="moreBtn" destination="2Sy-JF-9Y0" id="0fO-YH-Ftj"/>
                                                             <outlet property="msgNum" destination="R4y-ZE-jm5" id="Lwr-FC-11P"/>
                                                             <outlet property="nickName" destination="uoT-o1-iAr" id="rTm-gE-QUB"/>
                                                             <outlet property="nowPrice" destination="SUv-QR-qI7" id="MG4-uG-aWC"/>
@@ -676,12 +677,16 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="cancelBtn" destination="orF-yh-HOM" id="YnR-rx-CFw"/>
+                        <outlet property="delBtn" destination="God-2S-MFU" id="ntE-mg-JkG"/>
+                        <outlet property="downBtn" destination="Am9-2Y-j9q" id="HQO-6K-4Ct"/>
                         <outlet property="fleaMarketListTableView" destination="I2Y-4Y-L1G" id="B7Q-7K-ARO"/>
                         <outlet property="moreView" destination="nTK-No-2oi" id="Ktt-2u-8oa"/>
                         <outlet property="sellingBtn" destination="mAo-qg-ojC" id="1P5-0w-Sk5"/>
                         <outlet property="shadowLayoutView" destination="B05-wD-29f" id="95n-F1-gp8"/>
                         <outlet property="sliderImgView" destination="Hd2-Dv-vmt" id="mZ0-KM-rdb"/>
                         <outlet property="unSellBtn" destination="raO-NQ-n7g" id="DOr-db-Ppy"/>
+                        <outlet property="upBtn" destination="miz-Tb-n8v" id="fyH-8j-2n3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQW-ad-HcC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -708,6 +713,9 @@
                                             <include reference="m99-q0-6Uc"/>
                                         </mask>
                                     </variation>
+                                    <connections>
+                                        <action selector="upAction:" destination="4S6-LX-xxz" eventType="touchUpInside" id="0uA-eK-swf"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上架" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4IM-Uo-CtR">
                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -746,6 +754,9 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Am9-2Y-j9q">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                     <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="downAction:" destination="4S6-LX-xxz" eventType="touchUpInside" id="1i2-QM-5fh"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下架" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M07-L2-MLk">
                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -757,6 +768,9 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orF-yh-HOM">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                     <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="cancelAction:" destination="4S6-LX-xxz" eventType="touchUpInside" id="nxA-Cm-2HM"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="取消收藏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4QT-AZ-xfW">
                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -768,6 +782,9 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="God-2S-MFU">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                     <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="delAction:" destination="4S6-LX-xxz" eventType="touchUpInside" id="CAR-P5-LWq"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="删除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qW4-TT-5ly">
                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
