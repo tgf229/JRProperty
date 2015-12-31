@@ -31,7 +31,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *sellingBtn;
 
 @property (weak, nonatomic) IBOutlet UITableView *fleaMarketListTableView;
-@property (strong, nonatomic) IBOutlet UIView *moreActionView;
+
+@property (strong, nonatomic) IBOutlet UIView *shadowLayoutView;
+@property (weak, nonatomic) IBOutlet UIView *moreView;
+- (IBAction)cancelShadowViewAction:(id)sender;
+
 
 @property(strong,nonatomic) FleaMarketService * fleaMarketService;// 跳蚤服务类
 @property(strong,nonatomic) NSMutableArray * dataSourceArray;// 数据源
@@ -395,27 +399,30 @@
     [self creatMoreActionView];
 }
 -(void)creatMoreActionView{
-    if (CURRENT_VERSION >= 8.0) {
-        UIAlertController * alertVc = [[UIAlertController alloc] init];
-        alertVc.title = @"";
+    
+    [UIView animateWithDuration:0.35f animations:^{
+        self.shadowLayoutView.frame = CGRectMake(0.0, 0.0, UIScreenWidth, UIScreenHeight);
+        self.shadowLayoutView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.7];
+        //    self.shadowLayoutView.alpha = 0.7;
+        [self.view addSubview:self.shadowLayoutView];
         
-        
-        
-        UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
-            NSLog(@"取消");
-        }];
-        self.moreActionView.frame = CGRectMake(alertVc.view.frame.origin.x, alertVc.view.frame.origin.y, alertVc.view.frame.size.width, alertVc.view.frame.size.height);
-        [alertVc.view addSubview:self.moreActionView];
-        NSLog(@"%f",alertVc.view.frame.origin.x) ;
-        [alertVc addAction:cancelAction];
-        [self presentViewController:alertVc animated:true completion:nil];
-
-    }else{
-        UIActionSheet * actionSheet = [[UIActionSheet alloc] initWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:nil, nil];
-        self.moreActionView.frame = CGRectMake(0.0, 0.0, UIScreenWidth, 218.0);
-        
-        [actionSheet addSubview:self.moreActionView];
-        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
-    }
+        UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelShadowViewAction:)];
+        [self.shadowLayoutView addGestureRecognizer:tapGesture];
+    }];
+    
+    
+    
 }
+- (IBAction)cancelShadowViewAction:(id)sender {
+    [UIView animateWithDuration:0.35f animations:^{
+        [self.shadowLayoutView removeFromSuperview];
+        ;
+        for (UIGestureRecognizer * g in [self.shadowLayoutView gestureRecognizers]) {
+            [self.shadowLayoutView removeGestureRecognizer:g];
+        }
+    }];
+    
+}
+
+
 @end
