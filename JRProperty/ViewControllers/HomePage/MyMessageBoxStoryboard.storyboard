@@ -6,10 +6,10 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--My Message Box View Controller-->
         <scene sceneID="Ew8-3D-4y6">
             <objects>
-                <viewController id="jPM-BY-7BE" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="myMessageBoxViewController" id="jPM-BY-7BE" customClass="MyMessageBoxViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HtP-N2-zjP"/>
                         <viewControllerLayoutGuide type="bottom" id="qnC-vb-xzw"/>
@@ -23,9 +23,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="I9s-AB-HiU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myMessageBoxTableViewCell" id="I9s-AB-HiU" customClass="MyMessageBoxTableViewCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I9s-AB-HiU" id="lNi-TK-hju">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="142"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="community_default" translatesAutoresizingMaskIntoConstraints="NO" id="B1D-NC-qQF">
@@ -39,7 +40,8 @@
                                                             <exclude reference="GfU-uO-zp4"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="15" y="19" width="12" height="12"/>
                                                         <mask key="constraints">
                                                             <include reference="GfU-uO-zp4"/>
                                                         </mask>
@@ -58,7 +60,8 @@
                                                             <exclude reference="vfU-MF-JNw"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="170" y="19" width="60" height="60"/>
                                                         <mask key="constraints">
                                                             <include reference="m3n-Wn-FNz"/>
                                                             <include reference="vfU-MF-JNw"/>
@@ -71,8 +74,11 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="37" y="63" width="50" height="15"/>
+                                                    </variation>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6qc-oA-TEY">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_grey_foot_40x1" translatesAutoresizingMaskIntoConstraints="NO" id="6qc-oA-TEY">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="Ze7-ro-Zpw"/>
@@ -83,7 +89,8 @@
                                                             <exclude reference="Ze7-ro-Zpw"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="10" y="141" width="230" height="1"/>
                                                         <mask key="constraints">
                                                             <include reference="Ze7-ro-Zpw"/>
                                                         </mask>
@@ -95,6 +102,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="37" y="19" width="126" height="34"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -121,8 +131,6 @@
                                                     <exclude reference="NEd-b2-BtB"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="IDg-oT-BOm"/>
-                                                    <exclude reference="gHn-Ph-twQ"/>
                                                     <exclude reference="Bay-xW-ARC"/>
                                                     <exclude reference="Xc1-Dj-sdL"/>
                                                     <exclude reference="rJd-Ri-Q9C"/>
@@ -131,6 +139,8 @@
                                                     <exclude reference="4nL-3y-4Gb"/>
                                                     <exclude reference="Hwq-V8-T86"/>
                                                     <exclude reference="m1q-VH-iUH"/>
+                                                    <exclude reference="IDg-oT-BOm"/>
+                                                    <exclude reference="gHn-Ph-twQ"/>
                                                     <exclude reference="EcR-ds-lNc"/>
                                                     <exclude reference="kSW-8M-h36"/>
                                                 </mask>
@@ -144,8 +154,6 @@
                                                     <include reference="NEd-b2-BtB"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="IDg-oT-BOm"/>
-                                                    <include reference="gHn-Ph-twQ"/>
                                                     <include reference="Bay-xW-ARC"/>
                                                     <include reference="Xc1-Dj-sdL"/>
                                                     <include reference="rJd-Ri-Q9C"/>
@@ -154,12 +162,21 @@
                                                     <include reference="4nL-3y-4Gb"/>
                                                     <include reference="Hwq-V8-T86"/>
                                                     <include reference="m1q-VH-iUH"/>
+                                                    <include reference="IDg-oT-BOm"/>
+                                                    <include reference="gHn-Ph-twQ"/>
                                                     <include reference="EcR-ds-lNc"/>
                                                     <include reference="kSW-8M-h36"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                        <connections>
+                                            <outlet property="fleaImage" destination="THx-FC-ZgD" id="lYF-we-eTx"/>
+                                            <outlet property="messageContentLabel" destination="NEd-b2-BtB" id="fJR-2E-Aib"/>
+                                            <outlet property="messageContentTrailingCons" destination="Bay-xW-ARC" id="4wZ-an-lGl"/>
+                                            <outlet property="messageHeadImage" destination="B1D-NC-qQF" id="sIn-Lm-Wph"/>
+                                            <outlet property="messageTimeLabel" destination="l16-vw-mve" id="3HC-Uz-8cA"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -176,10 +193,10 @@
                                 <exclude reference="RoE-Yf-nOM"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="D7v-a1-RFq"/>
                                 <exclude reference="5zN-HE-ArD"/>
                                 <exclude reference="FSB-PW-QJW"/>
                                 <exclude reference="Le7-QI-aRK"/>
-                                <exclude reference="D7v-a1-RFq"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -187,10 +204,10 @@
                                 <include reference="RoE-Yf-nOM"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="D7v-a1-RFq"/>
                                 <include reference="5zN-HE-ArD"/>
                                 <include reference="FSB-PW-QJW"/>
                                 <include reference="Le7-QI-aRK"/>
-                                <include reference="D7v-a1-RFq"/>
                             </mask>
                         </variation>
                     </view>
@@ -202,5 +219,6 @@
     </scenes>
     <resources>
         <image name="community_default" width="1" height="20"/>
+        <image name="line_grey_foot_40x1" width="1" height="20"/>
     </resources>
 </document>
