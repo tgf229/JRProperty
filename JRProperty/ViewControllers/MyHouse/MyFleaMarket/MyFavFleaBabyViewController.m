@@ -99,7 +99,6 @@
         self.queryTime = @"";
     }
     
-    
     NSString *uid = [LoginManager shareInstance].loginAccountInfo.uId;
     [self.fleaMarketService Bus600801:uid cId:nil queryUid:uid page:[NSString stringWithFormat:@"%ld",(long)page] num:NUMBER_FOR_REQUEST queryTime:self.queryTime success:^(id responseObject) {
         if ([responseObject isKindOfClass:[FleaMarketListModel class]]) {
