@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *favNum;
 @property (weak, nonatomic) IBOutlet UIButton *msgNum;
 @property (weak, nonatomic) IBOutlet UIView *imagesView;
+@property (weak, nonatomic) IBOutlet UIButton *moreBtn;
 
 @end
