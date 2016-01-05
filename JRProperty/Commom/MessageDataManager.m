@@ -398,5 +398,25 @@
     return _messageArray;
 }
 
+/**
+ *  获取我的未读消息数目 v2.0
+ *
+ *  @param userId  用户id
+ *
+ *  @return 我的消息
+ */
+-(int)queryMyUnReadMessageBox:(NSString*)userId{
+    typeof(MessageDataManager*) bself = self;
+    __block int _count = 0;
+    dispatch_sync(_dbQueue, ^{
+        FMResultSet *rs = [bself->_db executeQuery:@"SELECT * FROM my_message_box WHERE userid = ? and isRead = 0 ", userId];
+        while ([rs next]) {
+            @autoreleasepool {
+                _count +=1;
+            }
+        }
+    });
+    return _count;
+}
 
 @end

@@ -38,7 +38,7 @@
  *
  *  @return 我的消息
  */
--(int)queryMyUnReadMessage:(NSString*)userId cId:(NSString *)_cId;;
+-(int)queryMyUnReadMessage:(NSString*)userId cId:(NSString *)_cId;
 
 /**
  *  更新信息已读
@@ -122,5 +122,14 @@
  *  @return 我的消息
  */
 -(NSMutableArray *)queryMyMessageBox:(NSString*)userId isRead:(NSString *)isRead;
+
+/**
+ *  获取我的未读消息数目 v2.0
+ *
+ *  @param userId  用户id
+ *
+ *  @return 我的消息
+ */
+-(int)queryMyUnReadMessageBox:(NSString*)userId;
 
 @end
