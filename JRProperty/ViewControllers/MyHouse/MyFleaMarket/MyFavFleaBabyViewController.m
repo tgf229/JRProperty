@@ -26,23 +26,10 @@
 
 
 
-- (IBAction)moreAction:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UITableView *fleaMarketListTableView;
 
-@property (strong, nonatomic) IBOutlet UIView *shadowLayoutView;
-@property (weak, nonatomic) IBOutlet UIView *moreView;
-- (IBAction)cancelShadowViewAction:(id)sender;
-
-@property (weak, nonatomic) IBOutlet UIButton *upBtn;
-- (IBAction)upAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *downBtn;
-- (IBAction)downAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
-- (IBAction)cancelAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *delBtn;
-- (IBAction)delAction:(id)sender;
 
 @property(strong,nonatomic) FleaMarketService * fleaMarketService;// 跳蚤服务类
 @property(strong,nonatomic) NSMutableArray * dataSourceArray;// 数据源
@@ -272,84 +259,6 @@
     [self.navigationController pushViewController:fleaMarketDetailViewController animated:YES];
 }
 
-- (IBAction)moreAction:(id)sender {
-    UIButton *mbn = (UIButton *)sender;
-    NSInteger tg = mbn.tag;
-    [self creatMoreActionView:tg]; // cell索引标志tg
-}
--(void)creatMoreActionView:(NSInteger) tag{
-    self.shadowLayoutView.frame = CGRectMake(0.0, 0.0, UIScreenWidth, 0);
-    [UIView animateWithDuration:0.3f animations:^{
-        self.shadowLayoutView.frame = CGRectMake(0.0, 0.0, UIScreenWidth, UIScreenHeight);
-        [self.view addSubview:self.shadowLayoutView];
-    }];
-    self.shadowLayoutView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.7];// 设置透明
-    // 设置点击事件
-    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelShadowViewAction:)];
-    [self.shadowLayoutView addGestureRecognizer:tapGesture];
-    //设置按钮tag标志
-    self.upBtn.tag = tag;
-    self.downBtn.tag = tag;
-    self.cancelBtn.tag = tag;
-    self.delBtn.tag = tag;
-}
-- (IBAction)cancelShadowViewAction:(id)sender {
-    [UIView animateWithDuration:0.35f animations:^{
-        [self.shadowLayoutView removeFromSuperview];
-    }];
-    for (UIGestureRecognizer * g in [self.shadowLayoutView gestureRecognizers]) {
-        [self.shadowLayoutView removeGestureRecognizer:g];
-    }
-    
-}
-
-
-- (IBAction)upAction:(id)sender {
-    FleaMarketModel * fmm = [self returnFleaMarketModelFromButtonTag:sender];
-    [self requestOperFleaBaby:fmm.aId type:@"2"];
-}
-- (IBAction)downAction:(id)sender {
-    FleaMarketModel * fmm = [self returnFleaMarketModelFromButtonTag:sender];
-    [self requestOperFleaBaby:fmm.aId type:@"3"];
-}
-- (IBAction)cancelAction:(id)sender {
-    FleaMarketModel * fmm = [self returnFleaMarketModelFromButtonTag:sender];
-    [self requestOperFleaBaby:fmm.aId type:@"0"];
-}
-- (IBAction)delAction:(id)sender {
-    FleaMarketModel * fmm = [self returnFleaMarketModelFromButtonTag:sender];
-    [self requestOperFleaBaby:fmm.aId type:@"4"];
-}
--(FleaMarketModel*)returnFleaMarketModelFromButtonTag:(id)btn{
-    UIButton *mbn = (UIButton *)btn;
-    NSInteger tg = mbn.tag;
-    FleaMarketModel * fmm = (FleaMarketModel*)self.dataSourceArray[tg-MOREBTN_BASE_TAG];
-    return fmm;
-}
--(void)requestOperFleaBaby:(NSString*) aid type:(NSString*)type{
-    [self.fleaMarketService Bus600601:nil aId:aid uId:[LoginManager shareInstance].loginAccountInfo.uId type:type success:^(id responseObject) {
-        if ([responseObject isKindOfClass:[BaseModel class]]) {
-            BaseModel * baseModel = (BaseModel*)responseObject;
-            if ([RETURN_CODE_SUCCESS isEqualToString:baseModel.retcode]) {
-                [self addAlertViewWithInfo:@"宝贝操作成功，您可以刷新列表查看"];
-            }else{
-                [SVProgressHUD showErrorWithStatus:baseModel.retinfo];
-            }
-        }
-    } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"宝贝操作失败，请稍后重试"];
-    }];
-}
-
-/**
- *  alert提示
- *
- *  @param str 提示内容
- */
-- (void)addAlertViewWithInfo:(NSString *)str{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:str delegate:nil cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil];
-    [alert show];
-}
 
 
 
