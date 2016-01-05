@@ -10,6 +10,7 @@
 #import "FMDatabase.h"
 #import "FMDatabaseQueue.h"
 #import "MessageListModel.h"
+#import "MyMessageBoxListModel.h"
 #import "ReplyListModel.h"
 #import "JRHeader.h"
 #import "JRDefine.h"
@@ -93,5 +94,14 @@
  *  @return 操作结果
  */
 - (int)queryStausWithAnnounceId:(NSString *)aId;
+
+/**
+ *  添加信息
+ *
+ *  @param myMessageBoxListModel  消息盒子实体
+ *
+ *  @return 操作结果
+ */
+-(BOOL)insertMessageBox:(MyMessageBoxListModel*)myMessageBoxListModel userId:(NSString *)_userId;
 
 @end
