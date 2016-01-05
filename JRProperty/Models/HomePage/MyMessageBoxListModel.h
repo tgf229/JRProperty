@@ -29,6 +29,9 @@
 @property(copy,nonatomic) NSString<Optional> * userLevel;
 @property(copy,nonatomic) NSString<Optional> * beReplyUId;
 @property(copy,nonatomic) NSString<Optional> * beReplyNickName;
+@property(copy,nonatomic) NSString<Optional> * rowId;
+@property(copy,nonatomic) NSString<Optional> * userId;
+@property(copy,nonatomic) NSString<Optional> * isRead;
 @end
 
 @interface MyMessageBoxListModel : BaseModel

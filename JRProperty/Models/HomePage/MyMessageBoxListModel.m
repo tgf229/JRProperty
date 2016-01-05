@@ -8,6 +8,10 @@
 
 #import "MyMessageBoxListModel.h"
 
+@implementation MyMessageBoxModel
+
+@end
+
 @implementation MyMessageBoxListModel
 
 @end
