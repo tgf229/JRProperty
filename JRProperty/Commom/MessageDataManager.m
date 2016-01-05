@@ -68,7 +68,7 @@
                 return;
             }
             // 我的消息 v2.0
-            if (![bself->_db executeUpdate:@"CREATE TABLE IF NOT EXISTS my_message_box(ROWID integer PRIMARY KEY AUTOINCREMENT UNIQUE, mId TEXT,type TEXT,aId TEXT,time TEXT,content TEXT,imageUrl TEXT,replyNickName TEXT, replyCommentId TEXT,replyContent TEXT,replyHeadUrl TEXT,beReplyUId TEXT,beReplyNickName TEXT,userLevel TEXT,replyUId TEXT,userId TEXT,cId TEXT,cName TEXT)"]) {
+            if (![bself->_db executeUpdate:@"CREATE TABLE IF NOT EXISTS my_message_box(ROWID integer PRIMARY KEY AUTOINCREMENT UNIQUE, mId TEXT,type TEXT,aId TEXT,time TEXT,content TEXT,imageUrl TEXT,replyNickName TEXT, replyCommentId TEXT,replyContent TEXT,replyHeadUrl TEXT,beReplyUId TEXT,beReplyNickName TEXT,userLevel TEXT,replyUId TEXT,userId TEXT,cId TEXT,cName TEXT,isRead TEXT)"]) {
                 NSLog(@"create table my_message_box error");
                 _bResult = NO;
                 return;
@@ -324,7 +324,7 @@
         for (MyMessageBoxModel *myMessageBoxModel in myMessageBoxListModel.doc) {
             FMResultSet *rs = [bself->_db executeQuery:@"SELECT * FROM my_message_box WHERE userId = ? and type = ? and mId = ? and aId = ?",_userId,myMessageBoxModel.type,myMessageBoxModel.mId,myMessageBoxModel.aId];
             if (![rs next]) {
-                _bResult = [bself->_db executeUpdate:@"INSERT INTO my_message_box (mId,type,aId,time,content,imageUrl,replyNickName,replyCommentId,replyContent,replyHeadUrl,beReplyUId,beReplyNickName,userLevel,replyUId,userId,cId,cName,) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",myMessageBoxModel.mId,myMessageBoxModel.type,myMessageBoxModel.aId,myMessageBoxModel.time,myMessageBoxModel.content,myMessageBoxModel.imageUrl,myMessageBoxModel.replyNickName,myMessageBoxModel.replyCommentId,myMessageBoxModel.replyContent,myMessageBoxModel.replyHeadUrl,myMessageBoxModel.beReplyUId,myMessageBoxModel.beReplyNickName,myMessageBoxModel.userLevel,myMessageBoxModel.replyUId,_userId,myMessageBoxModel.cId,myMessageBoxModel.cName];
+                _bResult = [bself->_db executeUpdate:@"INSERT INTO my_message_box (mId,type,aId,time,content,imageUrl,replyNickName,replyCommentId,replyContent,replyHeadUrl,beReplyUId,beReplyNickName,userLevel,replyUId,userId,cId,cName,isRead) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",myMessageBoxModel.mId,myMessageBoxModel.type,myMessageBoxModel.aId,myMessageBoxModel.time,myMessageBoxModel.content,myMessageBoxModel.imageUrl,myMessageBoxModel.replyNickName,myMessageBoxModel.replyCommentId,myMessageBoxModel.replyContent,myMessageBoxModel.replyHeadUrl,myMessageBoxModel.beReplyUId,myMessageBoxModel.beReplyNickName,myMessageBoxModel.userLevel,myMessageBoxModel.replyUId,_userId,myMessageBoxModel.cId,myMessageBoxModel.cName,@"0"];
             }
         }
     });
