@@ -30,6 +30,7 @@
 #import "AnnounceListModel.h"
 #import "MessageDataManager.h"
 #import "LoginViewController.h"
+#import "MyMessageBoxService.h"
 
 #import "UserPageViewController.h"
 #import "ArticleDetailViewController.h"
@@ -57,6 +58,7 @@
     UIButton * tButton;
 }
 @property (strong, nonatomic) MyMessageService *myMessageService;   // 我的消息业务请求服务类
+@property (strong, nonatomic) MyMessageBoxService *myMessageBoxService;   // 我的消息业务请求服务类 v2.0
 @property (strong, nonatomic) PackageService  *packageService;      // 快递业务服务类
 @property (strong, nonatomic) HelpInfoService *helpInfoService;     // 便民信息业务服务类
 @property (strong, nonatomic) AnnounceService *announceService;     // 轮播通告业务服务类
@@ -172,6 +174,7 @@
     self.announceService = [[AnnounceService alloc] init];
     self.serviceListModel = [[ServiceListModel alloc] init];
     self.adArray = [[NSMutableArray alloc] init];
+    self.myMessageBoxService = [[MyMessageBoxService alloc] init];
     
     [self config];
     [self reqServiceItem];
@@ -505,6 +508,45 @@
         _baseModel.retinfo = OTHER_ERROR_MESSAGE;
     }];
 }
+
+/**
+ *  我的消息查询 v2.0
+ */
+- (void)requestMyMesssageBox{
+    [self.myMessageBoxService Bus100702:CID_FOR_REQUEST uId:[LoginManager shareInstance].loginAccountInfo.uId success:^(id responseObject) {
+        if ([responseObject isKindOfClass:[MyMessageBoxListModel class]]) {
+            MyMessageBoxListModel *myMessageBoxListModel = (MyMessageBoxListModel *)responseObject;
+            if ([RETURN_CODE_SUCCESS isEqualToString:myMessageBoxListModel.retcode]) {
+                NSString *userId = [LoginManager shareInstance].loginAccountInfo.uId;
+                [[MessageDataManager defaultManager] insertMessageBox:myMessageBoxListModel userId:userId];
+                int num = [[MessageDataManager defaultManager] queryMyUnReadMessageBox:userId];
+                NSString *numStr = [NSString stringWithFormat:@"%d",num];
+                
+                //之后的视图操作 大兔兔 继续
+                _headViewMyMessageNumLabel.text = numStr;
+                if (num != 0) {
+                    _headViewMyMessageButtonView.hidden = NO;
+                }else{
+                    _headViewMyMessageButtonView.hidden = YES;
+                }
+            }
+            if (!_baseModel) {
+                _baseModel = [[BaseModel alloc] init];
+            }
+            _baseModel.retcode = myMessageBoxListModel.retcode;
+            _baseModel.retinfo = myMessageBoxListModel.retinfo;
+        }
+        _isHomeMessageRequestSuccess = YES;
+    } failure:^(NSError *error) {
+        _isHomeMessageRequestSuccess = YES;
+        if (!_baseModel) {
+            _baseModel = [[BaseModel alloc] init];
+        }
+        _baseModel.retcode = @"000001";
+        _baseModel.retinfo = OTHER_ERROR_MESSAGE;
+    }];
+}
+
 
 /**
  *  轮播通告——列表查询
