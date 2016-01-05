@@ -96,12 +96,31 @@
 - (int)queryStausWithAnnounceId:(NSString *)aId;
 
 /**
- *  添加信息
+ *  添加信息v2.0
  *
  *  @param myMessageBoxListModel  消息盒子实体
  *
  *  @return 操作结果
  */
 -(BOOL)insertMessageBox:(MyMessageBoxListModel*)myMessageBoxListModel userId:(NSString *)_userId;
+
+/**
+ *  更新信息已读v2.0
+ *
+ *  @param userId  用户id
+ *
+ *  @return 操作结果
+ */
+-(BOOL)updateMyMessageBox:(NSString*)userId rowId:(NSString *)rowId;
+
+/**
+ *  获取我的消息v2.0
+ *
+ *  @param userId   用户id
+ *  @param isRead   是否已读0否1是
+ 
+ *  @return 我的消息
+ */
+-(NSMutableArray *)queryMyMessageBox:(NSString*)userId isRead:(NSString *)isRead;
 
 @end

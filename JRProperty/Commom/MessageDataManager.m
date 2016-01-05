@@ -324,12 +324,79 @@
         for (MyMessageBoxModel *myMessageBoxModel in myMessageBoxListModel.doc) {
             FMResultSet *rs = [bself->_db executeQuery:@"SELECT * FROM my_message_box WHERE userId = ? and type = ? and mId = ? and aId = ?",_userId,myMessageBoxModel.type,myMessageBoxModel.mId,myMessageBoxModel.aId];
             if (![rs next]) {
-                _bResult = [bself->_db executeUpdate:@"INSERT INTO my_message_box (mId,type,aId,time,content,imageUrl,replyNickName,replyCommentId,replyContent,replyHeadUrl,beReplyUId,beReplyNickName,userLevel,replyUId,userId,cId,cName,isRead) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",myMessageBoxModel.mId,myMessageBoxModel.type,myMessageBoxModel.aId,myMessageBoxModel.time,myMessageBoxModel.content,myMessageBoxModel.imageUrl,myMessageBoxModel.replyNickName,myMessageBoxModel.replyCommentId,myMessageBoxModel.replyContent,myMessageBoxModel.replyHeadUrl,myMessageBoxModel.beReplyUId,myMessageBoxModel.beReplyNickName,myMessageBoxModel.userLevel,myMessageBoxModel.replyUId,_userId,myMessageBoxModel.cId,myMessageBoxModel.cName,@"0"];
+                _bResult = [bself->_db executeUpdate:@"INSERT INTO my_message_box (mId,type,aId,time,content,imageUrl,replyNickName,replyCommentId,replyContent,replyHeadUrl,beReplyUId,beReplyNickName,userLevel,replyUId,userId,cId,cName,isRead) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",myMessageBoxModel.mId,myMessageBoxModel.type,myMessageBoxModel.aId,myMessageBoxModel.time,myMessageBoxModel.content,myMessageBoxModel.imageUrl,myMessageBoxModel.replyNickName,myMessageBoxModel.replyCommentId,myMessageBoxModel.replyContent,myMessageBoxModel.replyHeadUrl,myMessageBoxModel.beReplyUId,myMessageBoxModel.beReplyNickName,myMessageBoxModel.userLevel,myMessageBoxModel.replyUId,_userId,myMessageBoxModel.cId,myMessageBoxModel.cName,@"0"];
             }
         }
     });
 
     return _bResult;
 }
+
+/**
+ *  更新信息已读v2.0
+ *
+ *  @param userId  用户id
+ *
+ *  @return 操作结果
+ */
+-(BOOL)updateMyMessageBox:(NSString*)userId rowId:(NSString *)rowId{
+    typeof(MessageDataManager*) bself = self;
+    __block BOOL _bResult = YES;
+    dispatch_sync(_dbQueue, ^{
+        _bResult = [bself->_db executeUpdate:@"update my_message_box set isRead = 1 where userid = ? and ROWID = ?",userId,rowId];
+    });
+    
+    return _bResult;
+}
+
+/**
+ *  获取我的消息v2.0
+ *
+ *  @param userId   用户id
+ *  @param isRead   是否已读0否1是
+ 
+ *  @return 我的消息
+ */
+-(NSMutableArray *)queryMyMessageBox:(NSString*)userId isRead:(NSString *)isRead{
+    typeof(MessageDataManager*) bself = self;
+    __block NSMutableArray *_messageArray = [NSMutableArray array];
+    dispatch_sync(_dbQueue, ^{
+        FMResultSet *rs = nil;
+        //        if([@"" isEqualToString:userId] ){
+        //            rs = [bself->_db executeQuery:@"SELECT * FROM my_message  order by time"];
+        //        }else{
+        rs = [bself->_db executeQuery:@"SELECT * FROM my_message_box WHERE userId = ? and isRead = ? order by time desc ", userId,isRead];
+        //        }
+        while ([rs next]) {
+            @autoreleasepool {
+                MyMessageBoxModel *_info = [[MyMessageBoxModel alloc] init];
+                _info.rowId = [rs stringForColumn:@"ROWID"];                  // 消息时间
+                _info.mId = [rs stringForColumn:@"mId"];        // 消息id
+                _info.content = [rs stringForColumn:@"content"];            // 消息内容
+                _info.aId = [rs stringForColumn:@"aId"];
+                _info.type = [rs stringForColumn:@"type"];
+                _info.time = [rs stringForColumn:@"time"];
+                _info.imageUrl = [rs stringForColumn:@"imageUrl"];
+                _info.replyNickName = [rs stringForColumn: @"replyNickName"];
+                _info.replyCommentId = [rs stringForColumn:@"replyCommentId"];
+                _info.replyContent = [rs stringForColumn:@"replyContent"];
+                _info.replyHeadUrl = [rs stringForColumn:@"replyHeadUrl"];
+                _info.beReplyUId = [rs stringForColumn:@"beReplyUId"];
+                _info.beReplyNickName = [rs stringForColumn:@"beReplyNickName"];
+                _info.userLevel = [rs stringForColumn:@"userLevel"];
+                _info.replyUId = [rs stringForColumn:@"replyUId"];
+                _info.userId = [rs stringForColumn:@"userId"];
+                _info.cId = [rs stringForColumn:@"cId"];
+                _info.cName = [rs stringForColumn:@"cName"];
+                _info.isRead = [rs stringForColumn:@"isRead"];
+                
+//                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_info,@"messageModel",isRead,@"isRead", nil];
+                [_messageArray addObject:_info];
+            }
+        }
+    });
+    return _messageArray;
+}
+
 
 @end
