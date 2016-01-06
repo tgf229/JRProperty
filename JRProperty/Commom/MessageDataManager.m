@@ -350,6 +350,24 @@
 }
 
 /**
+ *  更新所有信息已读v2.0
+ *
+ *  @param userId  用户id
+ *
+ *  @return 操作结果
+ */
+-(BOOL)updateMyMessageBoxAll:(NSString*)userId{
+    typeof(MessageDataManager*) bself = self;
+    __block BOOL _bResult = YES;
+    dispatch_sync(_dbQueue, ^{
+        _bResult = [bself->_db executeUpdate:@"update my_message_box set isRead = 1 where userid = ?",userId];
+    });
+    
+    return _bResult;
+}
+
+
+/**
  *  获取我的消息v2.0
  *
  *  @param userId   用户id
@@ -357,7 +375,7 @@
  
  *  @return 我的消息
  */
--(NSMutableArray *)queryMyMessageBox:(NSString*)userId isRead:(NSString *)isRead{
+-(NSMutableArray *)queryMyMessageBox:(NSString*)userId isRead:(NSString *)isRead type:(NSString *)type{
     typeof(MessageDataManager*) bself = self;
     __block NSMutableArray *_messageArray = [NSMutableArray array];
     dispatch_sync(_dbQueue, ^{
@@ -365,7 +383,7 @@
         //        if([@"" isEqualToString:userId] ){
         //            rs = [bself->_db executeQuery:@"SELECT * FROM my_message  order by time"];
         //        }else{
-        rs = [bself->_db executeQuery:@"SELECT * FROM my_message_box WHERE userId = ? and isRead = ? order by time desc ", userId,isRead];
+        rs = [bself->_db executeQuery:@"SELECT * FROM my_message_box WHERE userId = ? and isRead = ? and type in (?) order by time desc ", userId,isRead,type];
         //        }
         while ([rs next]) {
             @autoreleasepool {
@@ -390,7 +408,7 @@
                 _info.cName = [rs stringForColumn:@"cName"];
                 _info.isRead = [rs stringForColumn:@"isRead"];
                 
-//                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_info,@"messageModel",isRead,@"isRead", nil];
+                //                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_info,@"messageModel",isRead,@"isRead", nil];
                 [_messageArray addObject:_info];
             }
         }

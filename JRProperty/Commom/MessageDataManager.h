@@ -114,6 +114,15 @@
 -(BOOL)updateMyMessageBox:(NSString*)userId rowId:(NSString *)rowId;
 
 /**
+ *  更新所有信息已读v2.0
+ *
+ *  @param userId  用户id
+ *
+ *  @return 操作结果
+ */
+-(BOOL)updateMyMessageBoxAll:(NSString*)userId;
+
+/**
  *  获取我的消息v2.0
  *
  *  @param userId   用户id
@@ -121,7 +130,7 @@
  
  *  @return 我的消息
  */
--(NSMutableArray *)queryMyMessageBox:(NSString*)userId isRead:(NSString *)isRead;
+-(NSMutableArray *)queryMyMessageBox:(NSString*)userId isRead:(NSString *)isRead type:(NSString *)type;
 
 /**
  *  获取我的未读消息数目 v2.0
