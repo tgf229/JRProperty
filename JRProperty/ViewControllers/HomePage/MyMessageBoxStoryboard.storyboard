@@ -132,8 +132,8 @@
                                                     <exclude reference="0GA-0T-Ebj"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="IDg-oT-BOm"/>
-                                                    <exclude reference="gHn-Ph-twQ"/>
+                                                    <exclude reference="AZK-9M-6kY"/>
+                                                    <exclude reference="fn8-LH-WgW"/>
                                                     <exclude reference="Bay-xW-ARC"/>
                                                     <exclude reference="Xc1-Dj-sdL"/>
                                                     <exclude reference="rJd-Ri-Q9C"/>
@@ -142,8 +142,8 @@
                                                     <exclude reference="4nL-3y-4Gb"/>
                                                     <exclude reference="Hwq-V8-T86"/>
                                                     <exclude reference="m1q-VH-iUH"/>
-                                                    <exclude reference="AZK-9M-6kY"/>
-                                                    <exclude reference="fn8-LH-WgW"/>
+                                                    <exclude reference="IDg-oT-BOm"/>
+                                                    <exclude reference="gHn-Ph-twQ"/>
                                                     <exclude reference="EcR-ds-lNc"/>
                                                     <exclude reference="kSW-8M-h36"/>
                                                 </mask>
@@ -158,8 +158,8 @@
                                                     <include reference="0GA-0T-Ebj"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="IDg-oT-BOm"/>
-                                                    <include reference="gHn-Ph-twQ"/>
+                                                    <include reference="AZK-9M-6kY"/>
+                                                    <include reference="fn8-LH-WgW"/>
                                                     <include reference="Bay-xW-ARC"/>
                                                     <include reference="Xc1-Dj-sdL"/>
                                                     <include reference="rJd-Ri-Q9C"/>
@@ -168,8 +168,8 @@
                                                     <include reference="4nL-3y-4Gb"/>
                                                     <include reference="Hwq-V8-T86"/>
                                                     <include reference="m1q-VH-iUH"/>
-                                                    <include reference="AZK-9M-6kY"/>
-                                                    <include reference="fn8-LH-WgW"/>
+                                                    <include reference="IDg-oT-BOm"/>
+                                                    <include reference="gHn-Ph-twQ"/>
                                                     <include reference="EcR-ds-lNc"/>
                                                     <include reference="kSW-8M-h36"/>
                                                 </mask>
@@ -186,6 +186,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="jPM-BY-7BE" id="iqS-XD-3i4"/>
+                                    <outlet property="delegate" destination="jPM-BY-7BE" id="HF6-mj-Xfb"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -218,6 +222,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="myMessageBoxTableView" destination="RoE-Yf-nOM" id="EwR-TO-LRg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FCo-75-x4Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
