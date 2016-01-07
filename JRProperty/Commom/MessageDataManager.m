@@ -73,6 +73,12 @@
                 _bResult = NO;
                 return;
             }
+            
+//            if (![bself->_db executeUpdate:@"DROP TABLE IF EXISTS my_message_box"]) {
+//                NSLog(@"create table my_message_box error");
+//                _bResult = NO;
+//                return;
+//            }
 
             // dw add V1.1
             if ([[NSUserDefaults standardUserDefaults] integerForKey:@"isUpdateDB"] == 1 || ![[NSUserDefaults standardUserDefaults] integerForKey:@"isUpdateDB"]) {
@@ -383,7 +389,8 @@
         //        if([@"" isEqualToString:userId] ){
         //            rs = [bself->_db executeQuery:@"SELECT * FROM my_message  order by time"];
         //        }else{
-        rs = [bself->_db executeQuery:@"SELECT * FROM my_message_box WHERE userId = ? and isRead = ? and type in (?) order by time desc ", userId,isRead,type];
+        NSString * q = [NSString stringWithFormat:@"SELECT * FROM my_message_box WHERE userId = ? and isRead = ? and type in (%@)  order by time desc ",type];
+        rs = [bself->_db executeQuery:q, userId,isRead,nil];
         //        }
         while ([rs next]) {
             @autoreleasepool {
