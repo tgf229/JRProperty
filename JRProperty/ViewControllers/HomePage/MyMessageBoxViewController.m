@@ -9,6 +9,7 @@
 #import "MyMessageBoxViewController.h"
 #import "MessageDataManager.h"
 #import "LoginManager.h"
+#import "MyMessageBoxService.h"
 
 #import "MyMessageBoxTableViewCell.h"
 
@@ -18,12 +19,16 @@
 @interface MyMessageBoxViewController ()
 @property(strong,nonatomic) NSMutableArray * dataSourceArray; // 数据源
 @property (weak, nonatomic) IBOutlet UITableView *myMessageBoxTableView;
+
+@property(strong,nonatomic) MyMessageBoxService * myMessageBoxService;
+
 @end
 
 @implementation MyMessageBoxViewController
 
 -(void)config{
     self.dataSourceArray = [[NSMutableArray alloc] init];
+    self.myMessageBoxService = [[MyMessageBoxService alloc] init];
 }
 
 - (void)viewDidLoad {
@@ -31,7 +36,8 @@
     // Do any additional setup after loading the view.
     [self config];
     [self setRightBarButtonItem];
-    [self requestMyMessageBoxFromDatabase];
+//    [self requestMyMessageBoxFromDatabase];
+    [self requestMyMesssageBox];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,14 +45,59 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
 -(void)requestMyMessageBoxFromDatabase{
-    NSMutableArray * unReadMessages = [[MessageDataManager defaultManager] queryMyMessageBox:@"" isRead:@"0" type:@"1,2"];
-    NSMutableArray * readMessages = [[MessageDataManager defaultManager] queryMyMessageBox:@"" isRead:@"1" type:@"1,2"];
+                       
+    NSMutableArray * unReadMessages = [[MessageDataManager defaultManager] queryMyMessageBox:[LoginManager shareInstance].loginAccountInfo.uId isRead:@"0" type:@"1,2"];
+    NSMutableArray * readMessages = [[MessageDataManager defaultManager] queryMyMessageBox:[LoginManager shareInstance].loginAccountInfo.uId isRead:@"1" type:@"1,2"];
     [self.dataSourceArray removeAllObjects];
     [self.dataSourceArray addObjectsFromArray:unReadMessages];
     [self.dataSourceArray addObjectsFromArray:readMessages];
     [self.myMessageBoxTableView reloadData];
 }
+
+/**
+ *  我的消息查询 v2.0
+ */
+- (void)requestMyMesssageBox{
+    [self.myMessageBoxService Bus100702:CID_FOR_REQUEST uId:[LoginManager shareInstance].loginAccountInfo.uId success:^(id responseObject) {
+        if ([responseObject isKindOfClass:[MyMessageBoxListModel class]]) {
+            MyMessageBoxListModel *myMessageBoxListModel = (MyMessageBoxListModel *)responseObject;
+            if ([RETURN_CODE_SUCCESS isEqualToString:myMessageBoxListModel.retcode]) {
+                NSString *userId = [LoginManager shareInstance].loginAccountInfo.uId;
+                [[MessageDataManager defaultManager] insertMessageBox:myMessageBoxListModel userId:userId];
+                int num = [[MessageDataManager defaultManager] queryMyUnReadMessageBox:userId];
+                NSString *numStr = [NSString stringWithFormat:@"%d",num];
+                [self requestMyMessageBoxFromDatabase];
+                //之后的视图操作 大兔兔 继续
+//                _headViewMyMessageNumLabel.text = numStr;
+//                if (num != 0) {
+//                    _headViewMyMessageButtonView.hidden = NO;
+//                }else{
+//                    _headViewMyMessageButtonView.hidden = YES;
+//                }
+            }
+//            if (!_baseModel) {
+//                _baseModel = [[BaseModel alloc] init];
+//            }
+//            _baseModel.retcode = myMessageBoxListModel.retcode;
+//            _baseModel.retinfo = myMessageBoxListModel.retinfo;
+        }
+//        _isHomeMessageRequestSuccess = YES;
+    } failure:^(NSError *error) {
+//        _isHomeMessageRequestSuccess = YES;
+//        if (!_baseModel) {
+//            _baseModel = [[BaseModel alloc] init];
+//        }
+//        _baseModel.retcode = @"000001";
+//        _baseModel.retinfo = OTHER_ERROR_MESSAGE;
+    }];
+}
+
 
 /*
 #pragma mark - Navigation
@@ -74,7 +125,7 @@
     UIImage * image;
     switch ([myMessageBoxModel.type integerValue]) {
         case 1:{ // 物业消息
-            image = [UIImage imageNamed:@""];
+            image = [UIImage imageNamed:@"message_ico_wuye"];
             myMessageBoxTableViewCell.messageContentLabel.numberOfLines = 0;
             myMessageBoxTableViewCell.messageContentLabel.text = myMessageBoxModel.content;
             myMessageBoxTableViewCell.messageContentTrailingCons.constant = 10.0;
@@ -82,7 +133,7 @@
             break;
         }
         case 2:{ // 跳蚤消息
-            image = [UIImage imageNamed:@""];
+            image = [UIImage imageNamed:@"message_ico_market"];
             if ((nil != myMessageBoxModel.imageUrl) && ![@"" isEqualToString:myMessageBoxModel.imageUrl]) {
                 [myMessageBoxTableViewCell.fleaImage sd_setImageWithURL:[NSURL URLWithString:myMessageBoxModel.imageUrl] placeholderImage:[UIImage imageNamed:@"community_default"]];
             }
@@ -95,7 +146,12 @@
     }
     [myMessageBoxTableViewCell.messageHeadImage setImage:image];
     // 设置时间
-    myMessageBoxTableViewCell.messageTimeLabel.text = myMessageBoxModel.time;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
+    NSDate *date = [dateFormatter dateFromString:myMessageBoxModel.time];
+    [dateFormatter setDateFormat:@"yy.MM.dd HH:mm"];
+    NSString *strDate = [dateFormatter stringFromDate:date];
+    myMessageBoxTableViewCell.messageTimeLabel.text = strDate;
     
     return myMessageBoxTableViewCell;
 }
