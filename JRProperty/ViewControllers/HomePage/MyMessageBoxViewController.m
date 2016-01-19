@@ -152,6 +152,12 @@
     [dateFormatter setDateFormat:@"yy.MM.dd HH:mm"];
     NSString *strDate = [dateFormatter stringFromDate:date];
     myMessageBoxTableViewCell.messageTimeLabel.text = strDate;
+    // 设置消息未读状态标示
+    if ([@"0" isEqualToString:myMessageBoxModel.isRead]) {
+        [myMessageBoxTableViewCell.messageTipImage setImage:[UIImage imageNamed:@"message_point_red"]];
+    }else{
+        [myMessageBoxTableViewCell.messageTipImage setImage:nil];
+    }
     
     return myMessageBoxTableViewCell;
 }

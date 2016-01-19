@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *fleaImage;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContentTrailingCons;
 @property (weak, nonatomic) IBOutlet UILabel *messageFromLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *messageTipImage;
 
 
 @end
