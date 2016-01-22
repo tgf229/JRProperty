@@ -1073,6 +1073,8 @@ static void releaseAssetCallback(void *info) {
 
 
 - (IBAction)wantSellAction:(id)sender {
+    [self.sellBtn setTitleColor:UIColorFromRGB(0xd96e5d) forState:UIControlStateNormal];
+    [self.saleBtn setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateNormal];
     [UIView animateWithDuration:0.35f animations:^{
         //        self.saleingBtn.center;
         CGPoint point = self.slideImgView.center;
@@ -1083,6 +1085,8 @@ static void releaseAssetCallback(void *info) {
     [self clearView];
 }
 - (IBAction)wantSaleAction:(id)sender {
+    [self.saleBtn setTitleColor:UIColorFromRGB(0xd96e5d) forState:UIControlStateNormal];
+    [self.sellBtn setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateNormal];
     [UIView animateWithDuration:0.35f animations:^{
         //        self.saleingBtn.center;
         CGPoint point = self.slideImgView.center;

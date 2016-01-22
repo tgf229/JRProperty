@@ -300,11 +300,14 @@
     if (fmm.cPrice == nil) {
         fleaMarketListTableViewCell.nowPrice.text = @"不要钱";
     }else{
-        fleaMarketListTableViewCell.nowPrice.text = fmm.cPrice;
-        fleaMarketListTableViewCell.oldPrice.text = fmm.oPrice;
+        fleaMarketListTableViewCell.nowPrice.text = [@"¥" stringByAppendingString:fmm.cPrice];
+        if (fmm.oPrice != nil && fmm.oPrice.length > 0) {
+            fleaMarketListTableViewCell.oldPrice.text = [@"¥" stringByAppendingString:fmm.oPrice];
+        }
+        
     }
     
-    
+    fleaMarketListTableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return fleaMarketListTableViewCell;
 }
 

@@ -164,6 +164,8 @@
                         UIImageView * likeHeadUiv = [[UIImageView alloc] initWithFrame:CGRectMake(likehead_x, 5.0, 30.0, 30.0)];
                         FleaMarketLikeModel * fmlm =(FleaMarketLikeModel *)self.fleaMarketDetailModel.likeList[i];
                         [likeHeadUiv sd_setImageWithURL:[NSURL URLWithString:fmlm.imageUrl] placeholderImage:[UIImage imageNamed:@"community_default"]];
+                        likeHeadUiv.layer.masksToBounds = YES;
+                        likeHeadUiv.layer.cornerRadius = 15;
                         [self.likeListImagesView addSubview:likeHeadUiv];
                     }
                 }else{
