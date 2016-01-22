@@ -203,6 +203,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PraiseListViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"praiseCell" forIndexPath:indexPath];
+    [cell layoutIfNeeded];
     if (self.dataSourceArray.count > (indexPath.section*3+indexPath.item)) {
     //cell 背景图片设置
     UIImage *biaoyang = [UIImage imageNamed:@"biaoyang"];
@@ -222,7 +223,7 @@
     PraiseModel *praiseModel = (PraiseModel *)self.dataSourceArray[indexPath.section*3+indexPath.item];// 会有问题
 
     //设置头像
-    [cell.headImage sd_setImageWithURL:[NSURL URLWithString:praiseModel.eImageUrl] placeholderImage:[UIImage imageNamed:@"default_portrait_140x140"]];
+    [cell.headImage sd_setImageWithURL:[NSURL URLWithString:praiseModel.eImageUrl] placeholderImage:[UIImage imageNamed:@"community_default"]];
     //设置部门名称
     cell.depName.text = praiseModel.eDepName;
     //设置员工工号
