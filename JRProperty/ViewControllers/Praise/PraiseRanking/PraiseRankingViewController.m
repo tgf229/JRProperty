@@ -180,6 +180,8 @@
 //    self.portraitImgView.layer.masksToBounds = YES;
 //    self.portraitImgView.layer.cornerRadius = 40;
     
+    rankingCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return rankingCell;
 
 }
