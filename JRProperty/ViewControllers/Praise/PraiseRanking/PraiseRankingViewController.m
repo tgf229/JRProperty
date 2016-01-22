@@ -17,6 +17,9 @@
 #import "SVProgressHUD.h"
 #import "UIImageView+WebCache.h"
 
+#import "PraiseListViewController.h"
+#import "PraiseDetailViewController.h"
+
 @interface PraiseRankingViewController ()
 @property (strong, nonatomic) IBOutlet UIView *tView;
 @property (weak, nonatomic) IBOutlet UILabel *lMonth;
@@ -53,6 +56,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tView.frame = CGRectMake(-27.5, 10, 55, 20);
     // Do any additional setup after loading the view.
     self.cDateBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0,55, 20)];
     //    [self.cDateBtn setImage:[UIImage imageNamed:@"home_icon_arrow_24x14"] forState:UIControlStateNormal];
@@ -136,7 +140,7 @@
 */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.dataSourceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -149,7 +153,7 @@
     rankingCell.headImg.layer.masksToBounds = YES;
     rankingCell.headImg.layer.cornerRadius = 30;
     
-    [rankingCell.headImg sd_setImageWithURL:[NSURL URLWithString:praiseModel.eImageUrl] placeholderImage:[UIImage imageNamed:@"default_portrait_140x140"]];
+    [rankingCell.headImg sd_setImageWithURL:[NSURL URLWithString:praiseModel.eImageUrl] placeholderImage:[UIImage imageNamed:@"community_default"]];
     //设置员工姓名
     rankingCell.depUserName.text = praiseModel.eName;
     //设置单月被赞次数
@@ -181,7 +185,18 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //test 要删除=============
+    UIStoryboard *storboard = [UIStoryboard storyboardWithName:@"PraiseStoryboard" bundle:nil];
+    //获取表扬详情vc
+    PraiseDetailViewController *praiseDetailViewController = [storboard instantiateViewControllerWithIdentifier:@"praiseDetailViewController"];
+    praiseDetailViewController.title = @"表扬";
+    //将点击的员工信息传至下个vc中
+    praiseDetailViewController.praiseModel =(PraiseModel *)self.dataSourceArray[indexPath.section*3+indexPath.item];
+    praiseDetailViewController.cTime = [self.lYear.text stringByAppendingString:self.lMonth.text];
     
+    
+    praiseDetailViewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:praiseDetailViewController animated:YES];
 }
 
 -(void)choseDate:(id)sender{
@@ -210,8 +225,14 @@
         NSString * time = [self yearMonth2Time:self.sdYear month:chMonth];
         if (![time isEqualToString:[self yearMonth2Time:self.titleYear month:self.titleMonth]]) { // 不是当前title展示的年月
             //传参到下一个vc中
-            if ([time isEqualToString:@"系统当前年月"]) {
+            if ([time isEqualToString:[self yearMonth2Time:self.cYear month:self.cMonth]]) {
                 // 传参到praiselistvc中
+                UIStoryboard *praiseStoryboard = [UIStoryboard storyboardWithName:@"PraiseStoryboard" bundle:nil];
+                
+                PraiseListViewController *praiseListViewController = [praiseStoryboard instantiateViewControllerWithIdentifier:@"praiseListViewController"];
+                
+                praiseListViewController.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:praiseListViewController animated:YES];
             }else{
                 UIStoryboard *storboard = [UIStoryboard storyboardWithName:@"PraiseStoryboard" bundle:nil];
                 PraiseRankingViewController *praiseRankingViewController = [storboard instantiateViewControllerWithIdentifier:@"praiseRankingViewController"];
