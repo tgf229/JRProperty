@@ -356,7 +356,7 @@
                                                         <variation key="heightClass=regular-widthClass=compact" constant="3"/>
                                                     </constraint>
                                                     <constraint firstItem="YUX-eK-s6P" firstAttribute="leading" secondItem="BOR-IZ-DMq" secondAttribute="leading" constant="11" id="8Qr-8y-qXS">
-                                                        <variation key="heightClass=regular-widthClass=compact" constant="12"/>
+                                                        <variation key="heightClass=regular-widthClass=compact" constant="11"/>
                                                     </constraint>
                                                     <constraint firstAttribute="trailing" secondItem="YUX-eK-s6P" secondAttribute="trailing" constant="11" id="8RF-qJ-1Gv">
                                                         <variation key="heightClass=regular-widthClass=compact" constant="11"/>
@@ -368,7 +368,6 @@
                                                     <constraint firstItem="YUX-eK-s6P" firstAttribute="top" secondItem="BOR-IZ-DMq" secondAttribute="top" constant="16" id="JNt-aH-VIX">
                                                         <variation key="heightClass=regular-widthClass=compact" constant="13"/>
                                                     </constraint>
-                                                    <constraint firstItem="YUX-eK-s6P" firstAttribute="centerX" secondItem="BOR-IZ-DMq" secondAttribute="centerX" id="JW0-tj-qx1"/>
                                                     <constraint firstItem="YUX-eK-s6P" firstAttribute="trailing" secondItem="V27-Lr-m3M" secondAttribute="trailing" constant="2" id="RhO-ed-Lx1">
                                                         <variation key="heightClass=regular-widthClass=compact" constant="2"/>
                                                     </constraint>
@@ -396,7 +395,6 @@
                                                         <exclude reference="8Qr-8y-qXS"/>
                                                         <exclude reference="8RF-qJ-1Gv"/>
                                                         <exclude reference="JNt-aH-VIX"/>
-                                                        <exclude reference="JW0-tj-qx1"/>
                                                         <exclude reference="RhO-ed-Lx1"/>
                                                         <exclude reference="vYK-AQ-6f7"/>
                                                         <exclude reference="1Qd-Z1-yBn"/>
@@ -421,7 +419,6 @@
                                                         <include reference="8Qr-8y-qXS"/>
                                                         <include reference="8RF-qJ-1Gv"/>
                                                         <include reference="JNt-aH-VIX"/>
-                                                        <include reference="JW0-tj-qx1"/>
                                                         <include reference="RhO-ed-Lx1"/>
                                                         <include reference="vYK-AQ-6f7"/>
                                                         <include reference="1Qd-Z1-yBn"/>
