@@ -24,6 +24,8 @@
 #import "UIImageView+WebCache.h"
 #import "JRPropertyUntils.h"
 #import "UserCommunityListController.h"
+#import "MyFleaMarketViewController.h"
+#import "MyFavFleaBabyViewController.h"
 
 @interface MemberCenterViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
@@ -45,6 +47,8 @@
 @property (weak,nonatomic) IBOutlet UIView         *noHouseHeaderview;
 @property (weak,nonatomic) IBOutlet UIButton       *noHouseAddButton;
 
+@property (weak, nonatomic) IBOutlet UIView        *myFleaMarketView;
+@property (weak, nonatomic) IBOutlet UIView *myFavFleaMarketView;
 
 @property (weak,nonatomic) IBOutlet UIView         *myArticleView;
 @property (weak,nonatomic) IBOutlet UIView         *pwdSettingview;
@@ -90,6 +94,12 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
     
     UITapGestureRecognizer *myArticleViewTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMyArticle:)];
     [self.myArticleView addGestureRecognizer:myArticleViewTap];
+    
+    UITapGestureRecognizer *myFleaMarketTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMyFleaMarket:)];
+    [self.myFleaMarketView addGestureRecognizer:myFleaMarketTap];
+    
+    UITapGestureRecognizer *myFavFleaMarketTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMyFavFleaMarket:)];
+    [self.myFavFleaMarketView addGestureRecognizer:myFavFleaMarketTap];
     
     
     self.contentView.backgroundColor = [UIColor getColor:@"eeeeee"];
@@ -541,6 +551,24 @@ static NSString * const MyHouseTableViewCellIdentifier = @"MyHouseTableViewCell"
     UserCommunityListController *userCommunityListController = [storyboard instantiateViewControllerWithIdentifier:@"UserCommunityListController"];
     userCommunityListController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:userCommunityListController animated:YES];
+}
+
+//点击我发布的宝贝
+-(void)clickMyFleaMarket:(id)sender{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MyFleaMarketStoryboard" bundle:nil];
+    MyFleaMarketViewController *myFleaMarketViewController = [storyboard instantiateViewControllerWithIdentifier:@"myFleaMarketViewController"];
+    myFleaMarketViewController.hidesBottomBarWhenPushed = YES;
+    myFleaMarketViewController.titleName = @"我发布的宝贝";
+    [self.navigationController pushViewController:myFleaMarketViewController animated:YES];
+}
+
+//点击我收藏的宝贝
+-(void)clickMyFavFleaMarket:(id)sender{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MyFleaMarketStoryboard" bundle:nil];
+    MyFavFleaBabyViewController *myFavFleaBabyViewController = [storyboard instantiateViewControllerWithIdentifier:@"myFavFleaBabyViewController"];
+    myFavFleaBabyViewController.hidesBottomBarWhenPushed = YES;
+    myFavFleaBabyViewController.titleName = @"我收藏的宝贝";
+    [self.navigationController pushViewController:myFavFleaBabyViewController animated:YES];
 }
 
 
