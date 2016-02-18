@@ -56,6 +56,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    CGSize size = CGSizeMake(320,2000);
+    CGSize labelsize = [self.titleName sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
+    UIView * tView = [[UIView alloc] initWithFrame:CGRectMake((UIScreenWidth - labelsize.width) / 2, 0, labelsize.width, 40)];
+    [tView setBackgroundColor:[UIColor clearColor]];
+    UILabel * tLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelsize.width, 40)];
+    [tLabel setBackgroundColor:[UIColor clearColor]];
+    [tLabel setFont:[UIFont systemFontOfSize:20]];
+    tLabel.text = self.titleName;
+    [tView addSubview:tLabel];
+    self.navigationItem.titleView = tView;
+    
     // 在block中引用变量，需要定义一个weak对象指向原对象，防止在block中循环引用，导致内存泄露
     __weak UITableView * weaktb = self.fleaMarketListTableView;
     
@@ -203,13 +214,16 @@
     
     if (fmm.cPrice == nil) {
         fleaMarketListTableViewCell.nowPrice.text = @"不要钱";
+        fleaMarketListTableViewCell.oldPrice.text = @"";
     }else{
-        fleaMarketListTableViewCell.nowPrice.text = fmm.cPrice;
-        fleaMarketListTableViewCell.oldPrice.text = fmm.oPrice;
+        fleaMarketListTableViewCell.nowPrice.text = [@"¥" stringByAppendingString:fmm.cPrice];
+        if (fmm.oPrice != nil && fmm.oPrice.length > 0) {
+            fleaMarketListTableViewCell.oldPrice.text = [@"¥" stringByAppendingString:fmm.oPrice];
+        }
     }
     fleaMarketListTableViewCell.moreBtn.tag = MOREBTN_BASE_TAG+indexPath.row;
     
-    
+    fleaMarketListTableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return fleaMarketListTableViewCell;
 }
 
