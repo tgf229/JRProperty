@@ -299,6 +299,7 @@
     
     if (fmm.cPrice == nil) {
         fleaMarketListTableViewCell.nowPrice.text = @"不要钱";
+        fleaMarketListTableViewCell.oldPrice.text = @"";
     }else{
         fleaMarketListTableViewCell.nowPrice.text = [@"¥" stringByAppendingString:fmm.cPrice];
         if (fmm.oPrice != nil && fmm.oPrice.length > 0) {
