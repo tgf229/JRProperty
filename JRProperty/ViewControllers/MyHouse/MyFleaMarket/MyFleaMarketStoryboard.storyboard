@@ -24,7 +24,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssR-vx-9TM" userLabel="button view">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_vertical_1x20" translatesAutoresizingMaskIntoConstraints="NO" id="aYt-6t-Vo0">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pop_icon_shanchu" translatesAutoresizingMaskIntoConstraints="NO" id="aYt-6t-Vo0">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="1" id="2mx-Dh-5Rr"/>
@@ -287,7 +287,8 @@
                                                                             <exclude reference="PdY-Ha-Pas"/>
                                                                         </mask>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="220" y="20" width="0.0" height="15"/>
                                                                         <mask key="constraints">
                                                                             <include reference="PdY-Ha-Pas"/>
                                                                         </mask>
@@ -306,7 +307,8 @@
                                                                             <exclude reference="wpi-zO-Lkh"/>
                                                                         </mask>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="220" y="44" width="0.0" height="12"/>
                                                                         <mask key="constraints">
                                                                             <include reference="wpi-zO-Lkh"/>
                                                                         </mask>
@@ -318,10 +320,16 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="50" y="67" width="170" height="18"/>
+                                                                    </variation>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aN7-Mr-WYE">
                                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                     <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="50" y="95" width="170" height="183"/>
+                                                                    </variation>
                                                                 </view>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cob-ff-r1k">
                                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -370,16 +378,20 @@
                                                                             <exclude reference="cjS-Xa-wMJ"/>
                                                                         </mask>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="327" width="240" height="1"/>
                                                                         <mask key="constraints">
                                                                             <include reference="cjS-Xa-wMJ"/>
                                                                         </mask>
                                                                     </variation>
                                                                 </imageView>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sy-JF-9Y0">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sy-JF-9Y0">
                                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                                     <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
-                                                                    <state key="normal" backgroundImage="more"/>
+                                                                    <state key="normal" image="more"/>
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="219" y="293" width="1" height="20"/>
+                                                                    </variation>
                                                                     <connections>
                                                                         <action selector="moreAction:" destination="4S6-LX-xxz" eventType="touchUpInside" id="Lxe-Rc-Q5c"/>
                                                                     </connections>
@@ -697,12 +709,12 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nTK-No-2oi" userLabel="moreActionView">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="miz-Tb-n8v">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="miz-Tb-n8v">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="miz-Tb-n8v" secondAttribute="height" multiplier="1:1" id="m99-q0-6Uc"/>
                                     </constraints>
-                                    <state key="normal" title="Button"/>
+                                    <state key="normal" backgroundImage="pop_btn_shangjia"/>
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="m99-q0-6Uc"/>
@@ -753,7 +765,7 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Am9-2Y-j9q">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                    <state key="normal" title="Button"/>
+                                    <state key="normal" backgroundImage="pop_btn_xiajia"/>
                                     <connections>
                                         <action selector="downAction:" destination="4S6-LX-xxz" eventType="touchUpInside" id="1i2-QM-5fh"/>
                                     </connections>
@@ -767,7 +779,7 @@
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orF-yh-HOM">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                    <state key="normal" title="Button"/>
+                                    <state key="normal" backgroundImage="pop_btn_canclecollect"/>
                                     <connections>
                                         <action selector="cancelAction:" destination="4S6-LX-xxz" eventType="touchUpInside" id="nxA-Cm-2HM"/>
                                     </connections>
@@ -781,7 +793,7 @@
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="God-2S-MFU">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                    <state key="normal" title="Button"/>
+                                    <state key="normal" backgroundImage="pop_icon_shanchu"/>
                                     <connections>
                                         <action selector="delAction:" destination="4S6-LX-xxz" eventType="touchUpInside" id="CAR-P5-LWq"/>
                                     </connections>
@@ -1051,7 +1063,8 @@
                                                                             <exclude reference="deX-z8-0V8"/>
                                                                         </mask>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="220" y="20" width="0.0" height="15"/>
                                                                         <mask key="constraints">
                                                                             <include reference="deX-z8-0V8"/>
                                                                         </mask>
@@ -1070,7 +1083,8 @@
                                                                             <exclude reference="vve-Ro-Y9D"/>
                                                                         </mask>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="220" y="44" width="0.0" height="12"/>
                                                                         <mask key="constraints">
                                                                             <include reference="vve-Ro-Y9D"/>
                                                                         </mask>
@@ -1082,10 +1096,16 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="50" y="67" width="170" height="18"/>
+                                                                    </variation>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vjl-aM-3Py">
                                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                     <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="50" y="95" width="170" height="183"/>
+                                                                    </variation>
                                                                 </view>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeU-rv-LG0">
                                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1134,7 +1154,8 @@
                                                                             <exclude reference="cHe-WO-VHZ"/>
                                                                         </mask>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="327" width="240" height="1"/>
                                                                         <mask key="constraints">
                                                                             <include reference="cHe-WO-VHZ"/>
                                                                         </mask>
@@ -1394,8 +1415,11 @@
         <image name="chat_36x36.png" width="14" height="14"/>
         <image name="community_default" width="1" height="20"/>
         <image name="line_grey_foot_40x1" width="1" height="20"/>
-        <image name="line_vertical_1x20" width="1" height="20"/>
         <image name="more" width="1" height="20"/>
+        <image name="pop_btn_canclecollect" width="1" height="20"/>
+        <image name="pop_btn_shangjia" width="1" height="20"/>
+        <image name="pop_btn_xiajia" width="1" height="20"/>
+        <image name="pop_icon_shanchu" width="1" height="20"/>
         <image name="red_line_160x4" width="1" height="20"/>
         <image name="uesd_btn_collect.png" width="13" height="13"/>
     </resources>
