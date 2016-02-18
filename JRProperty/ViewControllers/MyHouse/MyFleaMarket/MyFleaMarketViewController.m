@@ -316,13 +316,17 @@
     
     if (fmm.cPrice == nil) {
         fleaMarketListTableViewCell.nowPrice.text = @"不要钱";
+        fleaMarketListTableViewCell.oldPrice.text = @"";
     }else{
-        fleaMarketListTableViewCell.nowPrice.text = fmm.cPrice;
-        fleaMarketListTableViewCell.oldPrice.text = fmm.oPrice;
+        
+        fleaMarketListTableViewCell.nowPrice.text = [@"¥" stringByAppendingString:fmm.cPrice];
+        if (fmm.oPrice != nil && fmm.oPrice.length > 0) {
+            fleaMarketListTableViewCell.oldPrice.text = [@"¥" stringByAppendingString:fmm.oPrice];
+        }
     }
     fleaMarketListTableViewCell.moreBtn.tag = MOREBTN_BASE_TAG+indexPath.row;
     
-    
+    fleaMarketListTableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return fleaMarketListTableViewCell;
 }
 
@@ -427,6 +431,20 @@
     self.downBtn.tag = tag;
     self.cancelBtn.tag = tag;
     self.delBtn.tag = tag;
+    
+    //设置按钮背景图片
+    FleaMarketModel * fmm = self.type==1?(FleaMarketModel*)self.dataSourceArray[tag-MOREBTN_BASE_TAG]:(FleaMarketModel*)self.dataSourceArray2[tag-MOREBTN_BASE_TAG];
+    if (self.type == 1) {
+        [self.upBtn setBackgroundImage:[UIImage imageNamed:@"pop_btn_shangjia_disable"] forState:UIControlStateNormal];
+        [self.downBtn setBackgroundImage:[UIImage imageNamed:@"pop_btn_xiajia"] forState:UIControlStateNormal];
+    }
+    else{
+        [self.upBtn setBackgroundImage:[UIImage imageNamed:@"pop_btn_shangjia"] forState:UIControlStateNormal];
+        [self.downBtn setBackgroundImage:[UIImage imageNamed:@"pop_btn_shangjia_disable"] forState:UIControlStateNormal];
+    }
+    if ([fmm.flag isEqualToString:@"1"]) {
+        [self.cancelBtn setBackgroundImage:[UIImage imageNamed:@"pop_btn_canclecollect"] forState:UIControlStateNormal];
+    }
 }
 - (IBAction)cancelShadowViewAction:(id)sender {
     [UIView animateWithDuration:0.35f animations:^{
