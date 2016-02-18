@@ -9,5 +9,5 @@
 #import "JRViewController.h"
 
 @interface MyFavFleaBabyViewController : JRViewControllerWithBackButton<UITableViewDataSource,UITableViewDelegate>
-
+@property(copy,nonatomic) NSString *titleName;
 @end
