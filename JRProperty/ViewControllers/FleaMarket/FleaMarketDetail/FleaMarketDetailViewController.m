@@ -71,6 +71,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+    UIImage *uiimg = [UIImage imageNamed:@"title_xiangqing"];
+    UIImageView * uiv = [[UIImageView alloc] initWithImage:uiimg];
+    self.navigationItem.titleView = uiv;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
@@ -115,8 +120,21 @@
                 self.timeView.text = self.fleaMarketDetailModel.time;
         
                 //缺少价格字段
-                self.cPriceView.text = self.fleaMarketDetailModel.cPrice;
-                self.oPriceView.text = self.fleaMarketDetailModel.oPrice;
+//                self.cPriceView.text = [@"¥" stringByAppendingString:self.fleaMarketDetailModel.cPrice];
+//                self.fleaMarketDetailModel.cPrice;
+//                self.oPriceView.text = [@"¥" stringByAppendingString:self.fleaMarketDetailModel.oPrice];
+//                self.fleaMarketDetailModel.oPrice;
+                
+                if (self.fleaMarketDetailModel.cPrice == nil) {
+                    self.cPriceView.text = @"不要钱";
+                    self.oPriceView.text = @"";
+                }else{
+                    self.cPriceView.text = [@"¥" stringByAppendingString:self.fleaMarketDetailModel.cPrice];
+                    if (self.fleaMarketDetailModel.oPrice != nil && self.fleaMarketDetailModel.oPrice.length > 0) {
+                        self.oPriceView.text = [@"¥" stringByAppendingString:self.fleaMarketDetailModel.oPrice];
+                    }
+                    
+                }
         
                 self.prodInfoLabel.text = self.fleaMarketDetailModel.content;
         
@@ -395,6 +413,12 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        [self commentAction:nil];
+        return NO;
+    }
     
     NSString * toBeString = [textView.text stringByReplacingCharactersInRange:range withString:text];
     
