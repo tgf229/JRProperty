@@ -42,6 +42,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *favViewBtn;
 - (IBAction)favoriteAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toBtnConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnWidth;
+
 @property(copy,nonatomic) NSString * queryTime;
 @property(assign,nonatomic) int page;
 @property(strong,nonatomic) NSMutableArray * dataSourceArray;// 数据源
@@ -137,6 +140,14 @@
                 }
         
                 self.prodInfoLabel.text = self.fleaMarketDetailModel.content;
+                
+                if (nil != self.fleaMarketDetailModel.phone && self.fleaMarketDetailModel.phone.length > 0) {
+                    //打电话
+                }
+                else{
+                    self.btnWidth.constant = 0.0f;
+                    self.toBtnConstraint.constant = 0.0f;
+                }
         
                 // 设置图片
                 // 图片宽高
@@ -416,7 +427,7 @@
     
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
-        [self commentAction:nil];
+        [self commentAction];
         return NO;
     }
     
@@ -430,8 +441,7 @@
     return YES;
 }
 
-
-- (IBAction)commentAction:(id)sender {
+-(void) commentAction{
     NSString * cont = [self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (cont.length == 0) {
         [self addAlertViewWithInfo:@"请填写评论消息"];
@@ -475,6 +485,61 @@
         [self resetVal];
         [SVProgressHUD showErrorWithStatus:@"发布评论失败，请稍后重试"];
     }];
+}
+
+
+- (IBAction)commentAction:(id)sender {
+    
+    if (nil != self.fleaMarketDetailModel.phone && self.fleaMarketDetailModel.phone.length > 0) {
+        NSMutableString *str = [[NSMutableString alloc] initWithFormat:@"tel:%@",self.fleaMarketDetailModel.phone ];
+        UIWebView * callWebView = [[UIWebView alloc] init];
+        [callWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+        [self.view addSubview:callWebView];
+    }
+
+//    NSString * cont = [self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    if (cont.length == 0) {
+//        [self addAlertViewWithInfo:@"请填写评论消息"];
+//        return;
+//    }
+//    [self.fleaMarketService Bus600401:nil aId:self.aid uId:[LoginManager shareInstance].loginAccountInfo.uId replyUid:self.repUid commentId:self.comtId content:cont success:^(id responseObject) {
+//        if ([responseObject isKindOfClass:[FleaMarketCommentModel class]]) {
+//            FleaMarketCommentModel * baseModel = (FleaMarketCommentModel *)responseObject;
+//            if ([RETURN_CODE_SUCCESS isEqualToString:baseModel.retcode]) {
+//                //发布成功刷新当前评论tableview
+//                FleaMarketCommentModel * fmc = [[FleaMarketCommentModel alloc] init];
+//                fmc.commentId = baseModel.commentId;
+//                fmc.uId = [LoginManager shareInstance].loginAccountInfo.uId;
+//                fmc.imageUrl = [LoginManager shareInstance].loginAccountInfo.image;
+//                fmc.time = @"刚刚";
+//                fmc.nickName = [LoginManager shareInstance].loginAccountInfo.nickName;
+//                fmc.replyUId = self.repUid;
+//                fmc.replyNickName = self.repNickName;
+//                fmc.content = cont;
+//                
+//                int comnum = [self.commentNumView.text intValue] + 1;
+//                self.commentNumView.text = [NSString stringWithFormat:@"%d",comnum];
+//                
+//                
+//                [self.dataSourceArray insertObject:fmc atIndex:0];
+//                [self.fleaMarketTableView reloadData];
+//                [self clearVal];
+//                [self resetVal];
+//            }
+//            else{
+//                [self clearVal];
+//                [self resetVal];
+//                [SVProgressHUD showErrorWithStatus:self.fleaMarketCommentListModel.retinfo];
+//            }
+//        }else{
+//            [self clearVal];
+//            [self resetVal];
+//        }
+//    } failure:^(NSError *error) {
+//        [self clearVal];
+//        [self resetVal];
+//        [SVProgressHUD showErrorWithStatus:@"发布评论失败，请稍后重试"];
+//    }];
 }
 
 
