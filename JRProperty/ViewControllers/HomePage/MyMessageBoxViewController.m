@@ -34,6 +34,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIImage *uiimg = [UIImage imageNamed:@"title_wodexiaoxi"];
+    UIImageView * uiv = [[UIImageView alloc] initWithImage:uiimg];
+    
+    self.navigationItem.titleView = uiv;
+
+    
     [self config];
     [self setRightBarButtonItem];
 //    [self requestMyMessageBoxFromDatabase];
