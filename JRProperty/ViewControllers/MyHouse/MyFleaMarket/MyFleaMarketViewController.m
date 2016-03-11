@@ -488,6 +488,7 @@
             BaseModel * baseModel = (BaseModel*)responseObject;
             if ([RETURN_CODE_SUCCESS isEqualToString:baseModel.retcode]) {
                 [self addAlertViewWithInfo:@"宝贝操作成功，您可以刷新列表查看"];
+                [self cancelShadowViewAction:nil];
             }else{
                 [SVProgressHUD showErrorWithStatus:baseModel.retinfo];
             }
