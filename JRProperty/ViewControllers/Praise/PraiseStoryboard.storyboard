@@ -259,7 +259,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="13" id="exY-ic-l80"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <variation key="default">
@@ -267,7 +267,8 @@
                                                                             <exclude reference="exY-ic-l80"/>
                                                                         </mask>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="13"/>
                                                                         <mask key="constraints">
                                                                             <include reference="exY-ic-l80"/>
                                                                         </mask>
@@ -286,7 +287,8 @@
                                                                             <exclude reference="gSH-Y2-BXF"/>
                                                                         </mask>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="34" y="3" width="30" height="10"/>
                                                                         <mask key="constraints">
                                                                             <include reference="gSH-Y2-BXF"/>
                                                                         </mask>
@@ -312,7 +314,8 @@
                                                                     <exclude reference="R9I-iu-yus"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="24" y="100" width="64" height="13"/>
                                                                 <mask key="constraints">
                                                                     <include reference="B1a-uz-FMh"/>
                                                                     <include reference="fAa-hj-wS3"/>
