@@ -127,7 +127,7 @@
     UIImage * image;
     switch ([myMessageBoxModel.type integerValue]) {
         case 3:{ // 圈子消息
-            image = [UIImage imageNamed:@"message_ico_market"];
+            image = [UIImage imageNamed:@"message_ico_wuye"];
             if ((nil != myMessageBoxModel.imageUrl) && ![@"" isEqualToString:myMessageBoxModel.imageUrl]) {
                 [myMessageBoxTableViewCell.fleaImage sd_setImageWithURL:[NSURL URLWithString:myMessageBoxModel.imageUrl] placeholderImage:[UIImage imageNamed:@"community_default"]];
             }
