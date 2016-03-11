@@ -83,7 +83,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIImage *uiimg = [UIImage imageNamed:@"shoucang"];
+    UIImage *uiimg = [UIImage imageNamed:@"fabudebaobei"];
     UIImageView * uiv = [[UIImageView alloc] initWithImage:uiimg];
     
 //    CGSize size = CGSizeMake(320,2000);
